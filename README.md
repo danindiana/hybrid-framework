@@ -8,10 +8,32 @@
 
 ## Overview
 This repository formalizes the **Human-AI Hybrid Loop**, a transfinite development methodology where human intuition and AI formal rigor combine to overcome Gödelian incompleteness.
-
 ### Core Philosophy
 - **The Human ($+1$):** Provides the goal-seeking lens, semantic context, and the ability to step outside formal systems to rewrite axioms.
 - **The AI ($\omega$):** Provides formal rigor, precise execution, massive state management, and syntax verification.
+
+## Getting Started
+
+1.  **Clone the Assembly:**
+    ```bash
+    git clone https://github.com/danindiana/hybrid-framework.git
+    cd hybrid-framework
+    ```
+
+2.  **Verify the Pile of Parts:**
+    Run the dependency audit to ensure your decades-old tools are synchronized:
+    ```bash
+    chmod +x setup.sh
+    ./setup.sh
+    ```
+
+3.  **Initialize the HUD:**
+    Launch the **Transfinite Controller** to begin your first hybrid session:
+    ```bash
+    python3 tools/controller.py
+    ```
+
+---
 
 ## Components
 
