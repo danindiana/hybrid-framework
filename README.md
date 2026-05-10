@@ -60,6 +60,16 @@ Tools and methods for inspecting the internal state of local LLMs:
 | **Upgrade Path** | ![Upgrade](./diagrams/expansions/upgrade_path.svg) | ![CoProcessor](./diagrams/expansions/up_co_processor.svg) | ![Hive](./diagrams/expansions/up_integrated_hive.svg) | ![Singularity](./diagrams/expansions/up_transfinite_singularity.svg) | ![Roadmap](./diagrams/expansions/meta_evolutionary_roadmap.svg) |
 | **Scenarios** | ![Scifi](./diagrams/expansions/scifi_scenarios.svg) | ![Ghost](./diagrams/expansions/sci_ghost_cli.svg) | ![Breach](./diagrams/expansions/sci_godelian_breach.svg) | ![War](./diagrams/expansions/sci_axiom_war.svg) | ![Assembly](./diagrams/expansions/impatient_assembly.svg) |
 
+### The Interface & Kineticism Matrix (5x5)
+
+| Pillar | I.1 | I.2 | I.3 | I.4 | I.5 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **The Controller** | ![HUD](./diagrams/readme/int_dash_hud.svg) | ![Interaction](./diagrams/readme/int_interaction.svg) | ![Telemetry](./diagrams/readme/int_telemetry.svg) | ![AxiomTrigger](./diagrams/readme/int_axiom_trigger.svg) | ![FutureInt](./diagrams/readme/int_future_interface.svg) |
+| **Substrates** | (Pending) | (Pending) | (Pending) | (Pending) | (Pending) |
+| **Forensics** | (Pending) | (Pending) | (Pending) | (Pending) | (Pending) |
+| **Automation** | (Pending) | (Pending) | (Pending) | (Pending) | (Pending) |
+| **Singularity** | (Pending) | (Pending) | (Pending) | (Pending) | (Pending) |
+
 ---
 
 ## Components
