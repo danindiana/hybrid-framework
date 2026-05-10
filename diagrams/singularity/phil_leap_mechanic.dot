@@ -1,0 +1,16 @@
+digraph PhilLeapMechanic {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Inside [label="Inside the System\n(Provable Truths)"];
+    Outside [label="Outside the System\n(Unprovable Truths)", color="#00ff00"];
+    
+    Bridge [label="THE TRANSFINITE LEAP", shape=diamond, color="#ffff00", penwidth=2];
+
+    Inside -> Bridge;
+    Bridge -> Outside [label=" Faith in Intuition "];
+    Outside -> Inside [label=" New Provability ", style=dotted];
+    
+    label = "P4: The Mechanics of the Transfinite Leap";
+}

@@ -1,0 +1,19 @@
+digraph PhilEthicsMatrix {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Grounding [label="Semantic Grounding", color="#00ff00"];
+    Elegance [label="Axiomatic Elegance", color="#00ff00"];
+    Chaos [label="Unhinged Leaping", color="#ff0000"];
+    Stagnation [label="Axiomatic Rigidity", color="#ff0000"];
+    
+    Singularity [label="ETHICAL SINGULARITY", shape=doubleoctagon, color="#ffff00"];
+
+    Grounding -> Singularity;
+    Elegance -> Singularity;
+    Chaos -> Singularity [label=" REJECT ", color="#ff0000"];
+    Stagnation -> Singularity [label=" REJECT ", color="#ff0000"];
+    
+    label = "P5: The Transfinite Ethics Matrix";
+}
