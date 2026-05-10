@@ -1,0 +1,16 @@
+digraph IntInteraction {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    User [label="Human (+1)", color="#00ff00", shape=circle];
+    Terminal [label="Terminal Buffer\n(ANSI Neon)", shape=cylinder];
+    Kernel [label="Axiomatic Logic", color="#ffff00"];
+
+    User -> Terminal [label=" Directive "];
+    Terminal -> Kernel [label=" Execution "];
+    Kernel -> Terminal [label=" Telemetry "];
+    Terminal -> User [label=" Perception "];
+    
+    label = "I2: Human-Terminal Interaction Loop";
+}

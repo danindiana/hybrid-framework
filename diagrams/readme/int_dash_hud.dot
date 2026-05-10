@@ -1,0 +1,18 @@
+digraph DashHUD {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Controller [label="Transfinite Controller\n(Python TUI)", color="#00ff00", penwidth=3];
+    
+    Metrics [label="HUD Metrics\n(VRAM, T/S, Align)", shape=doubleoctagon, color="#ffff00"];
+    Commands [label="Directives\n(1-5, Q)", shape=list];
+    Substrates [label="Sub-Tools\n(sh/py scripts)", color="#00f2ff"];
+
+    Controller -> Metrics [label=" Display "];
+    Controller -> Commands [label=" Ingest "];
+    Commands -> Substrates [label=" Dispatch "];
+    Substrates -> Controller [label=" Report "];
+    
+    label = "I1: Neon TUI Dashboard Architecture";
+}

@@ -1,0 +1,16 @@
+digraph IntAxiomaticShift {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    UI [label="Controller Menu (Option 4)"];
+    Input [label="Shift Name Prompt", shape=parallelogram];
+    Script [label="axiom_shift.sh", color="#ffff00"];
+    Visuals [label="viz_refresh.sh", color="#00ff00"];
+
+    UI -> Input;
+    Input -> Script;
+    Script -> Visuals [label=" Trigger Refresh "];
+    
+    label = "I4: UI-Triggered Axiomatic Shift";
+}

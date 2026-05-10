@@ -1,0 +1,17 @@
+digraph IntTelemetry {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Ollama [label="Inference Engine"];
+    Nvidia [label="GPU Hardware"];
+    Git [label="Project State"];
+    
+    Controller [label="Controller Dashboard", color="#00ff00", shape=doubleoctagon];
+
+    Ollama -> Controller [label=" Token Rates "];
+    Nvidia -> Controller [label=" VRAM HUD "];
+    Git -> Controller [label=" Alignment % "];
+    
+    label = "I3: Telemetry Aggregation Path";
+}
