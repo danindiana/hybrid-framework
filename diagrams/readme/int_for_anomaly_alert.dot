@@ -1,0 +1,16 @@
+digraph ForAnomaly {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Pattern [label="Forensic Baseline"];
+    Input [label="Live Metric Stream"];
+    Detector [label="Anomaly Detector", shape=diamond, color="#ffff00"];
+    Alert [label="HUD Alert / Bolt", shape=bolt, color="#ff0000"];
+
+    Pattern -> Detector;
+    Input -> Detector;
+    Detector -> Alert [label=" Outlier Detected "];
+    
+    label = "I.3.5: Anomaly Alerting Pipeline";
+}

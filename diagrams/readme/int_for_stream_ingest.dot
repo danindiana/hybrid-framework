@@ -1,0 +1,16 @@
+digraph ForStream {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Ollama [label="Ollama API"];
+    Chunks [label="JSON Response Chunks", shape=parallelogram];
+    Capture [label="Stream Buffer", color="#ffff00"];
+    Display [label="User TUI"];
+
+    Ollama -> Chunks;
+    Chunks -> Capture;
+    Capture -> Display;
+    
+    label = "I.3.1: Token Stream Ingestion";
+}

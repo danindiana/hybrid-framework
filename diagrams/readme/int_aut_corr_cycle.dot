@@ -1,0 +1,17 @@
+digraph AutCorr {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Error [label="Formal Error", color="#ff0000"];
+    Script [label="self_correction_loop.sh", shape=gear, color="#ffff00"];
+    Fix [label="AI Proposed Fix"];
+    ReVerify [label="Verification Pass", color="#00ff00"];
+
+    Error -> Script;
+    Script -> Fix;
+    Fix -> ReVerify;
+    ReVerify -> Error [label=" Fails "];
+    
+    label = "I.4.4: Auto-Correction Cycle";
+}

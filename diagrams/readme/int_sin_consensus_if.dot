@@ -1,0 +1,14 @@
+digraph SinConsensus {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Proposal [label="Multi-Agent Proposal"];
+    Interface [label="Consensus Dashboard", shape=doubleoctagon, color="#ffff00"];
+    HumanApproval [label="Human +1 Approval", shape=diamond, color="#00ff00"];
+
+    Proposal -> Interface;
+    Interface -> HumanApproval;
+    
+    label = "I.5.2: Multi-Agent Consensus Interface";
+}

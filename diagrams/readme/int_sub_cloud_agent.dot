@@ -1,0 +1,14 @@
+digraph SubCloud {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Local [label="Gemini CLI"];
+    API [label="Google / Anthropic API", shape=cloud];
+    Frnt [label="Frontier Models\n(Gemini 1.5 Pro / Claude 3.5)", color="#00ff00"];
+    
+    Local -> API [label=" Secure Request "];
+    API -> Frnt;
+    
+    label = "I.2.2: Cloud Agent Substrate";
+}

@@ -1,0 +1,14 @@
+digraph SinSteady {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    State [label="System Steady State"];
+    Monitor [label="Transfinite Monitor", shape=doubleoctagon, color="#00ff00"];
+    Health [label="Entropy / Alignment Metrics", color="#ffff00"];
+
+    State -> Monitor;
+    Monitor -> Health;
+    
+    label = "I.5.5: Transfinite Steady State Monitor";
+}

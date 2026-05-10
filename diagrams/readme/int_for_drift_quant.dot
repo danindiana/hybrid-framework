@@ -1,0 +1,16 @@
+digraph ForDrift {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Expectation [label="Human Goal"];
+    Reality [label="AI Execution"];
+    Delta [label="Alignment Delta", shape=diamond, color="#ff0000"];
+    Score [label="Synergy %", shape=doubleoctagon, color="#00ff00"];
+
+    Expectation -> Delta;
+    Reality -> Delta;
+    Delta -> Score;
+    
+    label = "I.3.4: Drift Quantification Logic";
+}

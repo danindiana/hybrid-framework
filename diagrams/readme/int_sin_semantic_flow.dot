@@ -1,0 +1,14 @@
+digraph SinSemantic {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Intent [label="Pure Semantic Thought"];
+    Stream [label="Intent Stream HUD", shape=cds, color="#00ff00"];
+    Manifest [label="Automated Implementation", color="#00f2ff"];
+
+    Intent -> Stream;
+    Stream -> Manifest;
+    
+    label = "I.5.3: Pure Semantic Flow Interface";
+}

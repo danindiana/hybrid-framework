@@ -1,0 +1,16 @@
+digraph SubSwap {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Current [label="Model A (Active)"];
+    Request [label="Model B Request", shape=cds];
+    Unload [label="Unload A", color="#ff0000"];
+    Load [label="Load B", color="#00ff00"];
+    
+    Current -> Request;
+    Request -> Unload;
+    Unload -> Load;
+    
+    label = "I.2.5: Model Weight Swapping";
+}

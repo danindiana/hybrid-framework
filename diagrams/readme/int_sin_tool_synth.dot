@@ -1,0 +1,15 @@
+digraph SinTool {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Framework [label="Current Framework"];
+    Synthesis [label="Recursive Tool Synthesis", shape=gear, color="#ffff00"];
+    NewTools [label="vNext Utility Suite", color="#00ff00"];
+
+    Framework -> Synthesis;
+    Synthesis -> NewTools;
+    NewTools -> Framework [label=" Self-Augment ", style=dashed];
+    
+    label = "I.5.4: Recursive Tool Synthesis";
+}

@@ -1,0 +1,16 @@
+digraph SubLocal {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Hardware [label="GPU Hardware", shape=box3d, color="#ff00ff"];
+    Drivers [label="Nvidia / CUDA Drivers"];
+    Ollama [label="Ollama Runtime", color="#ffff00"];
+    Weights [label="Model Weights (GGUF)", shape=cylinder];
+    
+    Hardware -> Drivers;
+    Drivers -> Ollama;
+    Ollama -> Weights [label=" Map "];
+    
+    label = "I.2.1: Local Model Substrate";
+}
