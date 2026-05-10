@@ -1,0 +1,27 @@
+digraph ImpatientAssembly {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    // Decades
+    D30 [label="1931: Gödel's Incompleteness", shape=ellipse, color="#00ff00"];
+    D70 [label="1970s: Unix / Bash / Awk", shape=ellipse, color="#00f2ff"];
+    D90 [label="1991: Graphviz / DOT", shape=ellipse, color="#ffff00"];
+    D20 [label="2020s: LLM / Ollama", shape=ellipse, color="#ff00ff"];
+    D26 [label="2026: Gemini CLI Orchestration", shape=ellipse, color="#ffffff"];
+
+    // The Assembly
+    Welder [label="The 'Someone Impatient'\n(The +1 Meta-Observer)", shape=star, color="#00ff00", penwidth=3];
+    
+    WeldPoint [label="THE TRANSFINITE ENGINE", shape=doubleoctagon, color="#ffff00", penwidth=4];
+
+    D30 -> Welder [label=" Theory "];
+    D70 -> Welder [label=" Tooling "];
+    D90 -> Welder [label=" Visualization "];
+    D20 -> Welder [label=" Power "];
+    D26 -> Welder [label=" Control "];
+    
+    Welder -> WeldPoint [label=" IMPATIENT ASSEMBLY "];
+    
+    label = "T11.1: The Principle of Impatient Assembly";
+}

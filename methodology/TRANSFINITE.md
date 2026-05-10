@@ -22,6 +22,7 @@ The **+1** level represents the meta-observer.
 4.  **Recollapse to ω':** Implement the new system using the AI's formal rigor.
 
 ## Strategic Axioms
+- **The Principle of Impatient Assembly:** Technology arrives as a pile of parts from different decades. The +1 Leap is the act of welding these parts together before the market or academia declares them "ready."
 - **Simplicity is a Meta-Truth:** If the code is becoming complex, the axioms are likely wrong.
 - **Elegance implies Correctness:** Transfinite solutions often "feel" simpler than the problems they solve.
 - **Persistence of Meaning:** The semantic objective must survive the death of the technical implementation.
