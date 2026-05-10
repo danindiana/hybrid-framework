@@ -36,6 +36,16 @@ Tools and methods for inspecting the internal state of local LLMs:
 | **Forensics** | ![Pipeline](./diagrams/readme/foren_pipeline.svg) | ![Metrics](./diagrams/readme/foren_metrics.svg) | ![Audit](./diagrams/readme/foren_audit.svg) | ![Diagnostic](./diagrams/readme/foren_diagnostic.svg) | ![Refinement](./diagrams/readme/foren_refinement.svg) |
 | **Evolution** | ![Scaling](./diagrams/readme/evol_scaling.svg) | ![Augment](./diagrams/readme/evol_augmentation.svg) | ![Godel](./diagrams/readme/evol_godel_leap.svg) | ![Knowledge](./diagrams/readme/evol_knowledge_distill.svg) | ![Future](./diagrams/readme/evol_future_state.svg) |
 
+### The Transfinite Mechanics Matrix (5x5)
+
+| Pillar | T.1 | T.2 | T.3 | T.4 | T.5 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Meta-Observer** | ![Position](./diagrams/transfinite/meta_observer_pos.svg) | ![Intuition](./diagrams/transfinite/meta_intuition_signal.svg) | ![Conservation](./diagrams/transfinite/meta_semantic_conservation.svg) | ![Injection](./diagrams/transfinite/meta_axiom_injection.svg) | ![Loop](./diagrams/transfinite/meta_loop_refinement.svg) |
+| **Axiom Dynamics** | ![Conflict](./diagrams/transfinite/axiom_conflict_resolution.svg) | ![Selection](./diagrams/transfinite/axiom_selection_process.svg) | ![Leap](./diagrams/transfinite/axiom_leap_mechanism.svg) | ![Stability](./diagrams/transfinite/axiom_stabilization_loop.svg) | ![Scaling](./diagrams/transfinite/axiom_symmetric_scaling.svg) |
+| **The ω Wall** | ![Explosion](./diagrams/transfinite/wall_complexity_explosion.svg) | ![Returns](./diagrams/transfinite/wall_diminishing_returns.svg) | ![Trap](./diagrams/transfinite/wall_paradox_trap.svg) | ![Exhaustion](./diagrams/transfinite/wall_resource_exhaustion.svg) | ![Barrier](./diagrams/transfinite/wall_godelian_barrier.svg) |
+| **Augmentation** | ![Skill](./diagrams/transfinite/aug_skill_activation.svg) | ![Tool](./diagrams/transfinite/aug_tool_creation.svg) | ![Knowledge](./diagrams/transfinite/aug_knowledge_ingestion.svg) | ![Pattern](./diagrams/transfinite/aug_pattern_recognition.svg) | ![Singularity](./diagrams/transfinite/aug_singularity_integration.svg) |
+| **Verification** | ![Formal](./diagrams/transfinite/proof_formal_verification.svg) | ![Semantic](./diagrams/transfinite/proof_semantic_verification.svg) | ![Consensus](./diagrams/transfinite/proof_multi_agent_consensus.svg) | ![Immutability](./diagrams/transfinite/proof_immutability.svg) | ![Stability](./diagrams/transfinite/proof_transfinite_stability.svg) |
+
 ---
 
 ## Components
