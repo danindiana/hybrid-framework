@@ -1,0 +1,18 @@
+digraph Modules {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Core [label="Framework Core"];
+    Oracle [label="The Oracle\n(Forensics)", color="#ffff00"];
+    Weaver [label="The Weaver\n(Cross-Repo)", color="#ffff00"];
+    Prism [label="The Prism\n(Visual)", color="#00ff00"];
+    Anvil [label="The Anvil\n(Chaos)", color="#ff0000"];
+
+    Core -> Oracle;
+    Core -> Weaver;
+    Core -> Prism;
+    Core -> Anvil;
+    
+    label = "Future State: Expansion Modules";
+}

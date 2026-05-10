@@ -1,0 +1,16 @@
+digraph Todo {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    CurrentState [label="Current Repository State"];
+    P0 [label="P0: Stabilization\n(Recursive Viz, Error Handling)", color="#ff0000"];
+    P1 [label="P1: Maintenance\n(Archiving, Cleanup)", color="#ffff00"];
+    P2 [label="P2: Optimization\n(Go Port, TUI)", color="#00ff00"];
+
+    CurrentState -> P0;
+    P0 -> P1;
+    P1 -> P2;
+    
+    label = "Future State: House-keeping TODO List";
+}

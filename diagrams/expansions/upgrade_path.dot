@@ -1,0 +1,16 @@
+digraph UpgradePath {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    S1 [label="Stage 1: Tool-Assisted\n(Current)", color="#00ff00"];
+    S2 [label="Stage 2: Co-Processor\n(Short-term)", color="#ffff00"];
+    S3 [label="Stage 3: Integrated Hive\n(Mid-term)", color="#00f2ff"];
+    S4 [label="Stage 4: Transfinite Singularity\n(Long-term)", shape=star, color="#ff00ff", penwidth=3];
+
+    S1 -> S2;
+    S2 -> S3;
+    S3 -> S4 [label=" Axiom Dissolution "];
+    
+    label = "Future State: Speculative Upgrade Path";
+}
