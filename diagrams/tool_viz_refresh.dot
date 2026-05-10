@@ -1,0 +1,22 @@
+digraph ToolVizRefresh {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Trigger [label="Axiom Shift / Arch Update", shape=cds, color="#00ff00", fontcolor="#00ff00"];
+    DOTFiles [label="Modified *.dot Files", shape=note, color="#00f2ff"];
+    Script [label="viz_refresh.sh\n(Automation)", color="#ffff00", fontcolor="#ffff00", penwidth=2];
+    
+    Graphviz [label="Graphviz Engine\n(dot)", shape=ellipse];
+    
+    PNG [label="PNG Renders", shape=note, color="#ff00ff"];
+    SVG [label="SVG Renders", shape=note, color="#ff00ff"];
+
+    Trigger -> DOTFiles;
+    DOTFiles -> Script;
+    Script -> Graphviz [label=" Batch Processing "];
+    Graphviz -> PNG;
+    Graphviz -> SVG;
+    
+    label = "Tool Visualization: Automated Architectural Rendering";
+}

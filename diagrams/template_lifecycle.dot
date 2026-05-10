@@ -1,0 +1,28 @@
+digraph TemplateLifecycle {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    P1 [label="Phase 1: Grounding\n(objective_definition.md)", color="#00ff00", fontcolor="#00ff00"];
+    P2 [label="Phase 2: Execution\n(session_log.md)", color="#00f2ff"];
+    
+    P3A [label="Phase 3A: Alignment\n(drift_analysis.md)", color="#ffff00", fontcolor="#ffff00"];
+    P3B [label="Phase 3B: Pruning\n(pruning_report.md)", color="#ffff00", fontcolor="#ffff00"];
+    
+    P4A [label="Phase 4A: Gödelian Limit\n(axiom_shift.md)", shape=diamond, color="#ff0000", fontcolor="#ff0000"];
+    P4B [label="Phase 4B: Review\n(capability_report.md)", color="#00ff00", fontcolor="#00ff00"];
+
+    P1 -> P2;
+    P2 -> P3A;
+    P2 -> P3B;
+    
+    P3A -> P4A [label=" Severe Drift "];
+    P3B -> P4A [label=" Dead-End "];
+    
+    P4A -> P1 [label=" Refactor Axioms ", style=dashed];
+    
+    P3A -> P4B [label=" Success "];
+    P3B -> P4B [label=" Success "];
+    
+    label = "Template Visualization: The Documentation Lifecycle";
+}

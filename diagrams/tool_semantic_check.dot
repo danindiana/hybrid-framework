@@ -1,0 +1,21 @@
+digraph ToolSemanticCheck {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Obj [label="Objective Definition\n(The 'Why')", shape=note, color="#00ff00", fontcolor="#00ff00"];
+    Imp [label="Implementation\n(The 'How')", shape=note, color="#00f2ff", fontcolor="#00f2ff"];
+    
+    Script [label="semantic_check.py\n(Alignment Auditor)", shape=diamond, color="#ffff00", fontcolor="#ffff00", penwidth=2];
+    Ollama [label="Local LLM\n(Analyzer)", color="#00f2ff"];
+    
+    Report [label="Semantic Drift Report\n(Alignment % & Synergies)", shape=doubleoctagon, color="#ff00ff"];
+
+    Obj -> Script;
+    Imp -> Script;
+    Script -> Ollama [label=" Structured Prompt "];
+    Ollama -> Script [label=" Analysis "];
+    Script -> Report;
+    
+    label = "Tool Visualization: Semantic Drift Auditor";
+}

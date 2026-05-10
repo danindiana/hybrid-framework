@@ -1,0 +1,19 @@
+digraph ToolForensics {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Input [label="User Execution\n(Model + Prompt)", shape=cds];
+    Wrapper [label="forensic_run.sh\n(Wrapper)", color="#00ff00", fontcolor="#00ff00", penwidth=2];
+    Ollama [label="Ollama API\n(--verbose)", color="#00f2ff"];
+    Log [label="Timestamped JSON Log\n(Metrics)", shape=note, color="#ffff00", fontcolor="#ffff00"];
+    Screen [label="Standard Output\n(User Display)", shape=note];
+
+    Input -> Wrapper;
+    Wrapper -> Ollama;
+    Ollama -> Wrapper [label=" Stream & Meta "];
+    Wrapper -> Log [label=" Extract Metrics "];
+    Wrapper -> Screen [label=" Relay Output "];
+    
+    label = "Tool Visualization: Forensic Token Auditing";
+}
