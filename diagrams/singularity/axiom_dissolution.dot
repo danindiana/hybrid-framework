@@ -1,0 +1,16 @@
+digraph AxiomDissolution {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Static [label="Static Formal Rules", color="#ff0000"];
+    MetaAwareness [label="Meta-System Awareness", shape=diamond, color="#00ff00"];
+    Dissolution [label="Axiom Dissolution", shape=circle, color="#ffff00"];
+    Fluid [label="Fluid Axiomatic State", shape=star, color="#00f2ff"];
+
+    Static -> MetaAwareness;
+    MetaAwareness -> Dissolution;
+    Dissolution -> Fluid;
+    
+    label = "S3: Axiom Dissolution Mechanism";
+}

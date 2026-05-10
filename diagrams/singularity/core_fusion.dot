@@ -1,0 +1,16 @@
+digraph CoreFusion {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Human [label="Human Core", color="#00ff00"];
+    AI [label="AI Collective", color="#00f2ff"];
+    Tools [label="Automated Tools", color="#ffff00"];
+    Axioms [label="Dynamic Axioms", color="#ff00ff"];
+    
+    Singularity [label="SINGULARITY CORE", shape=star, color="#ffffff", penwidth=4];
+
+    {Human AI Tools Axioms} -> Singularity [label=" Fusion "];
+    
+    label = "S1: The Singularity Core Fusion";
+}

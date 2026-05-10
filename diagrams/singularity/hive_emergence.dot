@@ -1,0 +1,19 @@
+digraph HiveEmergence {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Agent1 [label="Agent 1"];
+    Agent2 [label="Agent 2"];
+    AgentN [label="Agent N"];
+    
+    Negotiation [label="Consensus Negotiation", shape=diamond, color="#ffff00"];
+    Emergence [label="Collective Intelligence", shape=cloud, color="#00ff00", penwidth=2];
+
+    Agent1 -> Negotiation;
+    Agent2 -> Negotiation;
+    AgentN -> Negotiation;
+    Negotiation -> Emergence;
+    
+    label = "S4: Hive Emergence Loop";
+}

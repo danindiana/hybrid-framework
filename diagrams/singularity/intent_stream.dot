@@ -1,0 +1,15 @@
+digraph IntentStream {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Intent [label="Semantic Intent", shape=invhouse, color="#00ff00"];
+    Translation [label="Automatic Translation", shape=parallelogram];
+    Logic [label="Pure Logic Stream", color="#00f2ff"];
+    Artifact [label="Functional Output", shape=doubleoctagon, color="#ffff00"];
+
+    Intent -> Translation -> Logic -> Artifact;
+    Artifact -> Intent [label=" Real-time Alignment ", style=dashed];
+    
+    label = "S2: Pure Semantic Intent Stream";
+}
