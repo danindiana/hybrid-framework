@@ -1,0 +1,18 @@
+digraph TokenForensics {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Input [label="User Prompt", shape=cds];
+    Tokenize [label="/api/tokenize\n(ID Mapping)", color="#ffff00", fontcolor="#ffff00"];
+    Ollama [label="Model Weights\n(Inference)", color="#00f2ff"];
+    Stream [label="/api/generate\n(Text Chunks)", color="#ffff00", fontcolor="#ffff00"];
+    Metrics [label="--verbose\n(Eval Rates)", color="#00ff00", fontcolor="#00ff00"];
+
+    Input -> Tokenize;
+    Tokenize -> Ollama;
+    Ollama -> Stream;
+    Ollama -> Metrics;
+    
+    label = "Aspect 3: Token Forensic Monitoring";
+}

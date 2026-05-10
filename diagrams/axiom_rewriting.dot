@@ -1,0 +1,18 @@
+digraph AxiomRewriting {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    System_A [label="Formal System N\n(Current Axioms)", color="#00f2ff"];
+    Limit [label="Gödelian Limit\n(Incompleteness)", shape=bolt, color="#ff0000", fontcolor="#ff0000"];
+    Observer [label="Human Observer\n(Meta-Position)", color="#00ff00", fontcolor="#00ff00"];
+    New_Axioms [label="Axiom Refactoring", shape=parallelogram, color="#ffff00", fontcolor="#ffff00"];
+    System_B [label="Formal System N+1\n(Expanded Power)", color="#00f2ff", penwidth=3];
+
+    System_A -> Limit;
+    Limit -> Observer [label=" Awareness "];
+    Observer -> New_Axioms [label=" Intuitive Leap "];
+    New_Axioms -> System_B [label=" New Foundation "];
+    
+    label = "Aspect 2: Axiom Rewriting Loop";
+}

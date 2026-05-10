@@ -1,0 +1,16 @@
+digraph TransfiniteScaling {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    L0 [label="Level 0: Human\n(Unassisted Intuition)", color="#00ff00", fontcolor="#00ff00"];
+    L1 [label="Level 1: Tooling\n(IDE, Linters, CLI)", color="#00f2ff"];
+    L2 [label="Level 2: Agents\n(Gemini, Claude)", color="#00f2ff", penwidth=2];
+    L3 [label="Level 3: Hybrid Hive\n(Transfinite Synergy)", color="#ffff00", fontcolor="#ffff00", penwidth=4];
+
+    L0 -> L1 [label=" + Tooling "];
+    L1 -> L2 [label=" + Autonomy "];
+    L2 -> L3 [label=" + Semantic Alignment "];
+    
+    label = "Aspect 5: Transfinite Scaling Model (ω + 1)";
+}

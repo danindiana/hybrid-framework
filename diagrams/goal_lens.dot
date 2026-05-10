@@ -1,0 +1,23 @@
+digraph GoalLens {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Human [label="Human: The 'WHY'\n(Semantic Intent)", color="#00ff00", fontcolor="#00ff00"];
+    AI [label="AI: The 'HOW'\n(Syntactic Execution)", color="#00f2ff", fontcolor="#00f2ff"];
+    
+    Intent [label="High-Level Goal", shape=invhouse];
+    Decomposition [label="Step-by-Step Logic", shape=note];
+    Verification [label="Goal Alignment Check", shape=diamond, color="#ffff00", fontcolor="#ffff00"];
+
+    Human -> Intent;
+    Intent -> AI;
+    AI -> Decomposition;
+    Decomposition -> Verification;
+    Verification -> Human [label=" Drift Detected? "];
+    Verification -> Output [label=" Goal Met "];
+    
+    Output [label="Semantic Success", shape=doubleoctagon, color="#00ff00"];
+    
+    label = "Aspect 1: The Goal-Seeking Lens";
+}
