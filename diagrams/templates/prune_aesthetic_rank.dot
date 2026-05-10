@@ -1,0 +1,20 @@
+digraph PruneRank {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    C1 [label="C1: Minimalist"];
+    C2 [label="C2: Feature-Rich"];
+    C3 [label="C3: Highly Experimental"];
+    
+    Rank [label="Aesthetic Ranking", shape=trapezium, color="#ffff00"];
+    
+    Selected [label="Top Selection", shape=star, color="#00ff00"];
+
+    C1 -> Rank;
+    C2 -> Rank;
+    C3 -> Rank;
+    Rank -> Selected;
+    
+    label = "T3.3: Aesthetic Ranking Matrix";
+}

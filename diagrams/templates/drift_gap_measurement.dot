@@ -1,0 +1,18 @@
+digraph DriftGap {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    PointA [label="Objective A"];
+    PointB [label="Implementation A'"];
+    
+    Gap [label="Semantic Gap", shape=ellipse, color="#ff00ff", penwidth=2];
+    
+    Measurement [label="drift_analysis.md\n(Gap Quantified)", shape=note];
+
+    PointA -> Gap;
+    PointB -> Gap;
+    Gap -> Measurement;
+    
+    label = "T4.2: Semantic Gap Measurement";
+}

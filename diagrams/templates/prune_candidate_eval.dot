@@ -1,0 +1,21 @@
+digraph PruneEval {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Generator [label="AI Formal Pass", shape=invhouse];
+    Cand1 [label="Candidate 1"];
+    Cand2 [label="Candidate 2"];
+    Cand3 [label="Candidate 3"];
+    
+    Eval [label="Heuristic Evaluation", shape=diamond, color="#ffff00"];
+
+    Generator -> Cand1;
+    Generator -> Cand2;
+    Generator -> Cand3;
+    Cand1 -> Eval;
+    Cand2 -> Eval;
+    Cand3 -> Eval;
+    
+    label = "T3.1: Candidate Evaluation Flow";
+}

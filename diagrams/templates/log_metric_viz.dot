@@ -1,0 +1,16 @@
+digraph LogMetrics {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Tokens [label="Token Count", shape=circle];
+    Rate [label="Token/Sec", shape=circle];
+    Duration [label="Duration", shape=circle];
+    Report [label="Performance Profile", shape=doubleoctagon, color="#00ff00"];
+
+    Tokens -> Report;
+    Rate -> Report;
+    Duration -> Report;
+    
+    label = "T2.3: Metric Visualization Flow";
+}

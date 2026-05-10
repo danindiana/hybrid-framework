@@ -1,0 +1,19 @@
+digraph ObjSeeds {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Source [label="Objective Doc", shape=note];
+    Extract [label="Semantic Seed Extraction", shape=parallelogram];
+    SeedA [label="Seed A", color="#00ff00"];
+    SeedB [label="Seed B", color="#00ff00"];
+    Implementation [label="Code Implementation", color="#00f2ff"];
+
+    Source -> Extract;
+    Extract -> SeedA;
+    Extract -> SeedB;
+    SeedA -> Implementation;
+    SeedB -> Implementation;
+    
+    label = "T1.5: Seed Propagation Path";
+}

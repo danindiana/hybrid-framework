@@ -1,0 +1,20 @@
+digraph CapMetrics {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    ForensicLogs [label="forensics_*.json"];
+    DriftDocs [label="drift_analysis.md"];
+    PruneDocs [label="pruning_report.md"];
+    
+    MetricProcessor [label="Metric Aggregator", shape=diamond, color="#ffff00"];
+    
+    FinalReport [label="Capability Summary", shape=doubleoctagon, color="#00ff00"];
+
+    ForensicLogs -> MetricProcessor;
+    DriftDocs -> MetricProcessor;
+    PruneDocs -> MetricProcessor;
+    MetricProcessor -> FinalReport;
+    
+    label = "T5.4: Metric Aggregation Pipeline";
+}

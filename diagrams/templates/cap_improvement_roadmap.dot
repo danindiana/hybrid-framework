@@ -1,0 +1,16 @@
+digraph CapRoadmap {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Current [label="Current Capability State"];
+    Identify [label="Identify Bottlenecks", shape=diamond, color="#ff0000"];
+    Strategies [label="Synergy Strategies", shape=parallelogram, color="#00ff00"];
+    Target [label="Future Transfinite State", shape=star, color="#ffff00"];
+
+    Current -> Identify;
+    Identify -> Strategies [label=" Refine Workflow "];
+    Strategies -> Target;
+    
+    label = "T5.5: Improvement Roadmap";
+}

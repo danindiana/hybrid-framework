@@ -1,0 +1,16 @@
+digraph LogForensics {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Raw [label="Ollama Verbose Output", shape=note];
+    Filter [label="Grep/Awk Filter", shape=parallelogram];
+    JSON [label="Forensic JSON", shape=note, color="#ffff00"];
+    Entry [label="Session Log Entry", shape=box, color="#00ff00"];
+
+    Raw -> Filter;
+    Filter -> JSON;
+    JSON -> Entry;
+    
+    label = "T2.2: Forensic Data Ingestion";
+}

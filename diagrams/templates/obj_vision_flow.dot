@@ -1,0 +1,16 @@
+digraph ObjVision {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Vision [label="High-Level Vision\n(Natural Language)", color="#00ff00"];
+    Extraction [label="Entity Extraction", shape=ellipse];
+    SemanticMap [label="Semantic Map", shape=cloud];
+    FormalGoals [label="Formal Goals", shape=invhouse];
+
+    Vision -> Extraction;
+    Extraction -> SemanticMap;
+    SemanticMap -> FormalGoals;
+    
+    label = "T1.1: Vision to Intent Flow";
+}

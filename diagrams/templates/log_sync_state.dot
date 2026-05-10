@@ -1,0 +1,16 @@
+digraph LogSync {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Local [label="Local Workspace Files", color="#00f2ff"];
+    Check [label="Final Sync Checklist", shape=list];
+    Git [label="Git Commit/Push", color="#00ff00"];
+    Remote [label="GitHub Repo", shape=cloud, color="#ffff00"];
+
+    Local -> Check;
+    Check -> Git;
+    Git -> Remote;
+    
+    label = "T2.5: Synchronization State";
+}

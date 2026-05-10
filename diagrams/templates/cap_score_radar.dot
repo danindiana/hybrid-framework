@@ -1,0 +1,18 @@
+digraph CapRadar {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Center [label="System Core", shape=point];
+    Semantic [label="Semantic Translation (8/10)", color="#00ff00"];
+    Agility [label="Meta-Agility (9/10)", color="#00ff00"];
+    Pruning [label="Aesthetic Pruning (7/10)", color="#ffff00"];
+    Synergy [label="Operational Synergy (10/10)", color="#00ff00", penwidth=3];
+
+    Center -> Semantic;
+    Center -> Agility;
+    Center -> Pruning;
+    Center -> Synergy;
+    
+    label = "T5.1: Capability Radar Mapping";
+}

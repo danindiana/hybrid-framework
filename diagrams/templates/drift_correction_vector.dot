@@ -1,0 +1,18 @@
+digraph DriftVector {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Current [label="Current Implementation", color="#ff0000"];
+    Target [label="Desired Objective", color="#00ff00"];
+    
+    Vector [label="Correction Vector\n(Axiom Shift)", shape=cds, color="#ffff00"];
+    
+    Refinement [label="Refined Logic", color="#00f2ff"];
+
+    Current -> Vector;
+    Target -> Vector;
+    Vector -> Refinement;
+    
+    label = "T4.4: Correction Vector Strategy";
+}

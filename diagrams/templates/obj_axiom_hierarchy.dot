@@ -1,0 +1,14 @@
+digraph ObjAxiom {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Core [label="Core Axioms\n(Lang/Framework)", penwidth=3];
+    Sub [label="Sub-Axioms\n(Libs/APIs)"];
+    Env [label="Environment\n(OS/Hardware)", color="#ffff00"];
+
+    Env -> Core;
+    Core -> Sub;
+    
+    label = "T1.4: Axiom Hierarchy";
+}

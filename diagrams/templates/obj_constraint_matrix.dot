@@ -1,0 +1,19 @@
+digraph ObjConstraints {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Requirement [label="Raw Requirement"];
+    Hard [label="Hard Constraints\n(Security/Hardware)", color="#ff0000"];
+    Soft [label="Soft Constraints\n(Style/Elegance)", color="#00ff00"];
+    Filter [label="Axiom Filter", shape=diamond];
+    Final [label="Project Axioms", shape=doubleoctagon];
+
+    Requirement -> Filter;
+    Filter -> Hard;
+    Filter -> Soft;
+    Hard -> Final;
+    Soft -> Final;
+    
+    label = "T1.2: Constraint Filtering Matrix";
+}

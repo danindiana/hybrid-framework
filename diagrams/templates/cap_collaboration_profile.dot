@@ -1,0 +1,19 @@
+digraph CapProfile {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    History [label="Session History Logs"];
+    Aggregation [label="Data Aggregator", shape=parallelogram];
+    
+    Precise [label="Ultra-Precise", shape=ellipse];
+    Creative [label="Creatively Chaotic", shape=ellipse];
+    Structured [label="Highly Structured", shape=ellipse];
+
+    History -> Aggregation;
+    Aggregation -> Precise;
+    Aggregation -> Creative;
+    Aggregation -> Structured;
+    
+    label = "T5.3: Collaboration Profiling";
+}

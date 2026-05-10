@@ -1,0 +1,20 @@
+digraph DriftDetection {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Objective [label="Semantic Objective", color="#00ff00"];
+    Execution [label="AI Formal Execution", color="#00f2ff"];
+    
+    Comparator [label="Semantic Comparator\n(semantic_check.py)", shape=diamond, color="#ffff00"];
+    
+    Drift [label="Drift Detected", color="#ff0000"];
+    Aligned [label="Aligned", color="#00ff00"];
+
+    Objective -> Comparator;
+    Execution -> Comparator;
+    Comparator -> Drift [label=" Gap > Threshold "];
+    Comparator -> Aligned [label=" Gap < Threshold "];
+    
+    label = "T4.1: Drift Detection Loop";
+}
