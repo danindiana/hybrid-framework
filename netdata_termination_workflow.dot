@@ -1,0 +1,39 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=filled, fontname="Arial"];
+    
+    subgraph cluster_systemd {
+        label = "Systemd Management";
+        style=dashed;
+        color=blue;
+        "netdata.service" [fillcolor=lightblue];
+    }
+    
+    subgraph cluster_processes {
+        label = "Active Processes";
+        style=filled;
+        color=lightgrey;
+        "netdata (Main)" [fillcolor=salmon];
+        "apps.plugin" [fillcolor=lightsalmon];
+        "ebpf.plugin" [fillcolor=lightsalmon];
+        "nvidia-smi" [fillcolor=lightsalmon];
+    }
+    
+    subgraph cluster_tools {
+        label = "Management Scripts";
+        "stop.sh" [fillcolor=lightgreen];
+        "status.sh" [fillcolor=lightgreen];
+    }
+    
+    "netdata.service" -> "netdata (Main)" [label="Starts"];
+    "netdata (Main)" -> "apps.plugin" [label="Spawns"];
+    "netdata (Main)" -> "ebpf.plugin" [label="Spawns"];
+    "ebpf.plugin" -> "nvidia-smi" [label="Uses"];
+    
+    "stop.sh" -> "netdata.service" [label="systemctl stop"];
+    "stop.sh" -> "netdata (Main)" [label="kill -9 (orphans)", color=red];
+    "stop.sh" -> "apps.plugin" [label="kill -9 (orphans)", color=red];
+    
+    "status.sh" -> "netdata.service" [label="Checks"];
+    "status.sh" -> "netdata (Main)" [label="Probes"];
+}
