@@ -1,0 +1,37 @@
+digraph TemplateHierarchy {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Master [label="Project Axioms (GEMINI.md)", shape=doubleoctagon, color="#ffff00"];
+    
+    subgraph cluster_grounding {
+        label="Grounding Layer";
+        color="#00ff00";
+        fontcolor="#00ff00";
+        Objective [label="objective_definition.md", color="#00ff00"];
+    }
+
+    subgraph cluster_execution {
+        label="Execution Layer";
+        color="#00f2ff";
+        Log [label="session_log.md"];
+        Drift [label="drift_analysis.md"];
+    }
+
+    subgraph cluster_refinement {
+        label="Refinement Layer";
+        color="#ff00ff";
+        Pruning [label="pruning_report.md"];
+        Capability [label="capability_report.md"];
+    }
+
+    Master -> Objective;
+    Objective -> Log;
+    Log -> Drift;
+    Drift -> Pruning;
+    Pruning -> Capability;
+    Capability -> Master [label=" Feedback Loop ", style=dashed];
+    
+    label = "A1: Template Ecosystem Hierarchy";
+}

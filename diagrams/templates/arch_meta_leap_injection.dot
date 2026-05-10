@@ -1,0 +1,18 @@
+digraph MetaLeapInjection {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Drift [label="Severe Semantic Drift", color="#ff0000"];
+    Limit [label="Gödelian Wall Encountered", shape=bolt, color="#ff0000"];
+    
+    AxiomShift [label="axiom_shift.md\n(Injection Point)", shape=star, color="#00ff00", penwidth=3];
+    
+    Refactor [label="New Formal Axioms", color="#ffff00"];
+
+    Drift -> AxiomShift;
+    Limit -> AxiomShift;
+    AxiomShift -> Refactor;
+    
+    label = "A3: The Meta-Leap Injection Point";
+}

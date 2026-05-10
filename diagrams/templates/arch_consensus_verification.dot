@@ -1,0 +1,20 @@
+digraph ConsensusVerification {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Gemini [label="Gemini (ω-1)"];
+    Claude [label="Claude (ω-2)"];
+    Ollama [label="Local (ω-3)"];
+    
+    ConsensusBoard [label="capability_report.md\n(Shared Consensus)", shape=doubleoctagon, color="#ffff00"];
+    
+    HumanAudit [label="Human Review (+1)", shape=diamond, color="#00ff00"];
+
+    Gemini -> ConsensusBoard;
+    Claude -> ConsensusBoard;
+    Ollama -> ConsensusBoard;
+    ConsensusBoard -> HumanAudit;
+    
+    label = "A4: Multi-Agent Consensus Verification Flow";
+}

@@ -1,0 +1,17 @@
+digraph RecursiveDoc {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Fact [label="New Fact/Insight", shape=parallelogram, color="#ffff00"];
+    Ingestion [label="Template Logging", color="#00f2ff"];
+    Synthesis [label="Framework Refinement", shape=diamond];
+    PermanentMemory [label="MEMORY.md / GEMINI.md", shape=cylinder, color="#00ff00"];
+
+    Fact -> Ingestion;
+    Ingestion -> Synthesis;
+    Synthesis -> PermanentMemory;
+    PermanentMemory -> Fact [label=" Contextual Awareness ", style=dotted];
+    
+    label = "A2: Recursive Documentation & Knowledge Ingestion";
+}
