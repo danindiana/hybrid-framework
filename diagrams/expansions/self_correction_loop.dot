@@ -1,0 +1,26 @@
+digraph SelfCorrectionLoop {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Start [label="Start Loop", shape=circle, color="#00ff00"];
+    Exec [label="Formal Execution\n(Inference)", color="#00f2ff"];
+    Audit [label="Complexity Audit\n(Wall Detection)", color="#ffff00"];
+    Alignment [label="Semantic Alignment\n(Drift Check)", color="#ffff00"];
+    
+    Decision [label="Alignment > 80%?", shape=diamond, color="#00ff00"];
+    
+    AxiomShift [label="Axiom Shift\n(The Meta-Leap)", shape=star, color="#ff0000", penwidth=3];
+    Success [label="Validated Artifact", shape=doubleoctagon, color="#00ff00"];
+
+    Start -> Exec;
+    Exec -> Audit;
+    Audit -> Alignment;
+    Alignment -> Decision;
+    
+    Decision -> Success [label=" Yes "];
+    Decision -> AxiomShift [label=" No "];
+    AxiomShift -> Exec [label=" Restart with New Axioms ", style=dashed];
+    
+    label = "T12.1: The Oracle Self-Correction Loop";
+}

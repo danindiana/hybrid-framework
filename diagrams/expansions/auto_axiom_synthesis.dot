@@ -1,0 +1,18 @@
+digraph AutoAxiom {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    History [label="Previous Axiom Shifts", shape=folder];
+    Failure [label="Current Failure State", color="#ff0000"];
+    
+    Synthesis [label="Axiom Synthesis Engine\n(Pattern Matcher)", shape=diamond, color="#ffff00"];
+    
+    Suggestion [label="Proposed New Axioms", shape=parallelogram, color="#00ff00"];
+
+    History -> Synthesis;
+    Failure -> Synthesis;
+    Synthesis -> Suggestion;
+    
+    label = "T12.4: Automated Axiom Synthesis";
+}

@@ -1,0 +1,19 @@
+digraph TransfiniteOS {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Kernel [label="Axiomatic Kernel\n(Pure Semantic Intent)", color="#ffff00", penwidth=3];
+    Memory [label="Transfinite Memory\n(Recursive Logs)", shape=cylinder];
+    Scheduler [label="Orchestration Scheduler\n(Multi-Agent Hive)", shape=gear];
+    Drivers [label="Tool Drivers\n(Bash/Python Utils)"];
+    UI [label="Neon TUI / HUD", shape=doubleoctagon, color="#00ff00"];
+
+    Kernel -> Scheduler;
+    Scheduler -> Memory;
+    Scheduler -> Drivers;
+    Drivers -> UI;
+    UI -> Kernel [label=" Human +1 Input "];
+    
+    label = "T12.2: Proposed Transfinite OS Architecture";
+}

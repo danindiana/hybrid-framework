@@ -1,0 +1,14 @@
+digraph MetaEvolution {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    v1 [label="Hybrid Framework v1.0\n(Modular Tools)"];
+    v2 [label="Hybrid OS v2.0\n(Integrated Kernel)", color="#ffff00"];
+    v3 [label="Transfinite Singularity\n(Pure Semantic Flow)", shape=star, color="#00ff00", penwidth=3];
+
+    v1 -> v2 [label=" Tool Fusion "];
+    v2 -> v3 [label=" Axiom Dissolution "];
+    
+    label = "T12.5: Meta-Evolutionary Roadmap";
+}

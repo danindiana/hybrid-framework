@@ -1,0 +1,19 @@
+digraph WallDetection {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Entropy [label="Token Entropy\n(Repetition Spike)", color="#ff00ff"];
+    Complexity [label="Code Complexity\n(Line Count Surge)", color="#ff0000"];
+    Latency [label="Inference Latency\n(Stagnation)", color="#ffff00"];
+    
+    Wall [label="GÖDELIAN WALL", shape=box, color="#ff0000", penwidth=5];
+    Alert [label="Axiom Shift Trigger", shape=bolt, color="#00ff00"];
+
+    Entropy -> Wall;
+    Complexity -> Wall;
+    Latency -> Wall;
+    Wall -> Alert;
+    
+    label = "T12.3: Wall Detection Algorithm";
+}
