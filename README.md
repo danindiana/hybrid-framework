@@ -46,6 +46,16 @@ Tools and methods for inspecting the internal state of local LLMs:
 | **Augmentation** | ![Skill](./diagrams/transfinite/aug_skill_activation.svg) | ![Tool](./diagrams/transfinite/aug_tool_creation.svg) | ![Knowledge](./diagrams/transfinite/aug_knowledge_ingestion.svg) | ![Pattern](./diagrams/transfinite/aug_pattern_recognition.svg) | ![Singularity](./diagrams/transfinite/aug_singularity_integration.svg) |
 | **Verification** | ![Formal](./diagrams/transfinite/proof_formal_verification.svg) | ![Semantic](./diagrams/transfinite/proof_semantic_verification.svg) | ![Consensus](./diagrams/transfinite/proof_multi_agent_consensus.svg) | ![Immutability](./diagrams/transfinite/proof_immutability.svg) | ![Stability](./diagrams/transfinite/proof_transfinite_stability.svg) |
 
+### The Expansion & Future State Matrix (5x5)
+
+| Pillar | E.1 | E.2 | E.3 | E.4 | E.5 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Proposed** | ![Expansions](./diagrams/expansions/proposed_expansions.svg) | ![MultiAgent](./diagrams/expansions/prop_multi_agent.svg) | ![VRAMHUD](./diagrams/expansions/prop_vram_hud.svg) | ![GitHooks](./diagrams/expansions/prop_semantic_git.svg) | ![AxiomSynth](./diagrams/expansions/prop_axiom_synth.svg) |
+| **Modules** | ![Modules](./diagrams/expansions/expansion_modules.svg) | ![Oracle](./diagrams/expansions/mod_oracle_pred.svg) | ![Weaver](./diagrams/expansions/mod_weaver_sync.svg) | ![Prism](./diagrams/expansions/mod_prism_3d.svg) | ![Anvil](./diagrams/expansions/mod_anvil_chaos.svg) |
+| **Maintenance** | ![Todo](./diagrams/expansions/todo_list.svg) | ![VizRecursive](./diagrams/expansions/maint_viz_recursive.svg) | ![LogStandard](./diagrams/expansions/maint_log_standard.svg) | ![Archive](./diagrams/expansions/maint_archive_strat.svg) | ![TUIDash](./diagrams/expansions/maint_tui_interface.svg) |
+| **Upgrade Path** | ![Upgrade](./diagrams/expansions/upgrade_path.svg) | ![CoProcessor](./diagrams/expansions/up_co_processor.svg) | ![Hive](./diagrams/expansions/up_integrated_hive.svg) | ![Singularity](./diagrams/expansions/up_transfinite_singularity.svg) | ![Roadmap](./diagrams/expansions/meta_evolutionary_roadmap.svg) |
+| **Scenarios** | ![Scifi](./diagrams/expansions/scifi_scenarios.svg) | ![Ghost](./diagrams/expansions/sci_ghost_cli.svg) | ![Breach](./diagrams/expansions/sci_godelian_breach.svg) | ![War](./diagrams/expansions/sci_axiom_war.svg) | ![Assembly](./diagrams/expansions/impatient_assembly.svg) |
+
 ---
 
 ## Components
