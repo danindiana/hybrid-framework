@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./logo.svg" width="600" alt="Transfinite Engine Logo">
+</p>
+
 # Human-AI Hybrid Development Framework
 
 ![Hybrid Synergy](./hybrid_synergy.svg)
