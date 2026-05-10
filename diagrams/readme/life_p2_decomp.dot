@@ -1,0 +1,16 @@
+digraph LifeP2Decomp {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Objective [label="Objective Definition"];
+    AI [label="AI Formal Agent (ω)", color="#00f2ff", penwidth=2];
+    Tasks [label="Logical Sub-Tasks", shape=list];
+    Draft [label="Functional Code Pass", color="#ffff00"];
+
+    Objective -> AI;
+    AI -> Tasks;
+    Tasks -> Draft;
+    
+    label = "S2.2: Phase 2 - Formal Decomposition";
+}

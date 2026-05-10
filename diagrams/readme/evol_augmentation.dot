@@ -1,0 +1,18 @@
+digraph EvolAugment {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Framework [label="Current Framework"];
+    NewSkill [label="New Agent Skill\n(activate_skill)", shape=parallelogram, color="#00ff00"];
+    NewTool [label="New Utility Tool\n(tools/)", shape=parallelogram, color="#00f2ff"];
+    Augmented [label="Augmented System State", shape=doubleoctagon, color="#ffff00"];
+
+    Framework -> NewSkill;
+    Framework -> NewTool;
+    NewSkill -> Augmented;
+    NewTool -> Augmented;
+    Augmented -> Framework [label=" Recursive Improvement ", style=dashed];
+    
+    label = "S5.2: Recursive Self-Augmentation";
+}

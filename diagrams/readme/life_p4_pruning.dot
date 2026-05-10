@@ -1,0 +1,16 @@
+digraph LifeP4Pruning {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Candidates [label="Functional Alternatives", shape=folder];
+    Aesthetics [label="Human Heuristic Choice (+1)", shape=trapezium, color="#00ff00"];
+    PruningReport [label="pruning_report.md", shape=note];
+    Elegant [label="Elegant Code (ω+1)", color="#00f2ff", penwidth=3];
+
+    Candidates -> Aesthetics;
+    Aesthetics -> PruningReport;
+    Aesthetics -> Elegant;
+    
+    label = "S2.4: Phase 4 - Aesthetic Pruning";
+}

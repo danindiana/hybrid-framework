@@ -1,0 +1,17 @@
+digraph CoordLoop {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Query [label="User Query", shape=cds];
+    Gemini [label="Gemini CLI"];
+    SubAgent [label="Specialized Sub-Agent\n(e.g., Generalist)", color="#ffff00"];
+    Result [label="Synthesized Response", shape=doubleoctagon];
+
+    Query -> Gemini;
+    Gemini -> SubAgent [label=" Delegate Complex Work "];
+    SubAgent -> Gemini [label=" Report Findings "];
+    Gemini -> Result;
+    
+    label = "S3.4: Sub-Agent Delegation Lifecycle";
+}

@@ -1,0 +1,16 @@
+digraph ForenPipeline {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Ollama [label="Ollama Engine", color="#00f2ff"];
+    Verbose [label="--verbose Output", shape=note];
+    Filter [label="Regex / Awk Filter", shape=parallelogram];
+    JSON [label="forensics_*.json", shape=note, color="#ffff00"];
+
+    Ollama -> Verbose;
+    Verbose -> Filter;
+    Filter -> JSON [label=" Structured Metrics "];
+    
+    label = "S4.1: The Forensic Data Pipeline";
+}

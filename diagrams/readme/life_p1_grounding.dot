@@ -1,0 +1,14 @@
+digraph LifeP1Grounding {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Idea [label="Fuzzy Human Idea", shape=cloud, color="#00ff00"];
+    Context [label="Semantic Contextualization", shape=parallelogram];
+    Objective [label="objective_definition.md", shape=note, color="#ffff00"];
+
+    Idea -> Context;
+    Context -> Objective [label=" Crystalization "];
+    
+    label = "S2.1: Phase 1 - Semantic Grounding";
+}

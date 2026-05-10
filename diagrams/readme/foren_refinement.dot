@@ -1,0 +1,15 @@
+digraph ForenFeedback {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Metrics [label="Forensic Metrics"];
+    Human [label="Human Auditor", color="#00ff00"];
+    Refine [label="Formal Refinement", shape=doubleoctagon, color="#00f2ff"];
+
+    Metrics -> Human [label=" Insight "];
+    Human -> Refine [label=" Strategic Adjustment "];
+    Refine -> Metrics [label=" Validation "];
+    
+    label = "S4.5: Metric-Driven Refinement Loop";
+}

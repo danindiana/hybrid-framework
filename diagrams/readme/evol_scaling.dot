@@ -1,0 +1,16 @@
+digraph EvolScale {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    L1 [label="Level 1: Local Tooling\n(Scripts/CLI)"];
+    L2 [label="Level 2: Intelligent Agents\n(Gemini/Claude)"];
+    L3 [label="Level 3: Collaborative Hives\n(Multi-Agent Consensus)", color="#ffff00"];
+    L4 [label="Level 4: Transfinite Hybrid\n(Human-AI Singularity)", shape=star, color="#00ff00", penwidth=3];
+
+    L1 -> L2;
+    L2 -> L3;
+    L3 -> L4 [label=" Recursive Scaling "];
+    
+    label = "S5.1: Transfinite Scaling Model";
+}

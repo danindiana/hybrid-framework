@@ -1,0 +1,16 @@
+digraph ArchNetwork {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    NIC [label="Intel X540-T2\n(Ethernet)", color="#00ff00"];
+    Metric [label="Metric: 20050\n(Priority High)", shape=circle];
+    Gateway [label="LAN Gateway", shape=cloud];
+    Watchdog [label="Network Watchdog", shape=diamond, color="#ff0000"];
+
+    NIC -> Metric;
+    Metric -> Gateway;
+    Gateway -> Watchdog [label=" Latency Check "];
+    
+    label = "S1.3: Network Topology & Metric Prioritization";
+}

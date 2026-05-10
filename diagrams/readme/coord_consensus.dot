@@ -1,0 +1,19 @@
+digraph CoordConsensus {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Option1 [label="Proposed Path A"];
+    Option2 [label="Proposed Path B"];
+    
+    HumanReview [label="Human Review (+1)", shape=diamond, color="#00ff00"];
+    
+    Consensus [label="Shared Consensus", shape=doubleoctagon, color="#ffff00"];
+
+    Option1 -> HumanReview;
+    Option2 -> HumanReview;
+    HumanReview -> Consensus [label=" Selection "];
+    Consensus -> Execution [label=" Implementation "];
+    
+    label = "S3.5: Consensus-Driven Implementation";
+}

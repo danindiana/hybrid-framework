@@ -1,0 +1,16 @@
+digraph ForenDiagnostic {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Failure [label="Performance Degradation", shape=bolt, color="#ff0000"];
+    Analysis [label="Metric Diagnostic", shape=diamond];
+    Resource [label="Resource Contention\n(VRAM/CPU)", color="#ffff00"];
+    Fix [label="Optimization Directive", shape=cds, color="#00ff00"];
+
+    Failure -> Analysis;
+    Analysis -> Resource [label=" Correlate "];
+    Resource -> Fix;
+    
+    label = "S4.4: Performance Diagnostics & Optimization";
+}

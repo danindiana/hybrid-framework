@@ -1,0 +1,15 @@
+digraph EvolGodel {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Limit [label="Gödelian Wall\n(Unsolvable in Current System)", shape=bolt, color="#ff0000"];
+    MetaLeap [label="Human Axiom Shift\n(The +1 Leap)", shape=star, color="#00ff00", penwidth=2];
+    NewSystem [label="Expanded Formal System\n(New Logic/Tech)", color="#00f2ff"];
+
+    Limit -> MetaLeap [label=" Recognition "];
+    MetaLeap -> NewSystem [label=" Creation "];
+    NewSystem -> Limit [label=" Next Boundary ", style=dotted];
+    
+    label = "S5.3: Overcoming Gödelian Limitations";
+}

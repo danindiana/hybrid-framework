@@ -1,0 +1,16 @@
+digraph LifeP3Alignment {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Draft [label="AI Implementation"];
+    Check [label="semantic_check.py", shape=diamond, color="#ffff00"];
+    Objective [label="Human Objective"];
+    Drift [label="Drift Correction", shape=cds, color="#ff0000"];
+
+    Draft -> Check;
+    Objective -> Check;
+    Check -> Drift [label=" Deviation Found "];
+    
+    label = "S2.3: Phase 3 - Semantic Alignment";
+}

@@ -1,0 +1,14 @@
+digraph ForenAudit {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    SessionLog [label="session_log.md"];
+    AuditTrail [label="Forensic Audit Trail", shape=folder, color="#ffff00"];
+    Reproducibility [label="Session Reproducibility", shape=star, color="#00ff00"];
+
+    SessionLog -> AuditTrail;
+    AuditTrail -> Reproducibility [label=" Full Context Preservation "];
+    
+    label = "S4.3: Session Audit & Reproducibility";
+}

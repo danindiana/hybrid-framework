@@ -1,0 +1,18 @@
+digraph ArchWorkspace {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Root [label="Workspace Root", shape=folder, color="#ffff00"];
+    Tools [label="/tools", shape=folder];
+    Templates [label="/templates", shape=folder];
+    Diagrams [label="/diagrams", shape=folder];
+    Docs [label="*.md Logs", shape=note];
+
+    Root -> Tools;
+    Root -> Templates;
+    Root -> Diagrams;
+    Root -> Docs;
+    
+    label = "S1.4: Workspace Directory Hierarchy";
+}

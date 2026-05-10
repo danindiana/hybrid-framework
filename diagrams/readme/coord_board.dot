@@ -1,0 +1,17 @@
+digraph CoordBoard {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Gemini [label="Gemini CLI Agent", color="#00f2ff"];
+    Claude [label="Claude Frontier Agent", color="#00f2ff"];
+    Human [label="Human Orchestrator", color="#00ff00"];
+    
+    Board [label="COORD.md\n(Shared Consensus)", shape=doubleoctagon, color="#ffff00"];
+
+    Gemini -> Board [label=" Status Updates "];
+    Claude -> Board [label=" Project Logs "];
+    Human -> Board [label=" Global Directives "];
+    
+    label = "S3.1: The Coordination Board (COORD.md)";
+}
