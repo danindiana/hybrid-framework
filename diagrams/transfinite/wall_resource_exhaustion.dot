@@ -1,0 +1,14 @@
+digraph ResourceExhaustion {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Growth [label="Context Expansion"];
+    VRAM [label="VRAM Capacity", color="#ffff00"];
+    Halt [label="OOM / System Halt", shape=octagon, color="#ff0000"];
+
+    Growth -> VRAM;
+    VRAM -> Halt [label=" Overflow "];
+    
+    label = "T8.4: Physical Resource Exhaustion (ω Limit)";
+}

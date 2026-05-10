@@ -1,0 +1,16 @@
+digraph AxiomLeap {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    CurrentCode [label="Legacy Syntax", color="#ff0000"];
+    Dissolution [label="Semantic Extraction", shape=circle];
+    TheLeap [label="The Transfinite Leap", shape=star, color="#ffff00", penwidth=2];
+    NewCode [label="New Formalism", color="#00ff00"];
+
+    CurrentCode -> Dissolution;
+    Dissolution -> TheLeap [label=" De-coupling "];
+    TheLeap -> NewCode [label=" Re-coupling "];
+    
+    label = "T7.3: The Leap Mechanism (Syntax Dissolution)";
+}

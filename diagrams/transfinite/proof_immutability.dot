@@ -1,0 +1,14 @@
+digraph ProofImmutability {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Fact [label="Verified Truth"];
+    Commit [label="Git / Permanent Log", shape=cds];
+    Immutable [label="Immutable Project State", shape=cylinder, color="#00ff00"];
+
+    Fact -> Commit;
+    Commit -> Immutable;
+    
+    label = "T10.4: Proof Immutability & Persistence";
+}

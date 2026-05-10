@@ -1,0 +1,14 @@
+digraph GodelianWall {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Progress [label="Formal Progress (ω)", color="#00f2ff"];
+    TheWall [label="The Gödelian Wall\n(Axiomatic Limit)", shape=box, color="#ff0000", penwidth=5];
+    TheLeap [label="Transfinite Leap (+1)", shape=star, color="#00ff00"];
+
+    Progress -> TheWall [label=" Collision "];
+    TheWall -> TheLeap [label=" Transcending ", style=dashed];
+    
+    label = "T8.5: The Gödelian Barrier Visualization";
+}

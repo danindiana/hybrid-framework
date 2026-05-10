@@ -1,0 +1,15 @@
+digraph AxiomStabilization {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    NewAxiom [label="Unstable Axiom", color="#ffff00"];
+    Tests [label="Formal Verification\n(AI ω)", color="#00f2ff"];
+    Stability [label="Stabilized Foundation", shape=doubleoctagon, color="#00ff00"];
+
+    NewAxiom -> Tests [label=" Stress "];
+    Tests -> NewAxiom [label=" Refine "];
+    Tests -> Stability [label=" Consensus "];
+    
+    label = "T7.4: Axiom Stabilization Loop";
+}

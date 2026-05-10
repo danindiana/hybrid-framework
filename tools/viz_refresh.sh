@@ -1,26 +1,13 @@
 #!/bin/bash
-# viz_refresh.sh - Automatically refreshes all DOT diagrams in the repository.
+# viz_refresh.sh - Automatically refreshes all DOT diagrams in the repository recursively.
 
-echo "--- Refreshing Architectural Diagrams ---"
+echo "--- Refreshing Architectural Diagrams (Recursive) ---"
 
-# Refresh root diagrams
-for f in *.dot; do
-    if [ -f "$f" ]; then
-        echo "Processing $f..."
-        dot -Tpng "$f" -o "${f%.dot}.png"
-        dot -Tsvg "$f" -o "${f%.dot}.svg"
-    fi
+# Find all .dot files and process them
+find . -name "*.dot" -not -path "*/.*" | while read -r f; do
+    echo "Processing $f..."
+    dot -Tpng "$f" -o "${f%.dot}.png"
+    dot -Tsvg "$f" -o "${f%.dot}.svg"
 done
-
-# Refresh diagrams directory
-if [ -d "diagrams" ]; then
-    for f in diagrams/*.dot; do
-        if [ -f "$f" ]; then
-            echo "Processing $f..."
-            dot -Tpng "$f" -o "${f%.dot}.png"
-            dot -Tsvg "$f" -o "${f%.dot}.svg"
-        fi
-    done
-fi
 
 echo "--- Refresh Complete ---"

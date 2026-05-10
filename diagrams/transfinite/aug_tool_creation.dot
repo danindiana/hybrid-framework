@@ -1,0 +1,16 @@
+digraph ToolCreation {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    ManualProcess [label="Manual Repetitive Task", color="#ff0000"];
+    CodeGeneration [label="AI Scripting (ω)", color="#00f2ff"];
+    NewTool [label="tools/utility.sh", shape=note, color="#00ff00"];
+    Automation [label="Formal Automation", shape=gear];
+
+    ManualProcess -> CodeGeneration;
+    CodeGeneration -> NewTool;
+    NewTool -> Automation;
+    
+    label = "T9.2: Tool Creation & Automation Loop";
+}

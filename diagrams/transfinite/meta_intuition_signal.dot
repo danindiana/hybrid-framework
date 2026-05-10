@@ -1,0 +1,16 @@
+digraph MetaIntuition {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Data [label="Formal Data / Metrics", color="#00f2ff"];
+    Anomaly [label="Semantic Anomaly\n(The 'Uncanny' Feeling)", shape=diamond, color="#ffff00"];
+    Heuristic [label="Heuristic Recognition", shape=parallelogram];
+    Signal [label="Meta-Leap Trigger", shape=star, color="#00ff00"];
+
+    Data -> Anomaly;
+    Anomaly -> Heuristic [label=" Detection "];
+    Heuristic -> Signal;
+    
+    label = "T6.2: Intuitive Signal Processing";
+}

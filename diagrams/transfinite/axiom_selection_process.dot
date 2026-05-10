@@ -1,0 +1,16 @@
+digraph AxiomSelection {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    PotentialAxioms [label="Axiom Candidates", shape=cloud];
+    Human [label="Human Selector (+1)", color="#00ff00"];
+    Criteria [label="Heuristic Suitability", shape=diamond];
+    Selected [label="Dominant Axiom", shape=doubleoctagon, color="#ffff00"];
+
+    PotentialAxioms -> Human;
+    Human -> Criteria;
+    Criteria -> Selected [label=" Optimal Fit "];
+    
+    label = "T7.2: Axiom Selection Process";
+}

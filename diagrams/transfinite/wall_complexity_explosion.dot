@@ -1,0 +1,14 @@
+digraph ComplexityExplosion {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Time [label="Development Time"];
+    Complexity [label="Code Complexity", color="#ff0000"];
+    Singularity [label="System Collapse", shape=bolt, color="#ff0000"];
+
+    Time -> Complexity [label=" Linear "];
+    Complexity -> Singularity [label=" Exponential "];
+    
+    label = "T8.1: Complexity Explosion Phase";
+}

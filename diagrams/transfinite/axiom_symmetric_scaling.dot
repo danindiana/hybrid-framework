@@ -1,0 +1,15 @@
+digraph AxiomScaling {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    SingleNode [label="Axiom Implementation\n(Micro-level)"];
+    Integration [label="Structural Integration", shape=parallelogram];
+    MacroSystem [label="Transfinite Macro-System\n(ω+1 Ecosystem)", color="#00ff00", penwidth=3];
+
+    SingleNode -> Integration;
+    Integration -> MacroSystem;
+    MacroSystem -> SingleNode [label=" Contextual Support ", style=dotted];
+    
+    label = "Symmetric Scaling of New Axioms";
+}

@@ -1,0 +1,19 @@
+digraph Singularity {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Human [label="Human Core (+1)"];
+    AI [label="AI Collective (ω)"];
+    Tools [label="Automated Tooling"];
+    Axioms [label="Dynamic Axioms"];
+    
+    Center [label="TRANSFINITE SINGULARITY", shape=star, color="#ffff00", penwidth=4];
+
+    Human -> Center;
+    AI -> Center;
+    Tools -> Center;
+    Axioms -> Center;
+    
+    label = "T9.5: Transfinite System Singularity";
+}

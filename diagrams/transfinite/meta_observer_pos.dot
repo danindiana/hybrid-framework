@@ -1,0 +1,14 @@
+digraph MetaObserverPos {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    FormalSystem [label="Formal System (ω)\n(Deterministic Box)", shape=cube, color="#ff00ff"];
+    Observer [label="Human Meta-Observer (+1)\n(External Positioning)", color="#00ff00", penwidth=3];
+    
+    Observer -> FormalSystem [label=" Analyzes "];
+    FormalSystem -> Observer [label=" Constrains ", style=dotted];
+    Observer -> FormalSystem [label=" Resets Axioms ", color="#ffff00"];
+    
+    label = "T6.1: Observer Positioning (External to ω)";
+}

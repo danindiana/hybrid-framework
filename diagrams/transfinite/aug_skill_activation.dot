@@ -1,0 +1,16 @@
+digraph SkillActivation {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Agent [label="AI Agent"];
+    Trigger [label="activate_skill", shape=cds, color="#00ff00"];
+    NewLogic [label="Expert Procedural Guidance", shape=note, color="#ffff00"];
+    Power [label="Augmented Capabilities", shape=doubleoctagon, color="#00f2ff"];
+
+    Agent -> Trigger;
+    Trigger -> NewLogic;
+    NewLogic -> Power;
+    
+    label = "T9.1: Skill Activation & Capability Expansion";
+}

@@ -1,0 +1,16 @@
+digraph MetaInjection {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Void [label="Gödelian Void\n(The Problem Space)", shape=circle];
+    Creativity [label="Human Creativity (+1)", shape=invhouse, color="#00ff00"];
+    NewAxiom [label="New Formal Axiom", shape=parallelogram, color="#ffff00"];
+    Expansion [label="Expanded Formal Space", shape=doubleoctagon, color="#00f2ff"];
+
+    Void -> Creativity;
+    Creativity -> NewAxiom [label=" Injection "];
+    NewAxiom -> Expansion;
+    
+    label = "T6.4: Axiom Injection (The Creative Act)";
+}

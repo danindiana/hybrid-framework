@@ -1,0 +1,17 @@
+digraph MetaLoop {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Session [label="Hybrid Session"];
+    Experience [label="Refined Heuristics", shape=note];
+    Framework [label="Hybrid Framework Update", shape=folder, color="#00ff00"];
+    NextLeap [label="Next Transfinite Leap", shape=star, color="#ffff00"];
+
+    Session -> Experience;
+    Experience -> Framework [label=" Persistence "];
+    Framework -> NextLeap [label=" Readiness "];
+    NextLeap -> Session [label=" Execution "];
+    
+    label = "T6.5: Meta-Loop (Refining the Hybrid)";
+}
