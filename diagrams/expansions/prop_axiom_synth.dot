@@ -1,0 +1,16 @@
+digraph PropAxiomSynth {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Wall [label="Gödelian Wall", shape=box, color="#ff0000"];
+    History [label="Axiom Shift History", shape=folder];
+    Synthesizer [label="Automated Axiom Synthesis", shape=diamond, color="#ffff00", penwidth=2];
+    NewAxiom [label="Suggested Meta-Leap", shape=star, color="#00ff00"];
+
+    Wall -> Synthesizer;
+    History -> Synthesizer;
+    Synthesizer -> NewAxiom;
+    
+    label = "P1.5: Automated Axiom Synthesis Engine";
+}

@@ -1,0 +1,16 @@
+digraph MaintVizRecursive {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Trigger [label="DOT File Change"];
+    Find [label="find . -name '*.dot'", shape=parallelogram];
+    Render [label="dot -Tpng/svg", shape=gear];
+    Update [label="Repository Assets Updated", shape=doubleoctagon, color="#00ff00"];
+
+    Trigger -> Find;
+    Find -> Render;
+    Render -> Update;
+    
+    label = "T3.2: Recursive Visualization Maintenance";
+}

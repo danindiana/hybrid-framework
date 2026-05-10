@@ -1,0 +1,16 @@
+digraph ModOracle {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Tokens [label="Token Stream"];
+    Entropy [label="Entropy Analyzer", shape=parallelogram];
+    Predictor [label="Oracle: Predictive Forensics", shape=diamond, color="#ffff00", penwidth=2];
+    Alert [label="Pre-emptive Wall Alert", shape=bolt, color="#ff0000"];
+
+    Tokens -> Entropy;
+    Entropy -> Predictor;
+    Predictor -> Alert [label=" Pattern Detected "];
+    
+    label = "M2.2: Module A - The Oracle (Predictive Forensics)";
+}

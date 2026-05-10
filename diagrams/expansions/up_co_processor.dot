@@ -1,0 +1,16 @@
+digraph UpCoProcessor {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Human [label="Human (Master Intent)", color="#00ff00"];
+    AI [label="AI Co-Processor", color="#ffff00", penwidth=2];
+    Sync [label="Synchronous Execution", shape=doubleoctagon];
+
+    Human -> AI [label=" Goal "];
+    AI -> Human [label=" Refinement "];
+    AI -> Sync;
+    Human -> Sync;
+    
+    label = "U4.2: Upgrade Stage 2 - The Co-Processor Phase";
+}

@@ -1,0 +1,19 @@
+digraph PropSemanticGit {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Git [label="git commit", shape=cds];
+    Hook [label="Pre-Commit Hook", shape=diamond, color="#ffff00"];
+    SemCheck [label="semantic_check.py", color="#00f2ff"];
+    
+    Pass [label="Commit Accepted", color="#00ff00"];
+    Fail [label="Commit Blocked\n(Drift Detected)", color="#ff0000"];
+
+    Git -> Hook;
+    Hook -> SemCheck;
+    SemCheck -> Pass [label=" Align > 80% "];
+    SemCheck -> Fail [label=" Align < 80% "];
+    
+    label = "P1.4: Semantic Git Hook Integration";
+}

@@ -1,0 +1,17 @@
+digraph UpIntegratedHive {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    GlobalIntent [label="Global Human Intent", color="#00ff00", penwidth=3];
+    Hive [label="Multi-Agent Integrated Hive", shape=cloud, color="#ffff00"];
+    SelfHeal [label="Auto-Correction Logic", color="#00f2ff"];
+    Artifact [label="Healed System State", shape=doubleoctagon];
+
+    GlobalIntent -> Hive;
+    Hive -> SelfHeal;
+    SelfHeal -> Artifact;
+    Artifact -> Hive [label=" Recursive Optimization ", style=dashed];
+    
+    label = "U4.3: Upgrade Stage 3 - The Integrated Hive";
+}

@@ -1,0 +1,16 @@
+digraph PropVRAMHUD {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    GPU [label="Physical GPU", shape=box3d, color="#ff00ff"];
+    SMI [label="nvidia-smi / nvtop", shape=parallelogram];
+    Metrics [label="Real-time VRAM Data", color="#ffff00"];
+    HUD [label="Neon HUD Overlay\n(TUI/CLI)", shape=doubleoctagon, color="#00ff00"];
+
+    GPU -> SMI [label=" Poll "];
+    SMI -> Metrics;
+    Metrics -> HUD [label=" Stream "];
+    
+    label = "P1.3: Real-time VRAM Visualization HUD";
+}

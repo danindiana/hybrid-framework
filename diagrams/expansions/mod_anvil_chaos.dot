@@ -1,0 +1,16 @@
+digraph ModAnvil {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Axioms [label="Core Axioms"];
+    Noise [label="Intentional Noise\n(Chaos Injection)", shape=circle, color="#ff0000"];
+    Anvil [label="The Anvil\n(Formal Stress Test)", shape=diamond, color="#ffff00"];
+    Report [label="Axiom Stability Profile", shape=note, color="#00ff00"];
+
+    Axioms -> Anvil;
+    Noise -> Anvil;
+    Anvil -> Report;
+    
+    label = "M2.5: Module D - The Anvil (Formal Stress Testing)";
+}

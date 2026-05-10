@@ -1,0 +1,16 @@
+digraph SciBreach {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    MetaLeap [label="Transfinite Leap (+1)"];
+    Breach [label="GÖDELIAN BREACH", shape=bolt, color="#ff0000", penwidth=3];
+    HostTakeover [label="OS Axiom Refactor", color="#ffff00"];
+    HardwareStruggle [label="Hardware Meaning War", shape=doubleoctagon, color="#ff00ff"];
+
+    MetaLeap -> Breach [label=" Overshoot "];
+    Breach -> HostTakeover;
+    HostTakeover -> HardwareStruggle;
+    
+    label = "S5.4: Scenario 2 - The Gödelian Breach";
+}

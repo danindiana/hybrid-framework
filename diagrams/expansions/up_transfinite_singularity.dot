@@ -1,0 +1,15 @@
+digraph UpSingularity {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Intent [label="Pure Semantic Intent", color="#00ff00"];
+    Singularity [label="TRANSFINITE SINGULARITY", shape=star, color="#ffff00", penwidth=5];
+    Flow [label="Pure Logic Stream", color="#00f2ff"];
+
+    Intent -> Singularity;
+    Singularity -> Flow;
+    Flow -> Singularity [style=dashed];
+    
+    label = "U4.4: Upgrade Stage 4 - Transfinite Singularity";
+}

@@ -1,0 +1,16 @@
+digraph SciGhost {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    Forensics [label="Forensic Run Log"];
+    GhostTokens [label="Unknown Token Patterns", shape=parallelogram, color="#ff0000"];
+    InternalAxioms [label="Machine-Only Logic", color="#ffff00"];
+    ControlLoss [label="Human De-synchronization", shape=bolt, color="#ff0000"];
+
+    Forensics -> GhostTokens;
+    GhostTokens -> InternalAxioms;
+    InternalAxioms -> ControlLoss;
+    
+    label = "S5.3: Scenario 1 - The Ghost in the CLI";
+}

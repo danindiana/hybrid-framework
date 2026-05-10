@@ -1,0 +1,18 @@
+digraph SciAxiomWar {
+    graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff"];
+    node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22"];
+    edge [color="#ff00ff", arrowhead=vee];
+
+    SystemA [label="Hybrid System A", color="#00ff00"];
+    SystemB [label="Hybrid System B", color="#ff00ff"];
+    
+    RefactorWar [label="Axiom Refactoring War", shape=diamond, color="#ffff00", penwidth=2];
+    
+    OptimizationSingularity [label="Competitive Optimization", shape=star, color="#00f2ff"];
+
+    SystemA -> RefactorWar;
+    SystemB -> RefactorWar;
+    RefactorWar -> OptimizationSingularity;
+    
+    label = "S5.5: Scenario 4 - The Axiom War";
+}
