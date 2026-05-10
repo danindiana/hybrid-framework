@@ -65,10 +65,10 @@ Tools and methods for inspecting the internal state of local LLMs:
 | Pillar | I.1 | I.2 | I.3 | I.4 | I.5 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **The Controller** | ![HUD](./diagrams/readme/int_dash_hud.svg) | ![Interaction](./diagrams/readme/int_interaction.svg) | ![Telemetry](./diagrams/readme/int_telemetry.svg) | ![AxiomTrigger](./diagrams/readme/int_axiom_trigger.svg) | ![FutureInt](./diagrams/readme/int_future_interface.svg) |
-| **Substrates** | (Pending) | (Pending) | (Pending) | (Pending) | (Pending) |
-| **Forensics** | (Pending) | (Pending) | (Pending) | (Pending) | (Pending) |
-| **Automation** | (Pending) | (Pending) | (Pending) | (Pending) | (Pending) |
-| **Singularity** | (Pending) | (Pending) | (Pending) | (Pending) | (Pending) |
+| **Substrates** | ![Local](./diagrams/readme/int_sub_local_model.svg) | ![Cloud](./diagrams/readme/int_sub_cloud_agent.svg) | ![Context](./diagrams/readme/int_sub_context_mgmt.svg) | ![VRAM](./diagrams/readme/int_sub_vram_alloc.svg) | ![Swap](./diagrams/readme/int_sub_model_swap.svg) |
+| **Forensics** | ![Stream](./diagrams/readme/int_for_stream_ingest.svg) | ![Metric](./diagrams/readme/int_for_metric_ext.svg) | ![Archive](./diagrams/readme/int_for_log_archive.svg) | ![Drift](./diagrams/readme/int_for_drift_quant.svg) | ![Anomaly](./diagrams/readme/int_for_anomaly_alert.svg) |
+| **Automation** | ![Render](./diagrams/readme/int_aut_render_engine.svg) | ![Sync](./diagrams/readme/int_aut_git_sync.svg) | ![Skill](./diagrams/readme/int_aut_skill_trigger.svg) | ![Corr](./diagrams/readme/int_aut_corr_cycle.svg) | ![House](./diagrams/readme/int_aut_housekeeping.svg) |
+| **Singularity** | ![Core](./diagrams/readme/int_sin_core_fusion.svg) | ![Consensus](./diagrams/readme/int_sin_consensus_if.svg) | ![Flow](./diagrams/readme/int_sin_semantic_flow.svg) | ![Synth](./diagrams/readme/int_sin_tool_synth.svg) | ![Steady](./diagrams/readme/int_sin_steady_state.svg) |
 
 ---
 
