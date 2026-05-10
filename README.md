@@ -24,8 +24,20 @@ Tools and methods for inspecting the internal state of local LLMs:
 - **Metric Verbosity:** Analyzing `eval rate` and `token counts`.
 - **Tokenization:** Mapping text to raw token IDs for precise budget management.
 
-## Visualization
-The `hybrid_synergy.dot` file provides a Graphviz mapping of the interaction between the Human Meta-System and the AI Formal System.
+## Visual Architecture
 
-## Documentation
+### The System Overview Matrix (5x5)
+
+| Pillar | S.1 | S.2 | S.3 | S.4 | S.5 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Architecture** | ![Context](./diagrams/readme/arch_context.svg) | ![Mgmt](./diagrams/readme/arch_model_mgmt.svg) | ![Network](./diagrams/readme/arch_network.svg) | ![Workspace](./diagrams/readme/arch_workspace.svg) | ![Toolchain](./diagrams/readme/arch_toolchain.svg) |
+| **Lifecycle** | ![Grounding](./diagrams/readme/life_p1_grounding.svg) | ![Decomp](./diagrams/readme/life_p2_decomp.svg) | ![Alignment](./diagrams/readme/life_p3_alignment.svg) | ![Pruning](./diagrams/readme/life_p4_pruning.svg) | ![Finalize](./diagrams/readme/life_p5_finalize.svg) |
+| **Coordination** | ![Board](./diagrams/readme/coord_board.svg) | ![Memory](./diagrams/readme/coord_memory.svg) | ![Collision](./diagrams/readme/coord_collision.svg) | ![Delegation](./diagrams/readme/coord_delegation.svg) | ![Consensus](./diagrams/readme/coord_consensus.svg) |
+| **Forensics** | ![Pipeline](./diagrams/readme/foren_pipeline.svg) | ![Metrics](./diagrams/readme/foren_metrics.svg) | ![Audit](./diagrams/readme/foren_audit.svg) | ![Diagnostic](./diagrams/readme/foren_diagnostic.svg) | ![Refinement](./diagrams/readme/foren_refinement.svg) |
+| **Evolution** | ![Scaling](./diagrams/readme/evol_scaling.svg) | ![Augment](./diagrams/readme/evol_augmentation.svg) | ![Godel](./diagrams/readme/evol_godel_leap.svg) | ![Knowledge](./diagrams/readme/evol_knowledge_distill.svg) | ![Future](./diagrams/readme/evol_future_state.svg) |
+
+---
+
+## Components
+
 Detailed session notes and theoretical breakdowns are available in the `session_summary_*.md` files.
