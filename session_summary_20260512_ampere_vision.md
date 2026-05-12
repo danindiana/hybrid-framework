@@ -39,3 +39,13 @@
 
 ---
 *Status: All systems operational.*
+
+## Memory & Swap Expansion (RPI4)
+- **Primary Swap:** 1GB zram (Compressed RAM, Priority 100).
+- **Extended Swap:** 6GB file-based swap on SSD (Priority 10).
+- **Total Capacity:** ~7GB.
+- **Persistence:** Configured in `/etc/fstab`.
+- **Swappiness:** Increased to 60 to optimize use of SSD-based overflow.
+
+---
+*Operational status: High-compute edge node ready.*
