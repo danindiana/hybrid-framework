@@ -1,0 +1,23 @@
+digraph GPU_Power_Dynamics {
+    rankdir=LR;
+    node [shape=box, style=filled, color=lightblue];
+    
+    subgraph cluster_0 {
+        label = "Idle State (Ideal)";
+        P8_P12 [label="P8 / P12 State\n< 30W", fillcolor=lightgreen];
+        Memory_Low [label="VRAM: 405 MHz", fillcolor=lightgreen];
+    }
+    
+    subgraph cluster_1 {
+        label = "Current State (Observed)";
+        P2_State [label="P2 State\n~117W", fillcolor=orange];
+        Memory_High [label="VRAM: 9251 MHz\n(GDDR6X)", fillcolor=orange];
+    }
+    
+    Trigger_1 [label="Compute Context\n(Ollama)", shape=ellipse, color=red];
+    Trigger_2 [label="Multi-Monitor Setup\n(Async Timings)", shape=ellipse, color=red];
+    
+    Trigger_1 -> P2_State [label="Locks State"];
+    Trigger_2 -> Memory_High [label="Prevents Downclock"];
+    Memory_High -> P2_State [label="High Idle Draw"];
+}

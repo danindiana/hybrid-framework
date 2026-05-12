@@ -1,0 +1,13 @@
+digraph G {
+    node [shape=diamond];
+    start [label="Worlock Start", shape=ellipse];
+    stream [label="Fetch RTSP"];
+    segment [label="Segment (3m)"];
+    retention [label="Retention (2d)"];
+    fail [label="Exit?"];
+    restart [label="Restart (5s)"];
+
+    start -> stream -> segment -> retention -> fail;
+    fail -> restart [label="Yes"];
+    restart -> stream;
+}

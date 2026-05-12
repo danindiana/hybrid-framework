@@ -1,0 +1,27 @@
+digraph Optimization_Logic {
+    rankdir=LR;
+    node [shape=box, style=filled];
+    
+    Start [label="User Command", shape=ellipse, fillcolor=lightgrey];
+    Script [label="gpu_power_toggle.sh", fillcolor=lightblue];
+    
+    subgraph cluster_eco {
+        label = "ECO Mode Path";
+        color = green;
+        Eco_Settings [label="Lock Memory: 405 MHz\nLock Core: 210 MHz\nLimit TDP: 200W", fillcolor=lightgreen];
+        Eco_Result [label="~44W Idle Power", shape=doubleoctagon, fillcolor=lightgreen];
+    }
+    
+    subgraph cluster_perf {
+        label = "PERF Mode Path";
+        color = red;
+        Perf_Settings [label="Reset Clocks (Auto)\nRestore TDP: 340W", fillcolor=lightpink];
+        Perf_Result [label="Full Performance", shape=doubleoctagon, fillcolor=lightpink];
+    }
+    
+    Start -> Script;
+    Script -> Eco_Settings [label="eco"];
+    Script -> Perf_Settings [label="perf"];
+    Eco_Settings -> Eco_Result;
+    Perf_Settings -> Perf_Result;
+}

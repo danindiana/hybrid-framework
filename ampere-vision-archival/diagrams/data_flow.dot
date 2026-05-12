@@ -1,0 +1,16 @@
+digraph G {
+    node [shape=box];
+    "Hikvision DS-2CD2742FWD" [style=filled, fillcolor=gold];
+    
+    subgraph cluster_rpi {
+        label = "RPI4 Node";
+        "go2rtc" [style=filled, fillcolor=lightgreen];
+        "Nginx Proxy" [style=filled, fillcolor=lightcyan];
+    }
+
+    "Hikvision DS-2CD2742FWD" -> "go2rtc" [label="Main Stream (1080p/12fps)"];
+    "Hikvision DS-2CD2742FWD" -> "go2rtc" [label="Sub Stream (360p/6fps)"];
+    
+    "go2rtc" -> "Nginx Proxy" [label="WS/HTTP Proxy"];
+    "Nginx Proxy" -> "User Viewport" [label="WebRTC/JPEG"];
+}

@@ -1,0 +1,17 @@
+digraph Memory_Wall {
+    rankdir=LR;
+    node [style=filled];
+    
+    CPU [label="CPU / Main RAM", fillcolor=white];
+    PCIe [label="PCIe Gen 4.0", shape=diamond, fillcolor=lightblue];
+    GDDR6X [label="GDDR6X VRAM\n(Bandwidth > 760GB/s)", fillcolor=gold];
+    TensorCores [label="3rd Gen Tensor Cores\n(Ampere)", fillcolor=orange];
+    
+    CPU -> PCIe -> GDDR6X -> TensorCores;
+    
+    subgraph cluster_bottleneck {
+        label = "AI Performance Scaling";
+        color = grey;
+        GDDR6X; TensorCores;
+    }
+}

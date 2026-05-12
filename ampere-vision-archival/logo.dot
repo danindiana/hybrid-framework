@@ -1,0 +1,8 @@
+digraph G {
+    rankdir=LR;
+    node [shape=none];
+    logo [label=<<table border="0" cellspacing="0">
+        <tr><td bgcolor="black"><font color="cyan" point-size="36"><b>AMPERE</b></font></td></tr>
+        <tr><td bgcolor="cyan"><font color="black" point-size="24"><b>VISION</b></font></td></tr>
+    </table>>];
+}

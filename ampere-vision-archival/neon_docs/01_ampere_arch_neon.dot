@@ -1,0 +1,24 @@
+digraph Ampere_Neon_Arch {
+    bgcolor="#0a0a0a";
+    rankdir=TB;
+    node [fontname="Courier New", fontcolor="#00ffff", color="#00ffff", style=filled, fillcolor="#1a1a1a", shape=box];
+    edge [color="#ff00ff", fontcolor="#ff00ff", fontname="Courier New"];
+
+    subgraph cluster_gpu {
+        label="NVIDIA AMPERE (GA102)";
+        fontcolor="#00ffff";
+        color="#00ffff";
+        
+        SM [label="Streaming Multiprocessors\n(RTX 3080)", fillcolor="#002222"];
+        Tensor [label="3rd Gen Tensor Cores\n(AI Acceleration)", fillcolor="#220022", color="#ff00ff", fontcolor="#ff00ff"];
+        RT [label="2nd Gen RT Cores\n(Ray Tracing)", fillcolor="#222200", color="#ffff00", fontcolor="#ffff00"];
+    }
+
+    VRAM [label="10GB GDDR6X\n(760 GB/s)", shape=cylinder, color="#00ff00", fontcolor="#00ff00", fillcolor="#002200"];
+    PCIE [label="PCIe Gen 4.0\n(31.5 GB/s)", shape=diamond, color="#00ffff"];
+
+    PCIE -> VRAM [label="DATA_LOAD"];
+    VRAM -> SM [label="BANDWIDTH"];
+    SM -> Tensor [label="OP_SCALE"];
+    SM -> RT [label="BOUNCE"];
+}

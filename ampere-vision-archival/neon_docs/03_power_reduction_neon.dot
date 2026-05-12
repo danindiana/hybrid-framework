@@ -1,0 +1,25 @@
+digraph Neon_Power_Trench {
+    bgcolor="#0a0a0a";
+    rankdir=LR;
+    node [fontname="Courier New", fontcolor="#ff0000", color="#ff0000", style=filled, fillcolor="#110000", shape=box];
+    edge [color="#ffffff", fontcolor="#ffffff", fontname="Courier New"];
+
+    subgraph cluster_before {
+        label="DEFAULT (WASTEFUL)";
+        fontcolor="#ff0000"; color="#ff0000";
+        Idle_Power [label="122 WATTS", fillcolor="#440000", penwidth=3];
+        VRAM_H [label="9251 MHz", color="#ff0000"];
+    }
+
+    subgraph cluster_after {
+        label="OPTIMIZED (NEON_ECO)";
+        fontcolor="#00ff00"; color="#00ff00";
+        Eco_Power [label="44 WATTS", fillcolor="#004400", fontcolor="#00ff00", color="#00ff00", penwidth=3];
+        VRAM_L [label="405 MHz", fontcolor="#00ff00", color="#00ff00"];
+    }
+
+    Arrow [label="CLOCK_LOCKING\n(-78 WATTS)", shape=rarrow, fillcolor="#222200", fontcolor="#ffff00", color="#ffff00"];
+    
+    Idle_Power -> Arrow;
+    Arrow -> Eco_Power;
+}

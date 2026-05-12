@@ -1,0 +1,18 @@
+digraph Neon_Cluster_Vision {
+    bgcolor="#0a0a0a";
+    rankdir=BT;
+    node [fontname="Courier New", fontcolor="#00ffff", color="#00ffff", style=filled, fillcolor="#001122", shape=component];
+    edge [color="#ff00ff", fontcolor="#ff00ff", fontname="Courier New"];
+
+    G1 [label="RTX 3080 #1"];
+    G2 [label="RTX 3080 #2"];
+    G3 [label="RTX 3080 #3"];
+    G4 [label="RTX 3080 #4"];
+
+    PCIE [label="PCIe Gen 4.0 BACKBONE", shape=cylinder, fillcolor="#111111"];
+
+    {G1 G2 G3 G4} -> PCIE [color="#00ff00"];
+
+    AI_Vision [label="AI_VISION_STACK\n(YOLOv5 / NeRF)", shape=doubleoctagon, fillcolor="#220022", fontcolor="#ff00ff", color="#ff00ff"];
+    PCIE -> AI_Vision [label="BURST"];
+}

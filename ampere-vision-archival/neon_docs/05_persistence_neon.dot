@@ -1,0 +1,17 @@
+digraph Neon_Persistence {
+    bgcolor="#0a0a0a";
+    rankdir=LR;
+    node [fontname="Courier New", fontcolor="#00ffff", color="#00ffff", style=filled, fillcolor="#001122", shape=box];
+    edge [color="#00ff00", fontcolor="#00ff00", fontname="Courier New"];
+
+    Kernel [label="LINUX KERNEL", fillcolor="#111111"];
+    Systemd [label="SYSTEMD", fillcolor="#002200", color="#00ff00", fontcolor="#00ff00"];
+    Service [label="gpu-eco-mode.service", fillcolor="#002244", color="#00ffff"];
+    Driver [label="NVIDIA DRIVER", fillcolor="#222200", color="#ffff00", fontcolor="#ffff00"];
+    Locked [label="LOCKED STATE\n(Durable)", shape=doubleoctagon, fillcolor="#004400", color="#00ff00", fontcolor="#00ff00"];
+
+    Kernel -> Systemd [label="BOOT"];
+    Systemd -> Service [label="TRIGGER"];
+    Service -> Driver [label="LOCK_CLOCKS"];
+    Driver -> Locked [label="PERSIST"];
+}

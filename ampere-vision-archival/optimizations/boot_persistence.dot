@@ -1,0 +1,17 @@
+digraph Boot_Persistence {
+    rankdir=LR;
+    node [shape=box, style=filled];
+    
+    Boot [label="System Boot", shape=ellipse, fillcolor=lightgrey];
+    Systemd [label="Systemd Manager", fillcolor=lightblue];
+    Service [label="gpu-eco-mode.service", fillcolor=lightgreen];
+    Script [label="gpu_power_toggle.sh eco", fillcolor=lightgreen];
+    Nvidia [label="NVIDIA Driver\n(Persistence Mode)", fillcolor=gold];
+    State [label="RTX 3080: 44W Idle", shape=doubleoctagon, fillcolor=lightgreen];
+    
+    Boot -> Systemd;
+    Systemd -> Service [label="multi-user.target"];
+    Service -> Script;
+    Script -> Nvidia [label="Set Clocks/Power"];
+    Nvidia -> State;
+}

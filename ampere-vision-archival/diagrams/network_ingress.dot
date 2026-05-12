@@ -1,0 +1,11 @@
+digraph G {
+    rankdir=LR;
+    client [label="Client", shape=circle];
+    nginx [label="Nginx Port 80", shape=box];
+    go2rtc [label="go2rtc Port 1984", shape=box];
+    isapi [label="Camera Port 80", shape=box];
+
+    client -> nginx [label="GET /camera/"];
+    nginx -> go2rtc [label="Proxy Pass"];
+    go2rtc -> isapi [label="ISAPI Ingest"];
+}

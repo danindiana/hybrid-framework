@@ -1,0 +1,12 @@
+digraph Power_Efficiency_Comparison {
+    rankdir=TB;
+    node [shape=record, style=filled];
+    
+    Initial [label="{INITIAL STATE|{VRAM: 9251 MHz|Core: 1785 MHz}|{Power: ~122W}}", fillcolor=orange];
+    Optimized [label="{OPTIMIZED STATE|{VRAM: 405 MHz|Core: 210 MHz}|{Power: ~44W}}", fillcolor=lightgreen];
+    
+    Delta [label="64% Power Reduction", shape=component, fillcolor=gold];
+    
+    Initial -> Delta [label="Clock Locking Applied"];
+    Delta -> Optimized;
+}

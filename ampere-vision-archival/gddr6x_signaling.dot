@@ -1,0 +1,15 @@
+digraph GDDR6X_Signaling {
+    rankdir=TB;
+    node [shape=record];
+    
+    GDDR6 [label="{GDDR6 (NRZ)|{Binary Signaling|1 bit / cycle}|{0 | 1}}", fillcolor=lightgrey, style=filled];
+    GDDR6X [label="{GDDR6X (PAM4)|{4-Level Modulation|2 bits / cycle}|{00 | 01 | 10 | 11}}", fillcolor=gold, style=filled];
+    
+    Data_Stream [label="Data Throughput", shape=parallelogram];
+    
+    GDDR6 -> Data_Stream [label="x1"];
+    GDDR6X -> Data_Stream [label="x2"];
+    
+    Power_Cost [label="Power Baseline", shape=note];
+    GDDR6X -> Power_Cost [label="High precision\nvoltage requirement"];
+}

@@ -1,0 +1,16 @@
+digraph Multi_Monitor_Sync {
+    node [shape=plaintext];
+    
+    Clock [label="GPU Memory Clock"];
+    Monitor1 [label="Monitor 1\n(1680x1050)", shape=monitor];
+    Monitor2 [label="Monitor 2\n(2560x1080)", shape=monitor];
+    Monitor3 [label="Monitor 3\n(1440x900)", shape=monitor];
+    
+    Sync [label="Horizontal/Vertical Sync\n(Mismatched Intervals)", shape=doublearrow];
+    
+    Clock -> Sync;
+    Sync -> {Monitor1 Monitor2 Monitor3};
+    
+    Impact [label="RESULT: Locked Max Frequency\nto prevent flickering", color=red, fontcolor=red, shape=box];
+    Sync -> Impact;
+}

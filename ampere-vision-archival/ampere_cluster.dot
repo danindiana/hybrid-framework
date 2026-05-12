@@ -1,0 +1,16 @@
+digraph Ampere_Cluster {
+    rankdir=BT;
+    node [shape=component];
+    
+    GPU_1 [label="RTX 3080\n(Asus TUF)", fillcolor=lightgrey, style=filled];
+    GPU_2 [label="RTX 3080\n(Asus TUF)", fillcolor=lightgrey, style=filled];
+    GPU_3 [label="RTX 3080\n(Asus TUF)", fillcolor=lightgrey, style=filled];
+    GPU_4 [label="RTX 3080\n(Asus TUF)", fillcolor=lightgrey, style=filled];
+    
+    PCIe [label="PCIe Gen 4.0 Bus", shape=cylinder, fillcolor=lightblue, style=filled];
+    
+    {GPU_1 GPU_2 GPU_3 GPU_4} -> PCIe;
+    
+    Workload [label="Vision Workload\n(YOLOv5 / NeRF / ViT)", shape=doubleoctagon, fillcolor=lightgreen, style=filled];
+    PCIe -> Workload;
+}

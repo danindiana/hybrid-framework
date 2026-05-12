@@ -1,0 +1,12 @@
+digraph G {
+    rankdir=BT;
+    node [shape=record];
+    
+    physical [label="{Hardware | Hikvision DS-2CD2742FWD-IZS}"];
+    firmware [label="{Firmware | V5.4.0 Build 160511}"];
+    transport [label="{Transport | ISAPI (Over HTTP)}"];
+    codec [label="{Codec | H.264 @ 2Mbps}"];
+    delivery [label="{Delivery | go2rtc WebRTC}"];
+
+    physical -> firmware -> transport -> codec -> delivery;
+}
