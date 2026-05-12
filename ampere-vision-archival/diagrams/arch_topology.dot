@@ -7,11 +7,11 @@ digraph G {
         style=dashed;
 
         cam [label="Hikvision Camera\n(192.168.1.64)", fillcolor=gold];
-        rpi [label="Raspberry Pi 4\n(192.168.1.165)\ngo2rtc + Nginx", fillcolor=lightgreen];
+        rpi [label="Raspberry Pi 4 (Relay Node)\n(192.168.1.165)\ngo2rtc + Nginx", fillcolor=lightgreen];
         worlock [label="Worlock Desktop\nffmpeg recorder", fillcolor=orange];
     }
 
-    cam -> rpi [label="ISAPI / RTSP"];
-    cam -> worlock [label="RTSP (Continuous)"];
-    rpi -> "Client Browser" [label="WebRTC / HLS\n(Port 80/443)"];
+    cam -> rpi [label="RTSP (Single Feed)"];
+    rpi -> worlock [label="RTSP Relay"];
+    rpi -> "Client Browser" [label="WebRTC / HLS"];
 }

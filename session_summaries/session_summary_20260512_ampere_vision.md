@@ -49,3 +49,8 @@
 
 ---
 *Operational status: High-compute edge node ready.*
+
+## Final Optimization: Stream Relay (Fan-Out)
+- **Change:** Pointed Worlock `record.sh` to `rtsp://rpi4:8554/camera_main` instead of the camera's IP.
+- **Benefit:** The Hikvision camera now only has to handle ONE outbound connection. 
+- **Role:** The RPI4 now acts as the central relay (Fan-Out) node, distributing the feed to browsers and archival storage simultaneously.
