@@ -13,8 +13,8 @@ get_status() {
     local rpi_svc=$(ssh "$RPI_HOST" "systemctl is-active go2rtc.service")
     
     echo "--- Ampere Vision Status ---"
-    echo "Worlock Recorder: $worlock_svc"
-    echo "RPI4 Streamer:    $rpi_svc"
+    echo "Worlock Recorder: $worlock_svc (Archival)"
+    echo "RPI4 Streamer:    $rpi_svc (Persistent Live)"
     echo "Storage Usage:    $(du -sh "$RECORD_DIR" | cut -f1)"
     echo "Segment Count:    $(ls "$RECORD_DIR"/seg_*.mkv 2>/dev/null | wc -l)"
     echo "---------------------------"
