@@ -39,5 +39,23 @@ The RPI4 provides a unified interface via Nginx proxy:
 
 The hikvision-record.service on Worlock ensures zero-loss archival by splitting the stream into 3-minute MKV segments with a 2-day rolling retention policy.
 
+## Operational Control
+To minimize disk wear and unnecessary processing, the camera stack is **OFF** by default. A human operator must explicitly initialize the system.
+
+### Unified Control Script
+The `tools/cam_control.sh` script manages the lifecycle of the entire stack across both nodes.
+
+**Usage:**
+- `on`: Start RPI4 streaming and Worlock archival.
+- `off`: Stop all services (default state).
+- `status`: Show service health and storage usage.
+- `flush`: Interactively delete all stored segments.
+
+```bash
+# Example: Toggle on and check status
+./tools/cam_control.sh on
+./tools/cam_control.sh status
+```
+
 ---
 *Maintained by danindiana*
