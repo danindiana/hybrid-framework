@@ -29,3 +29,13 @@
 
 ---
 *Human Context: jeb | AI Context: Gemini CLI*
+
+## Gemini CLI Source Installation (RPI4)
+- **Repo:** https://github.com/google-gemini/gemini-cli
+- **Version:** 0.42.0-nightly
+- **Fix:** Used temporary 2GB swap file to handle `esbuild` compilation on 1GB RAM.
+- **Link:** Global `gemini` command now points to `~/programs/gemini-cli/bundle/gemini.js`.
+- **Optimization:** Restricted API to 127.0.0.1 and enabled 256-color support.
+
+---
+*Status: All systems operational.*
