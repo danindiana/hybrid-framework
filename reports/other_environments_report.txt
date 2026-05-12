@@ -1,0 +1,185 @@
+=== SNAP PACKAGES ===
+Not installed
+
+=== FLATPAK PACKAGES ===
+Not installed
+
+=== NODE.JS GLOBAL PACKAGES (npm) ===
+/home/jeb/.nvm/versions/node/v24.11.1/lib
+├── @google/gemini-cli@0.25.2
+├── corepack@0.34.2
+└── npm@11.6.2
+
+
+=== RUBY GEMS (Global) ===
+abbrev (default: 0.1.0)
+addressable (2.8.0)
+base64 (default: 0.1.0)
+bcrypt_pbkdf (1.1.0)
+benchmark (default: 0.1.1)
+bigdecimal (default: 3.0.0)
+builder (3.2.4)
+bundler (default: 2.2.22)
+cgi (default: 0.2.0)
+childprocess (4.1.0)
+concurrent-ruby (1.1.6)
+concurrent-ruby-edge (0.6.0)
+csv (default: 3.1.9)
+date (default: 3.1.0)
+dbm (default: 1.1.0)
+debug (default: 0.1.0)
+delegate (default: 0.2.0)
+did_you_mean (default: 1.5.0)
+digest (default: 3.0.0)
+drb (default: 2.0.4)
+ed25519 (1.3.0)
+english (default: 0.7.1)
+erb (default: 2.2.0)
+erubi (1.9.0)
+etc (default: 1.2.0)
+excon (0.88.0)
+fcntl (default: 1.0.0)
+ffi (1.15.4)
+fiddle (default: 1.0.6)
+fileutils (default: 1.5.0)
+find (default: 0.1.0)
+fog-core (2.1.0)
+fog-json (1.2.0)
+fog-libvirt (0.8.0)
+fog-xml (0.1.1)
+formatador (0.2.5)
+forwardable (default: 1.3.2)
+gdbm (default: 2.1.0)
+getoptlong (default: 0.1.1)
+i18n (1.8.11)
+io-console (default: 0.5.7)
+io-nonblock (default: 0.1.0)
+io-wait (default: 0.1.0)
+ipaddr (default: 1.2.2)
+ipaddress (0.8.3)
+irb (default: 1.3.5)
+json (default: 2.5.1)
+listen (3.7.0)
+log4r (1.1.10)
+logger (default: 1.4.3)
+matrix (default: 0.3.1)
+mime-types (3.3.1)
+mime-types-data (3.2015.1120)
+mini_portile2 (2.7.1)
+minitest (5.14.2)
+multi_json (1.14.1)
+mutex_m (default: 0.1.1)
+net-ftp (default: 0.1.2)
+net-http (default: 0.1.1)
+net-imap (default: 0.1.1)
+net-pop (default: 0.1.1)
+net-protocol (default: 0.1.0)
+net-scp (3.0.0)
+net-sftp (3.0.0)
+net-smtp (default: 0.2.1)
+net-ssh (6.1.0)
+net-telnet (0.1.1)
+nkf (default: 0.1.0)
+nokogiri (1.13.1)
+observer (default: 0.1.1)
+oj (3.13.9)
+open-uri (default: 0.1.0)
+open3 (default: 0.1.1)
+openssl (default: 3.0.0)
+optparse (default: 0.1.0)
+ostruct (default: 0.3.1)
+pathname (default: 0.1.0)
+pkg-config (1.4.6)
+power_assert (1.2.0)
+pp (default: 0.1.0)
+prettyprint (default: 0.1.0)
+prime (default: 0.1.2)
+pstore (default: 0.1.1)
+psych (default: 3.3.0)
+public_suffix (4.0.6)
+racc (default: 1.5.1, 1.4.14)
+rake (13.0.6, 13.0.3)
+rb-inotify (0.9.10)
+rbs (1.0.4)
+rchardet (1.8.0)
+rdoc (default: 6.3.1)
+readline (default: 0.0.2)
+readline-ext (default: 0.1.1)
+reline (default: 0.2.5)
+resolv (default: 0.2.0)
+resolv-replace (default: 0.1.0)
+rexml (3.2.5)
+rinda (default: 0.1.0)
+rss (0.2.9)
+ruby-libvirt (0.7.1)
+rubygems-update (3.3.5)
+rubyzip (2.3.0)
+securerandom (default: 0.1.0)
+set (default: 1.0.1)
+shellwords (default: 0.1.0)
+singleton (default: 0.1.1)
+stringio (default: 3.0.0)
+strscan (default: 3.0.0)
+syslog (default: 0.1.0)
+tempfile (default: 0.1.1)
+test-unit (3.3.7)
+time (default: 0.1.0)
+timeout (default: 0.1.1)
+tmpdir (default: 0.1.2)
+tracer (default: 0.1.1)
+tsort (default: 0.1.0)
+typeprof (0.12.0)
+un (default: 0.1.0)
+uri (default: 0.10.1)
+vagrant (2.2.19)
+vagrant-libvirt (0.7.0)
+vagrant_cloud (3.0.5)
+weakref (default: 0.1.1)
+webrick (1.7.0)
+xmlrpc (0.3.2)
+yaml (default: 0.1.1)
+zlib (default: 1.1.0)
+
+=== RUST (Cargo) BINARIES ===
+bandwhich v0.23.1:
+    bandwhich
+cargo-audit v0.22.0:
+    cargo-audit
+check-jitter v1.3.7:
+    check_jitter
+diskonaut v0.11.0:
+    diskonaut
+dog v0.2.0-pre (https://github.com/ogham/dog#721440b1):
+    dog
+gping v1.20.1:
+    gping
+netwatch-rs v0.2.0:
+    netwatch
+ntrace v0.1.5:
+    ntrace
+procs v0.14.10:
+    procs
+rustnet-monitor v0.16.1:
+    rustnet
+sandbox-ctl v0.1.5 (https://github.com/ErickJ3/sandbox-rs#8b190617):
+    sandbox-ctl
+sniffnet v1.4.2:
+    sniffnet
+sudo-rs v0.2.10:
+    su
+    sudo
+    visudo
+systemd-hardening-helper v2025.11.3:
+    shh
+trippy v0.13.0:
+    trip
+trunk v0.21.14:
+    trunk
+
+=== GO BINARIES ===
+golangci-lint
+gopls
+shuffledns
+staticcheck
+
+=== DOCKER IMAGES (Top 10) ===

@@ -1,0 +1,21 @@
+# Hygiene: Large data and temporary logs
+archive/
+logs/
+.clamav/
+__pycache__/
+venv/
+
+# Media/Temporary
+*.raw
+*.wav
+*.mkv
+*.tar.gz
+*.log
+
+# Environment
+.env
+.env.*
+
+# Node
+node_modules/
+kalshi_api_key.pem

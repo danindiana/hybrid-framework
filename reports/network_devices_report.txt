@@ -1,0 +1,96 @@
+# Nmap 7.80 scan initiated Tue Mar 10 21:28:03 2026 as: nmap -sV -oN network_scan_results.txt 192.168.1.50 192.168.1.114 192.168.1.120 192.168.1.134 192.168.1.136 192.168.1.167 192.168.1.197 192.168.1.209 192.168.1.216 192.168.1.254
+Nmap scan report for 192.168.1.50
+Host is up (0.049s latency).
+Not shown: 990 closed ports
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 2.2.2
+80/tcp   open  http        Apache httpd
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+427/tcp  open  svrloc?
+445/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+465/tcp  open  smtp        Sendmail 8.14.3/8.14.3
+515/tcp  open  printer
+631/tcp  open  ipp         CUPS 1.5
+8080/tcp open  http        Apache httpd
+9100/tcp open  jetdirect?
+Service Info: Hosts: MFP07698487, gmail.com; OS: Unix
+
+Nmap scan report for 192.168.1.114
+Host is up (0.048s latency).
+Not shown: 997 closed ports
+PORT     STATE SERVICE VERSION
+80/tcp   open  http?
+7777/tcp open  upnp    MiniUPnP 1.6 (Linksys/Belkin WiFi range extender; SDK 4.1.2.0; UPnP 1.0; MTK 2.001)
+8888/tcp open  upnp    MiniUPnP 1.6 (Linksys/Belkin WiFi range extender; SDK 4.1.2.0; UPnP 1.0; MTK 2.001)
+
+Nmap scan report for 192.168.1.120
+Host is up (0.0062s latency).
+Not shown: 998 filtered ports
+PORT   STATE  SERVICE VERSION
+53/tcp closed domain
+80/tcp open   http    TP-LINK switch http admin
+Service Info: Device: switch
+
+Nmap scan report for 192.168.1.134
+Host is up (0.00012s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for 192.168.1.136
+Host is up (0.0027s latency).
+All 1000 scanned ports on 192.168.1.136 are closed
+
+Nmap scan report for 192.168.1.167
+Host is up (0.0043s latency).
+Not shown: 998 filtered ports
+PORT   STATE  SERVICE VERSION
+53/tcp closed domain
+80/tcp open   http
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port80-TCP:V=7.80%I=7%D=3/10%Time=69B0D368%P=x86_64-pc-linux-gnu%r(GetR
+SF:equest,239,"HTTP/1\.1\x20200\x20OK\r\nConnection:\x20close\r\nX-Frame-O
+SF:ptions:\x20SAMEORIGIN\r\nX-XSS-Protection:\x201;\x20mode=block\r\nX-Con
+SF:tent-Type-Options:\x20nosniff\r\nContent-Type:\x20text/html\r\nCache-Co
+SF:ntrol:\x20no-cache\r\nExpires:\x20-1\r\n\r\n<html>\n<head>\n<title>Redi
+SF:rect\x20to\x20Login</title>\n<meta\x20http-equiv=\"Content-Type\"\x20co
+SF:ntent=\"text/html;\x20charset=UTF-8\">\n<link\x20rel=\"stylesheet\"\x20
+SF:type=\"text/css\"\x20href=\"/style\.css\?z8\">\n<script\x20type=\"text/
+SF:javascript\"\x20language=\"JavaScript\">\nfunction\x20RedirectToLoginPa
+SF:ge\(\)\n{\n\ttop\.location\.href\x20=\x20\"/login\.cgi\";\n}\n</script>
+SF:\n</head>\n<body\x20onload=\"RedirectToLoginPage\(\);\">\n</body>\n</ht
+SF:ml>\n")%r(FourOhFourRequest,239,"HTTP/1\.1\x20200\x20OK\r\nConnection:\
+SF:x20close\r\nX-Frame-Options:\x20SAMEORIGIN\r\nX-XSS-Protection:\x201;\x
+SF:20mode=block\r\nX-Content-Type-Options:\x20nosniff\r\nContent-Type:\x20
+SF:text/html\r\nCache-Control:\x20no-cache\r\nExpires:\x20-1\r\n\r\n<html>
+SF:\n<head>\n<title>Redirect\x20to\x20Login</title>\n<meta\x20http-equiv=\
+SF:"Content-Type\"\x20content=\"text/html;\x20charset=UTF-8\">\n<link\x20r
+SF:el=\"stylesheet\"\x20type=\"text/css\"\x20href=\"/style\.css\?z8\">\n<s
+SF:cript\x20type=\"text/javascript\"\x20language=\"JavaScript\">\nfunction
+SF:\x20RedirectToLoginPage\(\)\n{\n\ttop\.location\.href\x20=\x20\"/login\
+SF:.cgi\";\n}\n</script>\n</head>\n<body\x20onload=\"RedirectToLoginPage\(
+SF:\);\">\n</body>\n</html>\n");
+
+Nmap scan report for 192.168.1.197
+Host is up (0.038s latency).
+All 1000 scanned ports on 192.168.1.197 are closed
+
+Nmap scan report for 192.168.1.209
+Host is up (0.0021s latency).
+All 1000 scanned ports on 192.168.1.209 are closed
+
+Nmap scan report for 192.168.1.216
+Host is up (0.028s latency).
+All 1000 scanned ports on 192.168.1.216 are closed
+
+Nmap scan report for 192.168.1.254
+Host is up (0.0032s latency).
+Not shown: 997 closed ports
+PORT    STATE    SERVICE  VERSION
+80/tcp  open     http     lighttpd 1.4.69
+111/tcp filtered rpcbind
+443/tcp open     ssl/http lighttpd 1.4.69
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Mar 10 21:31:07 2026 -- 10 IP addresses (10 hosts up) scanned in 183.97 seconds

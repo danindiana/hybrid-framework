@@ -1,0 +1,15 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
+    container_name: open-webui
+    volumes:
+      - open-webui:/app/backend/data
+    network_mode: host
+    environment:
+      - 'PORT=3000'
+      - 'OLLAMA_BASE_URL=http://127.0.0.1:11434'
+      - 'WEBUI_SECRET_KEY=63669ff914a912ae436c031b06a9f86eab7812ad6da52d5ca80032c11b91856a'
+    restart: unless-stopped
+
+volumes:
+  open-webui: {}

@@ -1,0 +1,5 @@
+IN-USE  BSSID              SSID                 MODE   CHAN  RATE        SIGNAL  BARS  SECURITY 
+        D8:EC:5E:3E:AB:3A  SuperSus_Ext         Infra  3     270 Mbit/s  84      ▂▄▆█  WPA2     
+        94:8F:CF:65:A2:50  SuperSus             Infra  3     405 Mbit/s  79      ▂▄▆_  WPA2     
+        40:5D:82:13:A8:2F  ngHub_319465NC02B9D  Infra  11    130 Mbit/s  67      ▂▄▆_  WPA2     
+*       86:8F:CF:65:A2:53  SuperNus             Infra  149   540 Mbit/s  55      ▂▄__  WPA2     

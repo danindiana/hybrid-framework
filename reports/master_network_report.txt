@@ -1,0 +1,36 @@
+===============================================================================
+MASTER NETWORK ENVIRONMENT REPORT - Tue Mar 10 09:34:45 PM CDT 2026
+Host: worlock | Kernel: 6.8.12
+===============================================================================
+
+--- LOCAL INTERFACES ---
+lo               UNKNOWN        127.0.0.1/8 
+enp9s0           DOWN           
+enp3s0f0         DOWN           
+enp3s0f1         DOWN           
+wlp7s0           UP             192.168.1.134/24 fe80::46b2:9a77:1bad:7530/64 
+wgpia0           UNKNOWN        10.5.140.18/32 
+
+--- ROUTING & DNS ---
+default via 192.168.1.254 dev wlp7s0 proto dhcp metric 600 
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+nameserver 8.8.8.8
+nameserver 1.1.1.1
+nameserver 8.8.8.8
+
+--- DISCOVERED LAN DEVICES (192.168.1.0/24) ---
+
+--- WIRELESS ENVIRONMENT ---
+IN-USE  SSID                 MODE   CHAN  RATE        SIGNAL  SECURITY  
+        SuperSus_Ext         Infra  3     270 Mbit/s  92      WPA2      
+        ngHub_319465NC02B9D  Infra  11    130 Mbit/s  65      WPA2      
+        --                   Infra  149   540 Mbit/s  65      WPA2      
+*       SuperNus             Infra  149   540 Mbit/s  64      WPA2      
+        SuperSus             Infra  3     405 Mbit/s  62      WPA2      
+        DG1670A22            Infra  11    195 Mbit/s  30      WPA2      
+        --                   Infra  1     130 Mbit/s  29      WEP       
+        BL Unit C 2.4G       Infra  9     130 Mbit/s  20      WPA1 WPA2 
+        --                   Infra  11    130 Mbit/s  20      WEP       
+
+===============================================================================
