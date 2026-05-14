@@ -1,0 +1,21 @@
+digraph G {
+    bgcolor="transparent";
+    node [shape=box, style="filled,rounded", fontname="Arial", fontsize=12, color="#4A90E2", fillcolor="#E1F5FE"];
+    edge [color="#4A90E2", fontname="Arial", fontsize=10];
+
+    subgraph cluster_0 {
+        label = "Ollama Optimization Suite";
+        fontname="Arial Bold";
+        fontsize=16;
+        style="dashed";
+        color="#2E7D32";
+
+        BIOS [label="BIOS\nOptimization", fillcolor="#C8E6C9"];
+        Linux [label="Linux Kernel\nTuning", fillcolor="#C8E6C9"];
+        Runtime [label="Runtime\nEfficiency", fillcolor="#C8E6C9"];
+
+        BIOS -> Linux [label="Hardware Abstraction"];
+        Linux -> Runtime [label="Context Scheduling"];
+        Runtime -> BIOS [label="Feedback Loop"];
+    }
+}
