@@ -54,12 +54,18 @@ sudo reboot
 ### B. Runtime Environment Variables
 Set these in your Ollama service file or shell profile to optimize the `llama.cpp` backend:
 ```bash
-export OLLAMA_NUMA=true
+export OLLAMA_NUMA=1
 export OLLAMA_FLASH_ATTENTION=1
 export OLLAMA_NOPREVIEW=1
 ```
 
-### C. The "Sweet Spot" Thread Tuning
+### C. Specific GPU Finding: Partial Resizable BAR
+An audit of your PCIe bus shows a configuration mismatch:
+- **RTX 5080:** Resizable BAR is **Enabled** (Addressing full 16GB).
+- **RTX 3080:** Resizable BAR is **Disabled** (Addressing only 256MB).
+- **Resolution:** This is likely due to the "Above 4G Decoding" being enabled but the "Re-size BAR" setting only applying to the primary slot, or the 3080 requiring a VBIOS update for ReBAR support (common for older 30-series cards). Ensure **Re-size BAR** is set to **Auto** or **Enabled** specifically for all PCIe slots in the BIOS.
+
+### D. The "Sweet Spot" Thread Tuning
 Research indicates that for a 5950X, **using 32 threads is often 15-20% slower** than using fewer, more efficient threads.
 - **Recommendation:** Manually set thread count to **12 or 16**.
 - **Why?** This prevents memory bandwidth "choke" and allows the 5950X to sustain much higher boost frequencies on the active cores.
