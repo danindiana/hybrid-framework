@@ -50,6 +50,12 @@ Tools and methods for inspecting the internal state of local LLMs:
 - **Metric Verbosity:** Analyzing `eval rate` and `token counts`.
 - **Tokenization:** Mapping text to raw token IDs for precise budget management.
 
+### 3. rpi4 Livestream Management
+A suite of tools for managing Hikvision-to-YouTube livestreams on Raspberry Pi hardware:
+- **Telemetry Dashboard:** `stream-telemetry.sh` provides real-time stats on bitrate, frame drops, and connection stability.
+- **Service Control:** Standardized `systemd` units for managing ingest and source circuits.
+- **MOTD Integration:** Command references baked into the system login for rapid field management.
+
 ## Visual Architecture
 
 ### The System Overview Matrix (5x5)
