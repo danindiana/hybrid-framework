@@ -78,5 +78,25 @@ This row highlights editor index optimizations, shebang resolution fixes, log fi
 
 ## Key Achievements & Outcomes
 1.  **5x5 Matrix Formally Populated**: Built and processed all 25 system diagnostics.
-2.  **Fully Rendered and Stored**: Sources and output visual formats are located in the [diagrams/](file:///home/jeb/programs/gemini_cli_workspace/session_20260528_185101/diagrams) directory.
+2.  **Fully Rendered and Stored**: Sources and output visual formats are located in the [diagrams/session_20260528_185101/](file:///home/jeb/programs/gemini_cli_workspace/diagrams/session_20260528_185101/) directory.
 3.  **Aesthetics Maintained**: Utilized a high-fidelity deep space background (`#0d0e15`), neon green/cyan borders, and neon pink directional arrows to ensure optimal legibility and style.
+
+---
+
+## Complexity Audit Output (Executed 2026-05-28 18:54:10)
+An automated complexity audit was run using the upgraded `tools/complexity_audit.py` script. The results are detailed below:
+
+*   **🧱 Gödelian Walls Detected (>500 lines)**:
+    1.  [AjaxReqRespHandler.js](file:///home/jeb/programs/gemini_cli_workspace/printer_js/AjaxReqRespHandler.js) (2,694 lines) — Critical printer communication logic.
+    2.  [TopAccessUtil.js](file:///home/jeb/programs/gemini_cli_workspace/printer_js/TopAccessUtil.js) (1,705 lines) — Printer automation helper.
+    3.  [session_summary_20260414_104814.md](file:///home/jeb/programs/gemini_cli_workspace/session_summaries/session_summary_20260414_104814.md) (721 lines) — Heavy historical session log.
+*   **⚠️ Warnings (200 - 500 lines)**:
+    1.  [run-compose.sh](file:///home/jeb/programs/gemini_cli_workspace/run-compose.sh) (250 lines) — Docker Compose runner shell script.
+    2.  [monitor_disk_health.py](file:///home/jeb/programs/gemini_cli_workspace/disk-monitor/monitor_disk_health.py) (215 lines) — Machine learning model disk monitor script.
+    3.  [monitor_disk_health.py](file:///home/jeb/programs/gemini_cli_workspace/session_20260326_183552_1774568152/monitor_disk_health.py) (214 lines) — Alternative disk health monitor script.
+
+### Tool Improvements
+The complexity audit script was refactored during this audit session to:
+*   Ignore virtualenvs (`venv/`), git repositories (`.git/`), cache directories (`__pycache__/`), and agent configurations (`.antigravitycli/`).
+*   Incorporate UTF-8 decoding overrides with error handling (`errors='ignore'`) to prevent execution crashes on non-Unicode binary files.
+
