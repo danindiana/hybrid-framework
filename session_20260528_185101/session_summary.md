@@ -110,4 +110,30 @@ To address the **88% storage capacity** of `/mnt/samsung_ssd`, an interactive au
     2.  `nemotron-3-nano:30b` (24 GB) — Cleaned up older tag pointer superseded by `nemotron-3-nano-30b-small:latest`.
 *   *Note*: Since these deleted tags shared layers with active models (`ministral-3:latest` and `nemotron-3-nano-30b-small:latest`), the deletion removed tag registry references but did not delete underlying layer blocks (preserving active model data). Further space reclamation will require removing unique large models (e.g., `nemotron-cascade-2` or `qwen3.6`).
 
+---
+
+## Network Traffic Analysis & Security Audit (Executed 2026-05-28 18:58:30)
+A detailed audit of network interfaces, active TCP/UDP ports, firewall blocks, and remote connections was performed:
+
+### 1. Packet Drop Resolution (Intel IGB NIC enp8s0)
+*   **Observation**: Checked network stats and found **214,667 dropped receive packets (4.6% RX drop rate)** on the active interface `enp8s0`.
+*   **Root Cause**: Ring buffers were configured to a default size of only **256** (both RX and TX), causing hardware queue overflow during network micro-bursts, even though the hardware pre-set maximum is **4096**.
+*   **Action Taken**:
+    *   Tuned ring buffers to **4096** RX/TX and coalescing `rx-usecs`/`tx-usecs` to **25** using the `nic-tune.sh` system utility.
+    *   Enabled and started the persistent systemd unit [ethtool@enp8s0.service](file:///etc/systemd/system/ethtool@.service) (`sudo systemctl enable --now ethtool@enp8s0.service`) to persist the optimized settings across system reboots.
+*   **Outcome**: Ring buffers are successfully locked at **4096**, and coalescing is applied. Packet drop rates should return to 0%.
+
+### 2. Traffic Analysis & Firewall Audit
+*   **Active Port Footprint**:
+    *   `sshd` is bound to non-standard port `22222` to prevent script-based login sweeps.
+    *   The `agy` CLI daemon is listening locally on ports `34697` and `35661`.
+    *   Ollama (`11434`), Open-WebUI (`3000`), Nginx (`80`/`443`/`8080`), and Clash proxy (`7890`) are listening locally.
+*   **UFW Log Audit**:
+    *   **IGMP Bloat**: UFW is actively blocking multicast IGMP traffic (destined to `224.0.0.1` PROTO=2) originating from the router gateway `192.168.1.254`, preventing local network query spam.
+    *   **External UDP/QUIC blocks**: UFW is dropping unsolicited external UDP packets on port 443 (e.g., from `66.132.224.27`), preventing potential WAN leakage.
+*   **Established Connections**:
+    *   A secure keepalive connection is established with `160.79.104.10` (Kalshi trading API) for trading operations.
+    *   Established encrypted connections were traced to `16.54.100.32` (AWS EC2 instance) and `140.82.113.26` (GitHub).
+
+
 
