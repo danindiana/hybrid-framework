@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S1.3: Dual GPU Peer-to-Peer & Ten-Bit Tags\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        rtx5080 [label="RTX 5080 (GPU 0)\nPrimary LLM Substrate", color="#00ff66"];
+        rtx3080 [label="RTX 3080 (GPU 1)\nCo-Processor", color="#00f3ff"];
+        pcie_root [label="PCIe Root Complex\n(Ten-Bit Tags Enabled)", color="#ffff00"];
+
+        rtx5080 -> pcie_root [label="Tx / Rx Requests"];
+        rtx3080 -> pcie_root [label="Tx / Rx Requests"];
+        pcie_root -> rtx5080 [label="Enhanced High-Concurrency P2P"];
+        pcie_root -> rtx3080 [label="Enhanced High-Concurrency P2P"];
+        
+}

@@ -1,0 +1,18 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S5.3: Shebang Enforcement Resolution Path\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        script [label="Python Script\n(With Shebang Header)", color="#00ff66"];
+        bash [label="Bash Shell Execution", color="#ffff00"];
+        shebang [label="Header: '#!/usr/bin/env python3'", color="#00ff66"];
+        python_int [label="Python 3 Interpreter", color="#00f3ff"];
+        success [label="Clean execution of imports", color="#00ff66"];
+
+        script -> bash [label="Executed as ./script.py"];
+        bash -> shebang [label="Detects magic header"];
+        shebang -> python_int [label="Delegates execution"];
+        python_int -> success;
+        
+}

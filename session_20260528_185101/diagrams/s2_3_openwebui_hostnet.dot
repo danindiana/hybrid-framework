@@ -1,0 +1,14 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S2.3: Open-WebUI Docker Host Network\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        browser [label="Browser Client\n(Local Port 3000)", color="#ffff00"];
+        docker_container [label="Open-WebUI Docker Container\n(Host Network Mode)", color="#00ff66"];
+        local_ollama [label="Ollama Daemon\n(Local Port 11434)", color="#00f3ff"];
+
+        browser -> docker_container [label="HTTP Request"];
+        docker_container -> local_ollama [label="Direct loopback (127.0.0.1)"];
+        
+}

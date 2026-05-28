@@ -1,0 +1,19 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S4.2: ebtables Layer-2 Traffic Filter\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        raw_nic [label="Raw NIC Ingress (enp8s0)", color="#ffff00"];
+        ebtables_in [label="ebtables INPUT Rule", color="#00ff66"];
+        ebtables_fwd [label="ebtables FORWARD Rule", color="#00ff66"];
+        att_heartbeat [label="AT&T Heartbeat\n(Ethertype 0x7373)", color="#ff0000"];
+        system_stack [label="System IP Stack", color="#00f3ff"];
+
+        raw_nic -> ebtables_in;
+        raw_nic -> ebtables_fwd;
+        ebtables_in -> att_heartbeat [label="Dropped"];
+        ebtables_fwd -> att_heartbeat [label="Dropped"];
+        ebtables_in -> system_stack [label="Accept other traffic"];
+        
+}

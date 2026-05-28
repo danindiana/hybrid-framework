@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S1.4: RAM Memory Bandwidth & Thread Sweet Spot\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        ram [label="128GB DDR4 RAM\n(Dual Channel Bandwidth Limit)", color="#00ff66"];
+        threads_low [label="12-16 Threads\n(Optimal Thread Limit)", color="#00ff66"];
+        threads_high [label="32 Threads (Full CPU)\n(IMC Contention Bottleneck)", color="#ff0000"];
+        imc [label="Zen 3 Integrated\nMemory Controller", color="#ffff00"];
+
+        threads_low -> imc [label="High Token Rate\n(94% Alignment)"];
+        threads_high -> imc [label="Saturates IMC\n(Diminishing Returns)"];
+        imc -> ram [label="Weight Reading"];
+        
+}

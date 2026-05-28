@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S2.4: Ollama Token Ingestion & Metrics forensics\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        ollama_run [label="Ollama Run (Verbose)", color="#00ff66"];
+        raw_tmp [label="raw_output.tmp\n(Raw stdout/stderr)", color="#ffff00"];
+        forensics_script [label="forensic_run.sh\n(Regex/Awk Extractor)", color="#ff007f"];
+        json_log [label="Forensics JSON Log\n(Metrics stored)", color="#00f3ff"];
+
+        ollama_run -> raw_tmp [label="Console output redirection"];
+        raw_tmp -> forensics_script [label="Grepped for load_duration / eval_rate"];
+        forensics_script -> json_log [label="Builds structured log"];
+        
+}

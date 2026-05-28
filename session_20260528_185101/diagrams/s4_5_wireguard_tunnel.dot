@@ -1,0 +1,18 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S4.5: Wireguard Remote Forensic Tunnel\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        remote_client [label="Remote Operator Client", color="#ffff00"];
+        internet [label="Internet", color="#ff007f"];
+        wg_port [label="Port 51820 UDP forwarding", color="#ffff00"];
+        wg_if [label="Wireguard Interface (wg0)\nVirtual Network", color="#00ff66"];
+        local_lan [label="Internal Local LAN\n(192.168.1.0/24)", color="#00f3ff"];
+
+        remote_client -> internet [label="Encrypted link"];
+        internet -> wg_port;
+        wg_port -> wg_if;
+        wg_if -> local_lan [label="Full LAN Access"];
+        
+}

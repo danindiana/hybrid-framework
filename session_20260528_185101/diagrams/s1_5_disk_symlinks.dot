@@ -1,0 +1,15 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S1.5: Disk Layout & Ollama SSD Symlink\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        nvme [label="Root NVMe (/) \nOS & CLI Binaries\n(63% Capacity)", color="#00ff66"];
+        ssd [label="Samsung SSD (/mnt/samsung_ssd)\nPhysical Storage\n(88% Capacity)", color="#ff0000"];
+        symlink [label="Symlink Target\n/usr/share/ollama/.ollama", color="#ffff00"];
+        registry [label="Ollama Model weights\n(.ollama/models/)", color="#00f3ff"];
+
+        symlink -> ssd [label="Points to Physical Mount"];
+        ssd -> registry [label="Contains large weights"];
+        
+}

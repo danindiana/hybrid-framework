@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S2.1: Ollama Service Port & Workload Segregation\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        clients [label="Incoming Requests\n(WebUI, Scripts, CLI)", color="#ffff00"];
+        svc_main [label="ollama.service\n(Port 11434 - Dual GPU)", color="#00ff66"];
+        svc_sec [label="ollama-secondary.service\n(Port 11435 - GPU 1 Only)", color="#ff007f"];
+        svc_coder [label="ollama-coder.service\n(Port 11436 - GPU 1 Coder)", color="#00f3ff"];
+
+        clients -> svc_main [label="Primary Port"];
+        clients -> svc_sec [label="Load Balance"];
+        clients -> svc_coder [label="Coding tasks"];
+        
+}

@@ -1,0 +1,26 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S1.2: CPU Zen3 5950X CCD & Cache Layout\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        subgraph cluster_ccd0 {
+            label="CCD 0 (NUMA Node 0)";
+            color="#00ff66";
+            cores0 [label="Cores 0-7\n(8 Cores, 16 Threads)"];
+            l3_0 [label="32MB L3 Cache\n(Shared Unified)", color="#ffff00"];
+            cores0 -> l3_0;
+        }
+        subgraph cluster_ccd1 {
+            label="CCD 1 (NUMA Node 1)";
+            color="#00f3ff";
+            cores1 [label="Cores 8-15\n(8 Cores, 16 Threads)"];
+            l3_1 [label="32MB L3 Cache\n(Shared Unified)", color="#ffff00"];
+            cores1 -> l3_1;
+        }
+        imc [label="Integrated Memory Controller\n(Dual Channel DDR4)", color="#ff007f"];
+        
+        l3_0 -> imc [label="Infinity Fabric"];
+        l3_1 -> imc [label="Infinity Fabric"];
+        
+}

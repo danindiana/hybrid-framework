@@ -1,0 +1,20 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S5.5: HUD Transfinite Controller Commands\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        controller [label="tools/controller.py", color="#00ff66"];
+        opt1 [label="1. Run Forensic Session\n(forensic_run.sh)", color="#00f3ff"];
+        opt2 [label="2. Execute Auto-Correction Loop\n(self_correction_loop.sh)", color="#00f3ff"];
+        opt3 [label="3. Refresh Visual Architecture\n(viz_refresh.sh)", color="#00f3ff"];
+        opt4 [label="4. Trigger Axiom Shift (+1)\n(axiom_shift.sh)", color="#00f3ff"];
+        opt5 [label="5. Complexity Audit\n(complexity_audit.py)", color="#00f3ff"];
+
+        controller -> opt1;
+        controller -> opt2;
+        controller -> opt3;
+        controller -> opt4;
+        controller -> opt5;
+        
+}

@@ -1,0 +1,14 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S3.1: Camera Video Stream Profiles\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        camera [label="Hikvision Hardware", color="#00ff66"];
+        main_stream [label="Main Stream\n1080p @ 12fps (2Mbps VBR)", color="#00f3ff"];
+        sub_stream [label="Sub Stream\n360p @ 6fps (256Kbps VBR)", color="#ff007f"];
+
+        camera -> main_stream [label="Archival and WebRTC Ingress"];
+        camera -> sub_stream [label="Fallback and preview"];
+        
+}

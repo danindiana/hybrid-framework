@@ -1,0 +1,18 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S1.1: Motherboard Taichi PCIe Slot Topology\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        cpu [label="AMD Ryzen 9 5950X\n(32 PCIe Gen4 Lanes)", color="#00ff66"];
+        chipset [label="X570 Chipset\n(Secondary Lanes)", color="#ffff00"];
+        slot0 [label="PCIe Slot 1 (x16 Gen4)\nRTX 5080 (16GB)", color="#ff007f"];
+        slot1 [label="PCIe Slot 3 (x8 Gen4)\nRTX 3080 (10GB)", color="#ff007f"];
+        nic [label="Intel X540-T2 10GbE NIC\nPCIe Gen2 x8", color="#00f3ff"];
+
+        cpu -> slot0 [label="Direct x16 Lanes"];
+        cpu -> slot1 [label="Direct x8 Lanes"];
+        cpu -> chipset [label="Gen4 x4 Link"];
+        chipset -> nic [label="PCIe Lanes"];
+        
+}

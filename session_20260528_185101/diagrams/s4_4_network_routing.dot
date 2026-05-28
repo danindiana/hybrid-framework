@@ -1,0 +1,17 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S4.4: Local IP Ingress & Gateway Map\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        worlock [label="Worlock Desktop\n(192.168.1.85)", color="#00ff66"];
+        gateway [label="Router Gateway\n(192.168.1.1)", color="#ffff00"];
+        rpi4 [label="Raspberry Pi 4\n(rpi4)", color="#00f3ff"];
+        internet [label="External Internet", color="#ff007f"];
+
+        worlock -> gateway [label="Default Route"];
+        gateway -> internet;
+        gateway -> rpi4 [label="Local subnet route"];
+        worlock -> rpi4 [label="Direct RTSP/WebRTC"];
+        
+}

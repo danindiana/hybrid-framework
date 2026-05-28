@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S3.3: Nginx Reverse Proxy WebUI Ingress Paths\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        client [label="Local Client Connection", color="#ffff00"];
+        nginx [label="Nginx Reverse Proxy\n(Port 80 on RPi4)", color="#00ff66"];
+        webui [label="Nginx Webroot\n(/camera/index.html)", color="#00f3ff"];
+        webrtc_srv [label="go2rtc Engine WebRTC\n(Port 1984 redirect)", color="#ff007f"];
+
+        client -> nginx [label="HTTP GET Request"];
+        nginx -> webui [label="Route /camera/"];
+        nginx -> webrtc_srv [label="Proxy /camera/api/ & webrtc"];
+        
+}

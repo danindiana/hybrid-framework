@@ -1,0 +1,20 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S5.2: Iron Cross UI Anomaly Collision Flow\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        script [label="Python Script\n(Missing Shebang Header)", color="#ff0000"];
+        bash [label="Bash Shell Execution", color="#ffff00"];
+        syntax_line [label="Line: 'import unicodedata'", color="#ffff00"];
+        magick_import [label="ImageMagick 'import' utility", color="#ff007f"];
+        crosshair [label="XC_X_cursor (Iron Cross)\nWaiting for window click", color="#ff0000"];
+        ui_hang [label="UI Hang / Terminal Freeze", color="#ff0000"];
+
+        script -> bash [label="Executed as ./script.py"];
+        bash -> syntax_line [label="Interprets as shell script"];
+        syntax_line -> magick_import [label="Calls binary 'import'"];
+        magick_import -> crosshair [label="Changes mouse cursor"];
+        crosshair -> ui_hang [label="Clicks block event loops"];
+        
+}

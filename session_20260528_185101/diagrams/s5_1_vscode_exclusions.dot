@@ -1,0 +1,20 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S5.1: VS Code Watcher & Search Exclusions\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        antigravity_cli [label="Antigravity CLI Editor", color="#00ff66"];
+        file_watcher [label="File Watcher / indexer", color="#ffff00"];
+        ignored_archive [label="archive/ (large logs)", color="#ff007f"];
+        ignored_logs [label="logs/", color="#ff007f"];
+        ignored_venv [label="venv/", color="#ff007f"];
+        allowed_src [label="Source Files & Tools", color="#00f3ff"];
+
+        antigravity_cli -> file_watcher;
+        file_watcher -> ignored_archive [label="Excluded (Restores responsiveness)"];
+        file_watcher -> ignored_logs [label="Excluded"];
+        file_watcher -> ignored_venv [label="Excluded"];
+        file_watcher -> allowed_src [label="Indexed"];
+        
+}

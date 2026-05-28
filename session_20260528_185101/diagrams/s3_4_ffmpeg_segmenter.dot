@@ -1,0 +1,14 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S3.4: ffmpeg segmentation loop on Worlock\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        rpi4_stream [label="Rpi4 Persistent Stream", color="#ffff00"];
+        ffmpeg_rec [label="ffmpeg Segmenter\n(hikvision-record.service)", color="#00ff66"];
+        mkv_files [label="3-Minute MKV Segments\n(seg_*.mkv on local disk)", color="#00f3ff"];
+
+        rpi4_stream -> ffmpeg_rec [label="TCP Ingress"];
+        ffmpeg_rec -> mkv_files [label="Zero-loss file split"];
+        
+}

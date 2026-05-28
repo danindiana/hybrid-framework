@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S4.1: Intel X540-T2 NIC Hardening\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        net_bursts [label="Micro-burst Network Traffic", color="#ffff00"];
+        ring_buffers [label="Ring Buffers\n(Increased to 8192 RX/TX)", color="#00ff66"];
+        interrupts [label="Interrupt Coalescing\n(Optimized at 96us)", color="#00f3ff"];
+        kernel [label="Linux Network Stack", color="#ff007f"];
+
+        net_bursts -> ring_buffers [label="Buffer absorption"];
+        ring_buffers -> interrupts [label="Decreased packet rate"];
+        interrupts -> kernel [label="Zero packet drops"];
+        
+}

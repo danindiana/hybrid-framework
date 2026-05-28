@@ -1,0 +1,22 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S2.5: Self-Correction Loop Lifecycle\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        objective [label="Objective File\n(markdown input)", color="#00f3ff"];
+        impl [label="Generated Code\n(autogen_impl_*.py)", color="#ffff00"];
+        audit [label="Complexity Audit\n(complexity_audit.py)", color="#ff007f"];
+        align_chk [label="Semantic Alignment Check\n(semantic_check.py)", color="#00ff66"];
+        decision [label="Alignment Score < 80?", color="#ffff00"];
+        shift [label="Trigger Axiom Shift\n(axiom_shift.sh)", color="#ff0000"];
+        finalize [label="Finalize Artifact", color="#00ff66"];
+
+        objective -> impl [label="LLM Ingestion"];
+        impl -> audit [label="Size heuristic check"];
+        impl -> align_chk [label="Semantic compare"];
+        align_chk -> decision;
+        decision -> shift [label="Yes (Drifted)"];
+        decision -> finalize [label="No (Synergy)"];
+        
+}

@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S2.2: Nemotron-3-Nano VRAM Splitting\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        model [label="Nemotron-3-Nano (30B)\nSize: 26 GB Weights", color="#ffff00"];
+        gpu0 [label="RTX 5080 (GPU 0)\nAllocated: 15.5 GB VRAM", color="#00ff66"];
+        gpu1 [label="RTX 3080 (GPU 1)\nAllocated: 8.7 GB VRAM", color="#00f3ff"];
+        cpu_mem [label="System RAM (CPU)\nOffloaded: 1.8 GB Weights", color="#ff007f"];
+
+        model -> gpu0 [label="Unified Model Slice"];
+        model -> gpu1 [label="Unified Model Slice"];
+        model -> cpu_mem [label="RAM Offload Spillover"];
+        
+}

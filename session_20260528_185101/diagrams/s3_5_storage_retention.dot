@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S3.5: Camera Storage Retention & Data Flush Loop\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        mkv_files [label="Archived Segments\n(seg_*.mkv)", color="#00ff66"];
+        retention_policy [label="2-Day Rolling Policy", color="#ffff00"];
+        disk_space [label="Disk Wear Limit Check", color="#ff0000"];
+        cam_ctrl [label="cam_control.sh flush", color="#00f3ff"];
+
+        mkv_files -> retention_policy [label="Periodic sweep"];
+        retention_policy -> disk_space [label="Removes old segments"];
+        cam_ctrl -> mkv_files [label="Aggressive interactive erase"];
+        
+}

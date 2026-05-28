@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S3.2: Raspberry Pi 4 go2rtc Delivery Edge\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        rtsp_stream [label="RTSP H.264 Input Stream", color="#ffff00"];
+        go2rtc [label="go2rtc service (RPi4)\nIngests and multiplexes RTSP", color="#00ff66"];
+        webrtc_out [label="WebRTC Stream\n(Low latency /camera/webrtc)", color="#00f3ff"];
+        api_out [label="API / Nginx Ingress", color="#ff007f"];
+
+        rtsp_stream -> go2rtc [label="TCP Stream"];
+        go2rtc -> webrtc_out [label="Realtime Delivery"];
+        go2rtc -> api_out [label="Query Control"];
+        
+}

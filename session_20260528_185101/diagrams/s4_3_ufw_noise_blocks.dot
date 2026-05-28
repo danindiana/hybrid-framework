@@ -1,0 +1,18 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S4.3: UFW Layer-4 Noise Port Block\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        udp_traffic [label="Incoming UDP Traffic", color="#ffff00"];
+        ufw_firewall [label="UFW Rules Engine", color="#00ff66"];
+        port_1900 [label="Port 1900 (UPnP Bloat)", color="#ff0000"];
+        port_5353 [label="Port 5353 (mDNS Noise)", color="#ff0000"];
+        allowed_apps [label="Protected Local Services", color="#00f3ff"];
+
+        udp_traffic -> ufw_firewall;
+        ufw_firewall -> port_1900 [label="Denied (Dropped)"];
+        ufw_firewall -> port_5353 [label="Denied (Dropped)"];
+        ufw_firewall -> allowed_apps [label="Forwarded"];
+        
+}

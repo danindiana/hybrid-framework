@@ -1,0 +1,16 @@
+digraph G {
+    graph [bgcolor="#0d0e15", fontname="Courier New", overlap=false, splines=true, label="S5.4: Log & Manifest Archive Strategy\n", labelloc="t", fontcolor="#ffffff", fontsize=14];
+    node [shape=box, style="filled,rounded", fillcolor="#1a1c28", color="#00f3ff", fontcolor="#ffffff", fontname="Courier New", penwidth=2, fontsize=10];
+    edge [color="#ff007f", fontname="Courier New", fontcolor="#00f3ff", penwidth=1.5, fontsize=9, arrowsize=0.8];
+
+
+        massive_logs [label="Massive logs / checklists\n(Total size > 1GB)", color="#ff0000"];
+        archive_dir [label="archive/ Folder\n(Separated from project scope)", color="#00ff66"];
+        search_engine [label="Editor search engine", color="#ffff00"];
+        restored_speed [label="Ultra-Fast File Search", color="#00ff66"];
+
+        massive_logs -> archive_dir [label="Moved to avoid index bloat"];
+        archive_dir -> search_engine [label="Ignored (Exclude rules)"];
+        search_engine -> restored_speed [label="Prevents RAM/CPU locks"];
+        
+}
