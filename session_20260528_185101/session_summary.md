@@ -100,3 +100,14 @@ The complexity audit script was refactored during this audit session to:
 *   Ignore virtualenvs (`venv/`), git repositories (`.git/`), cache directories (`__pycache__/`), and agent configurations (`.antigravitycli/`).
 *   Incorporate UTF-8 decoding overrides with error handling (`errors='ignore'`) to prevent execution crashes on non-Unicode binary files.
 
+---
+
+## Ollama Storage Clean-up (Executed 2026-05-28 18:57:02)
+To address the **88% storage capacity** of `/mnt/samsung_ssd`, an interactive audit of local Ollama model tags was conducted:
+
+*   **Models Removed**:
+    1.  `ministral-3:8b` (6.0 GB) — Cleaned up redundant tag pointer (duplicate of `ministral-3:latest`).
+    2.  `nemotron-3-nano:30b` (24 GB) — Cleaned up older tag pointer superseded by `nemotron-3-nano-30b-small:latest`.
+*   *Note*: Since these deleted tags shared layers with active models (`ministral-3:latest` and `nemotron-3-nano-30b-small:latest`), the deletion removed tag registry references but did not delete underlying layer blocks (preserving active model data). Further space reclamation will require removing unique large models (e.g., `nemotron-cascade-2` or `qwen3.6`).
+
+
