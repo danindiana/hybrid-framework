@@ -1,20 +1,41 @@
 digraph WorkLifecycle {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.1: Software Compilation Lifecycle"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.1: Software Source Compilation Workflow Lifecycle", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Download [label="Download Source\n(curl official release)"];
-        Verify [label="Hash Verification\n(sha256sum validation)", color="#ffff00"];
-        Extract [label="Extraction\n(tar -xzf)"];
-        Configure [label="Configuration\n(./config with rpath)"];
-        Build [label="Compilation\n(make -j$(nproc))"];
-        Test [label="Regression Testing\n(make test)", color="#00ff00"];
-        Install [label="Installation\n(sudo make install)"];
+        subgraph cluster_download_phase {
+            label = "Phase 1: Fetch and Verify";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Download_Tar [label="Download Source Tarball\n(GitHub Releases / Project portal)"];
+            Sha256_Check [label="sha256sum verification\n(Confirms cryptographic checksum)", color="#00ff00"];
+            Download_Tar -> Sha256_Check;
+        }
 
-        Download -> Verify;
-        Verify -> Extract;
-        Extract -> Configure;
-        Configure -> Build;
-        Build -> Test;
-        Test -> Install;
+        subgraph cluster_compile_phase {
+            label = "Phase 2: Build Environment";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Extract_Tar [label="Extract files\n(tar -xzf)"];
+            Configure_Build [label="Configure compilation options\n(configures dynamic prefixes)"];
+            Build_Make [label="Build executable\n(make -j$(nproc))"];
+            
+            Extract_Tar -> Configure_Build;
+            Configure_Build -> Build_Make;
+        }
+
+        subgraph cluster_install_phase {
+            label = "Phase 3: Validate & Deploy";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            Run_Tests [label="Regression tests execution\n(make test checks validation)", color="#ffff00"];
+            Install_Cmd [label="Install Binary\n(sudo make install)"];
+            Verify_Rpath [label="Dynamic loading check\n(ldd validation)"];
+            
+            Run_Tests -> Install_Cmd;
+            Install_Cmd -> Verify_Rpath;
+        }
+
+        Sha256_Check -> Extract_Tar [label="Hash Match"];
+        Build_Make -> Run_Tests [label="Success"];
     }

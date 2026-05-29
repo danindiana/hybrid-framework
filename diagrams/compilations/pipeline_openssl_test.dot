@@ -1,16 +1,34 @@
 digraph PipeOpenSSLTest {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.1: OpenSSL Regression Testing Pipeline"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.1: OpenSSL 3.5.6 Multi-stage Test Suite Pipeline", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Test_Start [label="Trigger make test"];
-        Run_Crypto [label="Test Cryptographic Core\n(AES, RSA, ECC, ML-KEM)"];
-        Run_Protocol [label="Test TLS Protocol\n(Handshakes, Record Layer)"];
-        Fuzz_Test [label="Fuzzing Validation\n(ASN.1, PEM parsers)"];
-        PASS_Status [label="Result: PASS\n(All tests OK)", color="#00ff00"];
+        subgraph cluster_basic_tests {
+            label = "Basic Crypto Validation";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Test_Rand [label="Random number generators check"];
+            Test_Cipher [label="Symmetric Ciphers (AES, ChaCha20)"];
+            Test_Digest [label="Cryptographic Hash (SHA2, SHA3)"];
+        }
 
-        Test_Start -> Run_Crypto;
-        Run_Crypto -> Run_Protocol;
-        Run_Protocol -> Fuzz_Test;
-        Fuzz_Test -> PASS_Status;
+        subgraph cluster_complex_tests {
+            label = "Protocol Validation";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Test_SSL [label="TLS Protocol Logic (Handshakes)"];
+            Test_X509 [label="X.509 Certificate Chain Parsing"];
+            Test_Fuzz [label="Fuzzing validation (ASN.1, PEM)"];
+        }
+
+        Trigger [label="make test Triggered"];
+        Pass_Status [label="All tests successful\n(Result: PASS)", color="#00ff00", shape=doublecircle];
+
+        Trigger -> Test_Rand;
+        Test_Rand -> Test_Cipher;
+        Test_Cipher -> Test_Digest;
+        Test_Digest -> Test_SSL;
+        Test_SSL -> Test_X509;
+        Test_X509 -> Test_Fuzz;
+        Test_Fuzz -> Pass_Status;
     }

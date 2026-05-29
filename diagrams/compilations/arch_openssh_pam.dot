@@ -1,12 +1,38 @@
 digraph ArchOpenSSHPAM {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.4: OpenSSH 10.3p1 PAM Integration"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.4: OpenSSH 10.3p1 Security & PAM Architecture", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        SSHD [label="sshd Daemon\n(/usr/local/ssh/sbin/sshd)"];
-        PAM_Module [label="libpam.so\n(System PAM Layer)", color="#ffff00"];
-        LibCrypto [label="libcrypto.so.3\n(Custom OpenSSL 3.5.6)", color="#00ff00"];
+        subgraph cluster_ssh_daemon {
+            label = "SSH Daemon (sshd)";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            SSHD_Bin [label="sshd Binary\n(/usr/local/ssh/sbin/sshd)"];
+            SSHD_Config [label="Configuration\n(/etc/ssh/sshd_config)", shape=note];
+            SSHD_Bin -> SSHD_Config [label="Loads configurations"];
+        }
 
-        SSHD -> PAM_Module [label="--with-pam Flag"];
-        SSHD -> LibCrypto [label="Dynamic Link (Rpath)"];
+        subgraph cluster_auth_framework {
+            label = "PAM Authentication Module Layer";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            PAM_Header [label="libpam0g-dev Headers\n(Build-time requirement)"];
+            PAM_Library [label="libpam.so\n(Runtime Pluggable Auth)"];
+            PAM_Config [label="PAM Policy\n(/etc/pam.d/sshd)", shape=note];
+            
+            PAM_Header -> PAM_Library [label="Enables symbol integration", style=dashed];
+            PAM_Library -> PAM_Config [label="Executes auth stack"];
+        }
+
+        subgraph cluster_crypto_layer {
+            label = "Cryptography Linkage";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            LibCrypto [label="libcrypto.so.3\n(/usr/local/ssl/lib64/libcrypto.so.3)", color="#00ff00"];
+            LibSSL [label="libssl.so.3\n(/usr/local/ssl/lib64/libssl.so.3)", color="#00ff00"];
+        }
+
+        SSHD_Bin -> PAM_Library [label="--with-pam Flag"];
+        SSHD_Bin -> LibCrypto [label="Loads crypt algorithms via rpath"];
+        SSHD_Bin -> LibSSL [label="Loads SSH channel protocol via rpath"];
     }

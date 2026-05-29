@@ -1,14 +1,32 @@
 digraph FutureQUIC {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.1: Future QUIC and HTTP/3 Pipeline"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.1: Future HTTP/3 and QUIC Protocol Stack", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        HTTP3_Standard [label="HTTP/3 Protocol Stack"];
-        Nginx_130 [label="Nginx 1.30.x Build"];
-        Quiche [label="quiche / nghttp3\n(QUIC transport libraries)", color="#ffff00"];
-        Secure_SSL [label="OpenSSL 3.5.x LTS\n(TLS 1.3 Handshake)", color="#00ff00"];
+        subgraph cluster_http3_layers {
+            label = "HTTP/3 Stack Layers";
+            color = "#00ff22";
+            fontcolor = "#00ff22";
+            HTTP3 [label="HTTP/3 Application Layer"];
+            QUIC [label="QUIC Transport Layer\n(Replaces TCP connection)"];
+            UDP [label="UDP Protocol\n(Fast, low latency network routing)"];
+            
+            HTTP3 -> QUIC;
+            QUIC -> UDP;
+        }
 
-        HTTP3_Standard -> Nginx_130;
-        Nginx_130 -> Quiche [label="Inject dynamic library"];
-        Nginx_130 -> Secure_SSL [label="ALPN Support"];
+        subgraph cluster_nginx_http3 {
+            label = "Nginx Build Prerequisites";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Nginx_Configure [label="nginx ./configure\n--with-http_v3_module"];
+            TLS13_OpenSSL [label="OpenSSL 3.5.6 (LTS)\n(Requires TLS 1.3 Handshakes)"];
+            Quic_Transport [label="nghttp3 / quiche\n(QUIC library libraries)"];
+            
+            Nginx_Configure -> TLS13_OpenSSL;
+            Nginx_Configure -> Quic_Transport;
+        }
+
+        TLS13_OpenSSL -> HTTP3 [label="Secures data stream"];
+        Quic_Transport -> QUIC [label="Manages packages and framing"];
     }

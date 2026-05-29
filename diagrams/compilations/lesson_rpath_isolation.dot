@@ -1,15 +1,30 @@
 digraph LessonRpath {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.2: Rpath Isolation Advantage"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.2: Rpath Isolation Resolution Flow", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Custom_Bin [label="Custom Binary\n(curl / sshd / nginx)"];
-        Rpath_Lookup [label="Runpath Check\n(Search /usr/local/... first)", shape=parallelogram];
-        System_Bin [label="System Binary\n(Uses standard system paths)"];
-        System_Libs [label="System Libraries\n(/lib/x86_64-linux-gnu)", color="#00ff00"];
-        Custom_Libs [label="Custom Libraries\n(/usr/local/ssl/lib64)", color="#00ff00"];
+        subgraph cluster_rpath_mechanisms {
+            label = "Dynamic Linker Lookups (rpath Priority)";
+            color = "#00ff22";
+            fontcolor = "#00ff22";
+            Lookup_1 [label="1. Check DT_RPATH/DT_RUNPATH\n(Inscribed in binary)", color="#00ff00"];
+            Lookup_2 [label="2. Check LD_LIBRARY_PATH\n(Environment Variable)"];
+            Lookup_3 [label="3. Check /etc/ld.so.cache\n(Global cache)"];
+            Lookup_4 [label="4. Check /lib & /usr/lib\n(Default directories)"];
+            
+            Lookup_1 -> Lookup_2 [label="If not found"];
+            Lookup_2 -> Lookup_3 [label="If not found"];
+            Lookup_3 -> Lookup_4 [label="If not found"];
+        }
 
-        Custom_Bin -> Rpath_Lookup;
-        Rpath_Lookup -> Custom_Libs [label="Priority Load"];
-        System_Bin -> System_Libs [label="Default Load"];
+        subgraph cluster_resolved_binary {
+            label = "Binary Actions";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            Custom_Bin [label="Custom Binary\n(Uses Lookup 1 first)"];
+            System_Bin [label="System Binary\n(Skips Lookup 1, uses Lookup 3/4)"];
+        }
+
+        Custom_Bin -> Lookup_1;
+        System_Bin -> Lookup_3;
     }

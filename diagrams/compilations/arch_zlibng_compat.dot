@@ -1,14 +1,39 @@
 digraph ArchZlibNg {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.2: zlib-ng 2.3.3 Compatibility Layout"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.2: zlib-ng 2.3.3 Performance & Compatibility Layout", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        ZlibNg_Source [label="zlib-ng Source\n(GitHub Tag 2.3.3)"];
-        Compat_Flag [label="--zlib-compat Flag", shape=parallelogram, color="#ffff00"];
-        LibZ_Shared [label="libz.so.1\n(Compatibility Symlink)", color="#00ff00"];
-        LibZ_Static [label="libz.a\n(Standard API Symbols)", color="#00ff00"];
+        subgraph cluster_src {
+            label = "Upstream Source Integration";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            ZlibNg_Src [label="zlib-ng 2.3.3 GitHub Source"];
+            Configure_Compat [label="./configure --zlib-compat\n(Enables standard function names)", shape=parallelogram];
+            ZlibNg_Src -> Configure_Compat;
+        }
 
-        ZlibNg_Source -> Compat_Flag;
-        Compat_Flag -> LibZ_Shared;
-        Compat_Flag -> LibZ_Static;
+        subgraph cluster_opts {
+            label = "Hardware Optimizations Enabled";
+            color = "#00ff22";
+            fontcolor = "#00ff22";
+            AVX [label="Intel AVX-512 / AVX2 Instruction Set"];
+            SSE [label="SSE4.2 / SSSE3 CRC Checks"];
+        }
+
+        subgraph cluster_outputs {
+            label = "Generated Libraries (/usr/local/zlib-ng/lib)";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            LibZ_Shared [label="libz.so.1.3.1.zlib-ng\n(Shared Object)"];
+            LibZ_Symlink [label="libz.so.1 -> libz.so.1.3.1.zlib-ng\n(API Symlink)", shape=note];
+            LibZ_Static [label="libz.a\n(Static Archive)"];
+            
+            LibZ_Shared -> LibZ_Symlink [style=dashed];
+        }
+
+        Configure_Compat -> AVX [style=dashed];
+        Configure_Compat -> SSE [style=dashed];
+        AVX -> LibZ_Shared [label="Bakes in CPU vector routines"];
+        SSE -> LibZ_Shared;
+        Configure_Compat -> LibZ_Static [label="Compiles static archive"];
     }

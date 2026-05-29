@@ -1,14 +1,35 @@
-digraph ArchCurlLinkage {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.3: cURL 8.20.0 Custom Linkage"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+digraph ArchCurl {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.3: cURL 8.20.0 Custom Isolated Linkage Spec", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Curl_Binary [label="curl Binary\n(/usr/local/curl/bin/curl)"];
-        LDFLAGS [label="LDFLAGS\n(-Wl,-rpath,...)", shape=parallelogram];
-        OpenSSL [label="OpenSSL 3.5.6\n(/usr/local/ssl/lib64)", color="#00ff00"];
-        ZlibNg [label="zlib-ng 2.3.3\n(/usr/local/zlib-ng/lib)", color="#00ff00"];
+        subgraph cluster_curl_opts {
+            label = "Configure Parameters";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Opts [label="./configure\n--prefix=/usr/local/curl\n--with-openssl=/usr/local/ssl\n--with-zlib=/usr/local/zlib-ng", shape=parallelogram];
+            LdFlags [label="LDFLAGS='-Wl,-rpath,/usr/local/ssl/lib64\n-Wl,-rpath,/usr/local/zlib-ng/lib'", shape=note];
+            Opts -> LdFlags;
+        }
 
-        Curl_Binary -> LDFLAGS [style=dashed];
-        LDFLAGS -> OpenSSL [label="Dynamic Link"];
-        LDFLAGS -> ZlibNg [label="Dynamic Link"];
+        subgraph cluster_curl_bin {
+            label = "cURL Runtime Executable";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Curl_Bin [label="curl Binary\n(/usr/local/curl/bin/curl)"];
+            Curl_Symlink [label="PATH Target\n(/usr/local/bin/curl)", shape=note];
+            Curl_Bin -> Curl_Symlink [style=dashed, label="Overwrites legacy binary"];
+        }
+
+        subgraph cluster_curl_deps {
+            label = "Dynamic Dependencies (Isolated)";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            SSL_Lib [label="libssl.so.3\n(/usr/local/ssl/lib64/libssl.so.3)", color="#00ff00"];
+            Zlib_Lib [label="libz.so.1\n(/usr/local/zlib-ng/lib/libz.so.1)", color="#00ff00"];
+        }
+
+        LdFlags -> Curl_Bin [label="Bakes RUNPATH into headers"];
+        Curl_Bin -> SSL_Lib [label="Direct Rpath link"];
+        Curl_Bin -> Zlib_Lib [label="Direct Rpath link"];
     }

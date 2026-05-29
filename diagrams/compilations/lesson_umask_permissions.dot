@@ -1,16 +1,30 @@
 digraph LessonUmask {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.3: Restrictive Umask Triage"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.3: Restrictive Umask Triage Architecture", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Umask [label="Sudo Umask (0027)", color="#ff0000"];
-        Install [label="make install\n(Directories created 750)", shape=parallelogram];
-        Standard_User [label="Standard User 'jeb'"];
-        Denied [label="Permission Denied\n(Cannot read/execute)", shape=circle, color="#ff0000"];
-        Chmod_Fix [label="chmod -R go+rX\n(Restores permissions)", color="#00ff00"];
+        subgraph cluster_umask_logic {
+            label = "Umask Bitwise Masking";
+            color = "#ff0000";
+            fontcolor = "#ff0000";
+            Base_Perms [label="Directory Base: 777\nFile Base: 666"];
+            Umask_Value [label="Umask Applied: 027\n(Masks Group write, World read/write/exec)"];
+            Actual_Perms [label="Directory Actual: 750 (drwxr-x---)\nFile Actual: 640 (-rw-r-----)"];
+            Base_Perms -> Umask_Value;
+            Umask_Value -> Actual_Perms;
+        }
 
-        Umask -> Install;
-        Install -> Standard_User [label="Inaccessible to"];
-        Standard_User -> Denied;
-        Chmod_Fix -> Standard_User [label="Enables access for"];
+        subgraph cluster_triage_actions {
+            label = "Security Verification & Fixing";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Denied_Access [label="User 'jeb' denied access\n(Shell lookup bypasses /usr/local/bin)"];
+            Chmod_Cmd [label="sudo chmod -R go+rX\n(Adds read & dir execute bits)"];
+            Fixed_Perms [label="Directory Fixed: 755 (drwxr-xr-x)\nFile Fixed: 644 (-rw-r--r--)"];
+            
+            Denied_Access -> Chmod_Cmd;
+            Chmod_Cmd -> Fixed_Perms;
+        }
+
+        Actual_Perms -> Denied_Access [label="Creates blockage"];
     }

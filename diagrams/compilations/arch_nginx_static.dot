@@ -1,16 +1,35 @@
-digraph ArchNginxStatic {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.5: Nginx 1.30.2 Dynamic Rpath Layout"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+digraph ArchNginx {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.5: Nginx 1.30.2 Dynamic Rpath Runtime Spec", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Nginx [label="nginx Binary\n(/usr/local/sbin/nginx)"];
-        CC_OPT [label="--with-cc-opt\n(-I/usr/local/...)", shape=parallelogram];
-        LD_OPT [label="--with-ld-opt\n(-Wl,-rpath,...)", shape=parallelogram];
-        OpenSSL [label="OpenSSL 3.5.6\n(/usr/local/ssl/lib64)", color="#00ff00"];
-        ZlibNg [label="zlib-ng 2.3.3\n(/usr/local/zlib-ng/lib)", color="#00ff00"];
+        subgraph cluster_nginx_process {
+            label = "Nginx Daemon Processes";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Master_Proc [label="Nginx Master Process\n(Port 80/443 listener)"];
+            Worker_Procs [label="Worker Processes\n(Handles active connections)"];
+            Master_Proc -> Worker_Procs [label="Spawns"];
+        }
 
-        Nginx -> CC_OPT;
-        Nginx -> LD_OPT;
-        LD_OPT -> OpenSSL [label="Rpath Resolve"];
-        LD_OPT -> ZlibNg [label="Rpath Resolve"];
+        subgraph cluster_nginx_opts {
+            label = "Dynamic Link Options";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            CC_Opts [label="--with-cc-opt\n-I/usr/local/ssl/include\n-I/usr/local/zlib-ng/include", shape=parallelogram];
+            LD_Opts [label="--with-ld-opt\n-Wl,-rpath,/usr/local/ssl/lib64\n-Wl,-rpath,/usr/local/zlib-ng/lib", shape=parallelogram];
+        }
+
+        subgraph cluster_nginx_libs {
+            label = "Custom Runtime Libraries";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            OpenSSL_Lib [label="libssl.so.3 & libcrypto.so.3\n(/usr/local/ssl/lib64/)", color="#00ff00"];
+            ZlibNg_Lib [label="libz.so.1\n(/usr/local/zlib-ng/lib/)", color="#00ff00"];
+        }
+
+        Master_Proc -> CC_Opts [style=dashed];
+        Master_Proc -> LD_Opts [style=dashed];
+        LD_Opts -> OpenSSL_Lib [label="Ensures runtime load priority"];
+        LD_Opts -> ZlibNg_Lib [label="Ensures runtime load priority"];
     }

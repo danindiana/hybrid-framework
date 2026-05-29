@@ -1,14 +1,33 @@
 digraph LessonPAM {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.4: OpenSSH PAM Dependency"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.4: OpenSSH PAM Integration Pipeline", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Config [label="sshd_config\n(UsePAM yes)", shape=parallelogram];
-        Build_NoPAM [label="sshd Build\n(No --with-pam flag)", color="#ff0000"];
-        Warning [label="Unsupported Option UsePAM\n(Daemon warning / auth bypass)", shape=diamond, color="#ffff00"];
-        Rebuild_PAM [label="Rebuilt with --with-pam\n(Full integration)", color="#00ff00"];
+        subgraph cluster_pam_warning {
+            label = "Symbol Missing Alert";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Pam_Config [label="sshd_config\n(UsePAM yes)"];
+            Configure_NoPAM [label="./configure without PAM\n(Default OpenSSH build)"];
+            Sshd_t_Check [label="sshd -t Syntax Check"];
+            Warning_Msg [label="sshd_config line 86:\nUnsupported option UsePAM", color="#ff0000"];
+            
+            Pam_Config -> Configure_NoPAM;
+            Configure_NoPAM -> Sshd_t_Check;
+            Sshd_t_Check -> Warning_Msg [label="Logs warnings"];
+        }
 
-        Config -> Build_NoPAM;
-        Build_NoPAM -> Warning;
-        Warning -> Rebuild_PAM [label="libpam0g-dev Added"];
+        subgraph cluster_pam_fix {
+            label = "Full PAM Symbol Linkage";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Dev_Headers [label="libpam0g-dev Headers Installed"];
+            Configure_PAM [label="--with-pam Flag Enabled"];
+            LibPam_Link [label="sshd executable links\nlibpam.so dynamically", color="#00ff00"];
+            
+            Dev_Headers -> Configure_PAM;
+            Configure_PAM -> LibPam_Link;
+        }
+
+        Warning_Msg -> Dev_Headers [label="Prompts resolution pipeline"];
     }

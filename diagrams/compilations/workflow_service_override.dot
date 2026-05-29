@@ -1,14 +1,38 @@
 digraph WorkOverride {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.5: Systemd Configuration Override Workflow"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.5: Systemd Configuration Override Pipeline", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Service_Upgrade [label="Service Configuration Upgraded"];
-        Override_Dir [label="Create override.conf in\n/etc/systemd/system/*.service.d/", shape=folder, color="#ffff00"];
-        Daemon_Reload [label="systemctl daemon-reload", shape=parallelogram];
-        Restart [label="systemctl restart", color="#00ff00"];
+        subgraph cluster_override_creation {
+            label = "Create systemd Drop-In Override";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Override_Dir [label="Create override directory\n/etc/systemd/system/ssh.service.d/"];
+            Override_Conf [label="Create configuration\noverride.conf", shape=note];
+            Override_Dir -> Override_Conf;
+        }
 
-        Service_Upgrade -> Override_Dir;
-        Override_Dir -> Daemon_Reload;
-        Daemon_Reload -> Restart;
+        subgraph cluster_override_conf {
+            label = "File Content (override.conf)";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            ExecStart_Clear [label="ExecStart=\n(Clears default system value)"];
+            ExecStart_Override [label="ExecStart=/usr/local/ssh/sbin/sshd -D $SSHD_OPTS\n(Applies new execution target)", color="#00ff00"];
+            ExecStart_Clear -> ExecStart_Override;
+        }
+
+        subgraph cluster_service_apply {
+            label = "Apply Configuration";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Reload_Cmd [label="sudo systemctl daemon-reload\n(Regenerates systemd cache)"];
+            Restart_Cmd [label="sudo systemctl restart ssh\n(Launches new binary)"];
+            Status_Cmd [label="systemctl status ssh\n(Confirm drop-in loaded)", color="#00ff00"];
+            
+            Reload_Cmd -> Restart_Cmd;
+            Restart_Cmd -> Status_Cmd;
+        }
+
+        Override_Conf -> ExecStart_Clear [style=dashed];
+        ExecStart_Override -> Reload_Cmd [style=dashed];
     }

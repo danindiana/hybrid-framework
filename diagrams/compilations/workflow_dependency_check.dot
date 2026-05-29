@@ -1,16 +1,34 @@
 digraph WorkDependency {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.2: Compilation Dependency Audit Workflow"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.2: Pre-compilation System Dependency Checks", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Audit_Start [label="Pre-Compile Check"];
-        Check_GCC [label="GCC Compiler\n(Version check)"];
-        Check_Perl [label="Perl Core Engine\n(Configure dependency)"];
-        Check_Zlib [label="zlib1g-dev Headers\n(Compression link)"];
-        Audit_Success [label="Environment Ready", color="#00ff00"];
+        subgraph cluster_toolchain_checks {
+            label = "Compiler Suite Check";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Check_GCC [label="gcc check\n(Expects gcc >= 11.0)"];
+            Check_Make [label="make check\n(Expects make >= 4.0)"];
+            Check_Perl [label="perl check\n(Expects perl >= 5.30)"];
+        }
 
-        Audit_Start -> Check_GCC;
-        Check_GCC -> Check_Perl;
-        Check_Perl -> Check_Zlib;
-        Check_Zlib -> Audit_Success;
+        subgraph cluster_headers_checks {
+            label = "Library Development Headers Check";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            Check_Zlib_Dev [label="zlib1g-dev check\n(Used for compression)"];
+            Check_Pam_Dev [label="libpam0g-dev check\n(Used for OpenSSH authentication)"];
+            Check_Pcre_Dev [label="libpcre3-dev check\n(Used for Nginx rewrites)"];
+        }
+
+        Start [label="Pre-Compile Check Start"];
+        Ready [label="System Ready for Compilation", color="#00ff00"];
+
+        Start -> Check_GCC;
+        Check_GCC -> Check_Make;
+        Check_Make -> Check_Perl;
+        Check_Perl -> Check_Zlib_Dev;
+        Check_Zlib_Dev -> Check_Pam_Dev;
+        Check_Pam_Dev -> Check_Pcre_Dev;
+        Check_Pcre_Dev -> Ready;
     }

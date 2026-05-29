@@ -1,16 +1,27 @@
 digraph WorkVerification {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.4: Dynamic Link Verification Workflow"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.4: Library Linking Verification Pipeline", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Installed_Binary [label="Binary Validation"];
-        Runpath_Query [label="ldd /usr/local/.../binary", shape=parallelogram];
-        Lib_Check [label="Library Path Check", shape=diamond, color="#ffff00"];
-        Valid_Load [label="Loads Custom Library\n(Rpath Success)", color="#00ff00"];
-        Fail_Load [label="Loads System Library\n(Rpath Fail)", color="#ff0000"];
+        subgraph cluster_binary_check {
+            label = "Binary Output Check";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Version_Cmd [label="Execute version command\n(e.g. openssl version / curl --version)"];
+            Regex_Match [label="Confirm expected version output\n(Verify string contains version tag)", shape=diamond];
+            Version_Cmd -> Regex_Match;
+        }
 
-        Installed_Binary -> Runpath_Query;
-        Runpath_Query -> Lib_Check;
-        Lib_Check -> Valid_Load [label="Points to /usr/local/..."];
-        Lib_Check -> Fail_Load [label="Points to /lib/..."];
+        subgraph cluster_linking_check {
+            label = "Dynamically Linked Library Verification";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Ldd_Cmd [label="Execute: ldd /path/to/binary\n(List library references)"];
+            Check_Lib_Path [label="Verify libssl.so.3 is loaded from\n/usr/local/ssl/lib64/ (not /lib/...)", shape=diamond];
+            Ldd_Cmd -> Check_Lib_Path;
+        }
+
+        Success_Final [label="Verification Successful\n(Isolation validated)", color="#00ff00", shape=doublecircle];
+        Regex_Match -> Ldd_Cmd [label="Pass"];
+        Check_Lib_Path -> Success_Final [label="Pass"];
     }

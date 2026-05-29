@@ -1,14 +1,25 @@
 digraph FutureStatic {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.5: Static Compilation Pipeline"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.5: Static Compilation Pipeline Spec", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Build_Harness [label="Compilation Engine"];
-        Static_Link [label="Static Linking Flags\n(-static -static-libgcc)", shape=parallelogram];
-        Static_Binary [label="Self-Contained Binaries\n(Zero dynamic dependencies)", color="#00ff00"];
-        Docker [label="Distroless/Scratch Containers\n(Minimizes OS attack surface)", color="#ffff00"];
+        subgraph cluster_musl_toolchain {
+            label = "Musl Libc Compilation Toolchain";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Musl_GCC [label="musl-gcc\n(Replaces glibc compiler toolchain)"];
+            Flags [label="Linking Flags:\n-static -static-libgcc", shape=parallelogram];
+            Musl_GCC -> Flags;
+        }
 
-        Build_Harness -> Static_Link;
-        Static_Link -> Static_Binary;
-        Static_Binary -> Docker;
+        subgraph cluster_static_deployment {
+            label = "Minimal Security Container (Distroless)";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Static_Binary [label="Self-Contained Executable\n(Zero runtime dynamic linking libraries)", color="#00ff00"];
+            Scratch_Image [label="Docker image: 'scratch'\n(Contains only the static binary)", color="#ff00ff"];
+            Static_Binary -> Scratch_Image;
+        }
+
+        Flags -> Static_Binary [label="Bakes in all dependencies"];
     }

@@ -1,12 +1,28 @@
 digraph FuturePython {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.3: Python SSL Integration"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.3: Python SSL Dynamic Linking Pipeline", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Python_Build [label="Python Source Build\n(pyenv / custom build)"];
-        SSL_Dir [label="--with-openssl=/usr/local/ssl", shape=parallelogram, color="#ffff00"];
-        SSL_Module [label="import ssl\n(Loads OpenSSL 3.5.6)", color="#00ff00"];
+        subgraph cluster_python_env {
+            label = "Python Runtime Linkage Options";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Option_Env [label="LD_LIBRARY_PATH=/usr/local/ssl/lib64 python3\n(Option A: Dynamic injection at runtime)"];
+            Option_Build [label="Compiling Custom Python from Source\n(Option B: Linkage with OpenSSL 3.5.6)", shape=parallelogram];
+        }
 
-        Python_Build -> SSL_Dir;
-        SSL_Dir -> SSL_Module;
+        subgraph cluster_python_verification {
+            label = "Python Script Verification";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Python_Script [label="import ssl\nprint(ssl.OPENSSL_VERSION)"];
+            Output_Check [label="Assert output contains '3.5.6'", shape=diamond];
+            Success [label="Environment Ready", color="#00ff00"];
+            
+            Python_Script -> Output_Check;
+            Output_Check -> Success [label="Match"];
+        }
+
+        Option_Env -> Python_Script;
+        Option_Build -> Python_Script;
     }

@@ -1,16 +1,33 @@
 digraph PipeCurlRequest {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.4: Custom cURL Request Pipeline"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.4: Custom cURL Secure HTTP Connection Pipeline", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Curl_Exec [label="curl Request Triggered"];
-        Handshake [label="TLS Handshake Negotiated\n(Uses OpenSSL 3.5.6)", color="#ffff00"];
-        Transfer [label="HTTP Payload Streamed"];
-        Decompress [label="Compression Decompressed\n(Uses zlib-ng 2.3.3)", color="#00ff00"];
-        Display [label="Output to Console"];
+        subgraph cluster_tls_handshake {
+            label = "TLS Security Layer (OpenSSL 3.5.6)";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            DNS_Resolve [label="DNS Resolves domain to IP"];
+            TCP_Connect [label="TCP handshake (Port 443)"];
+            Client_Hello [label="TLS Client Hello (ALPN HTTP/2 negotiation)"];
+            Server_Handshake [label="TLS Certificate validation & Key exchange"];
+            
+            DNS_Resolve -> TCP_Connect;
+            TCP_Connect -> Client_Hello;
+            Client_Hello -> Server_Handshake;
+        }
 
-        Curl_Exec -> Handshake;
-        Handshake -> Transfer;
-        Transfer -> Decompress;
-        Decompress -> Display;
+        subgraph cluster_data_stream {
+            label = "HTTP Payload Compression (zlib-ng)";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            HTTP_Request [label="HTTP GET Request (HTTP/2)"];
+            Inflate_Payload [label="Decompress Gzip Payload\n(zlib-ng high performance decompression)", color="#00ff00"];
+            Stdout_Print [label="Output content to console"];
+            
+            HTTP_Request -> Inflate_Payload;
+            Inflate_Payload -> Stdout_Print;
+        }
+
+        Server_Handshake -> HTTP_Request [label="Established Secure Channel"];
     }

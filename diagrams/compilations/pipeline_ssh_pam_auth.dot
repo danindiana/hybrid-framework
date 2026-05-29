@@ -1,16 +1,35 @@
 digraph PipeSSHPAM {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.3: SSH PAM Authentication Flow Pipeline"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.3: SSH PAM Authentication Flow Pipeline", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Login_Request [label="SSH Connection Request\n(Port 22222)"];
-        SSHD_Process [label="sshd Worker Process"];
-        PAM_Stack [label="Pluggable Authentication Modules\n(/etc/pam.d/sshd)", color="#ffff00"];
-        Sys_Auth [label="System Authentication\n(passwd / shadow checks)"];
-        Env_Init [label="Session Environment Setup\n(pam_env, pam_limits)", color="#00ff00"];
+        subgraph cluster_pam_stack {
+            label = "Pluggable Authentication Modules (PAM) Stack";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            PAM_Auth [label="1. auth (Verify password / key checks)"];
+            PAM_Account [label="2. account (Check access constraints & expiry)"];
+            PAM_Session [label="3. session (Setup limits, logging, env variables)"];
+            
+            PAM_Auth -> PAM_Account;
+            PAM_Account -> PAM_Session;
+        }
 
-        Login_Request -> SSHD_Process;
-        SSHD_Process -> PAM_Stack;
-        PAM_Stack -> Sys_Auth;
-        Sys_Auth -> Env_Init [label="If credentials match"];
+        subgraph cluster_pam_env {
+            label = "Session Modules Enabled";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            Pam_Env [label="pam_env.so\n(Load user variables)"];
+            Pam_Limits [label="pam_limits.so\n(Apply ulimit constraints)", color="#00ff00"];
+            Pam_Motd [label="pam_motd.so\n(Output system message banners)"];
+        }
+
+        SSH_Connect [label="SSH Connection Request\n(Port 22222)"];
+        Shell_Open [label="Shell session opened for user 'jeb'", color="#00ff00", shape=doublecircle];
+
+        SSH_Connect -> PAM_Auth;
+        PAM_Session -> Pam_Env;
+        PAM_Session -> Pam_Limits;
+        PAM_Session -> Pam_Motd;
+        Pam_Limits -> Shell_Open;
     }

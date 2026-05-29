@@ -1,14 +1,39 @@
 digraph FutureAudit {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.2: Automated Security Auditing"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.2: Automated Version Auditing & Notifications", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Cron_Job [label="System Cron Daemon", shape=cylinder];
-        Auditor_Script [label="check_upstream_versions.sh\n(Version check script)", color="#ffff00"];
-        Git_API [label="GitHub / Project API\n(Remote tag queries)"];
-        Syslog_Alert [label="Systemd Journal / Email\n(Security notification)", color="#00ff00"];
+        subgraph cluster_audit_trigger {
+            label = "Scheduling";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Cron_Config [label="/etc/cron.daily/version-auditor\n(Runs script daily)"];
+            Auditor_Script [label="check_upstream_versions.sh\n(Executes version comparison)", color="#00f2ff"];
+            Cron_Config -> Auditor_Script;
+        }
 
-        Cron_Job -> Auditor_Script [label="Daily Trigger"];
-        Auditor_Script -> Git_API [label="Compares Release Versions"];
-        Auditor_Script -> Syslog_Alert [label="If Update Available"];
+        subgraph cluster_audit_compares {
+            label = "Comparison Logic";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Local_Binaries [label="Reads Local Versions\n(openssl, curl, sshd, nginx)"];
+            GitHub_Releases [label="Fetch Upstream Releases\n(GitHub API requests)"];
+            Logic_Compare [label="Local Version < Remote Version?", shape=diamond];
+            
+            Auditor_Script -> Local_Binaries;
+            Auditor_Script -> GitHub_Releases;
+            Local_Binaries -> Logic_Compare;
+            GitHub_Releases -> Logic_Compare;
+        }
+
+        subgraph cluster_audit_actions {
+            label = "Notifications & Actions";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            Syslog_Msg [label="Log to Systemd Journal", color="#00ff00"];
+            Admin_Alert [label="Email/Slack Notification\n(Triggers update workflow)", color="#ff0000"];
+            
+            Logic_Compare -> Syslog_Msg [label="No (Up to date)"];
+            Logic_Compare -> Admin_Alert [label="Yes (Update available)"];
+        }
     }

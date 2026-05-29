@@ -1,14 +1,41 @@
 digraph FutureLogs {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.4: Unified Log Security Aggregation"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.4: Unified Fail2ban Log Security Aggregation", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Nginx_Logs [label="Nginx Access & Error Logs\n(/var/log/nginx/*)"];
-        SSHD_Logs [label="SSH Daemon Logs\n(Systemd Journal)"];
-        Fail2ban [label="Fail2ban Client Daemon", color="#ffff00"];
-        IP_Bans [label="Uncomplicated Firewall (UFW)\n(IP Quarantine Rule)", color="#00ff00"];
+        subgraph cluster_log_sources {
+            label = "Security Logs";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Nginx_Error [label="Nginx Error Log\n(/var/log/nginx/error.log)"];
+            Nginx_Access [label="Nginx Access Log\n(/var/log/nginx/access.log)"];
+            SSH_Journal [label="SSHD SSH Connections\n(Systemd Journal)"];
+        }
 
-        Nginx_Logs -> Fail2ban [label="Parses logs"];
-        SSHD_Logs -> Fail2ban [label="Parses logs"];
-        Fail2ban -> IP_Bans [label="Applies iptables block"];
+        subgraph cluster_fail2ban_jails {
+            label = "Active Fail2ban Jails";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Jail_Sshd [label="[sshd]\n(Backend: systemd)"];
+            Jail_Bot [label="[nginx-botsearch]\n(Backend: auto)"];
+            Jail_Recidive [label="[recidive]\n(Monitors fail2ban.log)", color="#ff0055"];
+        }
+
+        subgraph cluster_firewall {
+            label = "Firewall Actions";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            UFW_Rule [label="UFW/iptables Rules\n(Quarantines malicious IPs)", color="#00ff00"];
+        }
+
+        Nginx_Error -> Jail_Bot;
+        Nginx_Access -> Jail_Bot;
+        SSH_Journal -> Jail_Sshd;
+        
+        Jail_Bot -> Jail_Recidive [label="Logs ban events"];
+        Jail_Sshd -> Jail_Recidive [label="Logs ban events"];
+        
+        Jail_Bot -> UFW_Rule [label="Daily ban (24h)"];
+        Jail_Sshd -> UFW_Rule [label="Permanent ban"];
+        Jail_Recidive -> UFW_Rule [label="Escalates ban (1 week)"];
     }

@@ -1,14 +1,33 @@
 digraph ArchOpenSSL {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.1: Isolated OpenSSL 3.5.6 Rpath Architecture"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.1: Detailed OpenSSL 3.5.6 Rpath Isolation Architecture", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        OpenSSL_Binary [label="openssl Binary\n(/usr/local/ssl/bin/openssl)"];
-        Rpath_Config [label="Rpath Header\n(Baked in runpath)", shape=parallelogram];
-        LibSSL [label="libssl.so.3\n(/usr/local/ssl/lib64/libssl.so.3)", color="#00ff00"];
-        LibCrypto [label="libcrypto.so.3\n(/usr/local/ssl/lib64/libcrypto.so.3)", color="#00ff00"];
+        subgraph cluster_buildtime {
+            label = "Build-Time Configuration";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            fillcolor = "#000000";
+            
+            Config_Flags [label="./config\n--prefix=/usr/local/ssl\n--openssldir=/usr/local/ssl\nshared zlib-dynamic\n-Wl,-rpath,/usr/local/ssl/lib64", shape=parallelogram];
+            GCC_Linker [label="GNU Linker (ld)\nBakes DT_RUNPATH into ELF headers"];
+            Config_Flags -> GCC_Linker;
+        }
 
-        OpenSSL_Binary -> Rpath_Config [style=dashed];
-        Rpath_Config -> LibSSL [label="Locates at Runtime"];
-        Rpath_Config -> LibCrypto [label="Locates at Runtime"];
+        subgraph cluster_runtime {
+            label = "Runtime Resolution (Isolated)";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            
+            OpenSSL_Binary [label="openssl Binary\n(/usr/local/ssl/bin/openssl)"];
+            ELF_Header [label="ELF Dynamic Section\n(DT_RUNPATH = /usr/local/ssl/lib64)", shape=note];
+            LibSSL [label="libssl.so.3\n(/usr/local/ssl/lib64/libssl.so.3)"];
+            LibCrypto [label="libcrypto.so.3\n(/usr/local/ssl/lib64/libcrypto.so.3)"];
+            
+            OpenSSL_Binary -> ELF_Header [style=dashed];
+            ELF_Header -> LibSSL [label="1. Check RUNPATH"];
+            ELF_Header -> LibCrypto [label="2. Check RUNPATH"];
+        }
+        
+        GCC_Linker -> OpenSSL_Binary [label="Produces ELF Binary", color="#00ff22"];
     }

@@ -1,19 +1,32 @@
 digraph PipeVersionCheck {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.5: Automated Version Auditor Pipeline"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.5: Automated Version Auditor Check Pipeline", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Trigger [label="Auditor Invoked"];
-        Get_Local [label="Read Local Binary Headers\n(Run version commands)"];
-        Get_Remote [label="Query Release API portals\n(GitHub Releases)", color="#ffff00"];
-        Compare_Logic [label="Compare Versions Check", shape=diamond];
-        Report_OK [label="Print OK Status", color="#00ff00"];
-        Report_Alert [label="Print Update Available Warning", color="#ff0000"];
+        subgraph cluster_local_audit {
+            label = "Read Local Software Headers";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Exec_Local [label="Execute version commands"];
+            Parse_Local [label="Extract version numbers\n(e.g., 3.5.6 / 1.30.2)"];
+            Exec_Local -> Parse_Local;
+        }
 
-        Trigger -> Get_Local;
-        Trigger -> Get_Remote;
-        Get_Local -> Compare_Logic;
-        Get_Remote -> Compare_Logic;
-        Compare_Logic -> Report_OK [label="Local == Remote"];
-        Compare_Logic -> Report_Alert [label="Local < Remote"];
+        subgraph cluster_remote_audit {
+            label = "Fetch Latest Upstream Release Info";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Curl_Remote [label="curl release portal APIs\n(GitHub API JSON / Nginx download HTML)"];
+            Parse_Remote [label="Extract target release tags\n(Regex version parsing)"];
+            Curl_Remote -> Parse_Remote;
+        }
+
+        Compare_Check [label="Local Version < Remote Version?", shape=diamond, color="#ffff00"];
+        Alert_Warning [label="Output WARNING to console/logs\n(Triggers update workflow)", color="#ff0000"];
+        Success_Report [label="Output OK Status\n(Software is up to date)", color="#00ff00"];
+
+        Parse_Local -> Compare_Check;
+        Parse_Remote -> Compare_Check;
+        Compare_Check -> Alert_Warning [label="Yes"];
+        Compare_Check -> Success_Report [label="No"];
     }

@@ -1,14 +1,28 @@
 digraph WorkDeconfliction {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.3: Binary Path Deconfliction Workflow"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.3: Binary Lookup & Path Deconfliction Workflow", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Execution [label="Command Invocations"];
-        PATH_Check [label="PATH Order Check", shape=diamond, color="#ffff00"];
-        Local_Bin [label="Custom Binary\n(/usr/local/bin/...)", color="#00ff00"];
-        Sys_Bin [label="System Package\n(/usr/bin/...)"];
+        subgraph cluster_path_resolution {
+            label = "Environment PATH Priority Resolution";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            PATH_Env [label="PATH Priority Check\n(/usr/local/bin before /usr/bin)"];
+            Interactive_Shell [label="Interactive Shell session\n(e.g., standard terminal)"];
+            Systemd_Service [label="Systemd Service Daemon\n(Background execution)"];
+            
+            PATH_Env -> Interactive_Shell [label="1. Resolves '/usr/local/bin' first"];
+            PATH_Env -> Systemd_Service [label="2. Skips PATH lookup, uses absolute path"];
+        }
 
-        Execution -> PATH_Check;
-        PATH_Check -> Local_Bin [label="/usr/local/bin matched first"];
-        PATH_Check -> Sys_Bin [label="System services absolute path"];
+        subgraph cluster_resolved_binary {
+            label = "Target Binary Loaded";
+            color = "#ff00ff";
+            fontcolor = "#ff00ff";
+            New_Version [label="Custom Binaries\n(/usr/local/bin/openssl -> 3.5.6)", color="#00ff00"];
+            System_Version [label="OS System Package\n(/usr/bin/openssl -> 3.0.2)"];
+        }
+
+        Interactive_Shell -> New_Version;
+        Systemd_Service -> System_Version [label="Fallback if system binary targeted"];
     }

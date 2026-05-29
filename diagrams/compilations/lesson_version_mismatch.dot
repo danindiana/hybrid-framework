@@ -1,14 +1,30 @@
 digraph LessonMismatch {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.1: OpenSSL Version Mismatch Trap"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.1: OpenSSL Version Mismatch Collision Loop", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Global_Ld [label="Global /etc/ld.so.conf.d/\nOverride", color="#ff0000"];
-        System_Nginx [label="System Nginx\n(Built for OpenSSL 3.0.2)"];
-        New_Lib [label="libssl.so.3 (3.5.6)\nLoaded Dynamically", color="#ffff00"];
-        Crash [label="NGINX Crash\n(Assert Version Fail)", shape=doublecircle, color="#ff0000"];
+        subgraph cluster_ldconfig_pollution {
+            label = "Global Loader Configuration (Polluted)";
+            color = "#ff0000";
+            fontcolor = "#ff0000";
+            Ld_Conf_File [label="/etc/ld.so.conf.d/openssl-3.5.6.conf\n(Contains /usr/local/ssl/lib64)"];
+            Ldconfig_Cmd [label="sudo ldconfig\n(Regenerates dynamic link cache)"];
+            Ld_Conf_File -> Ldconfig_Cmd;
+        }
 
-        Global_Ld -> New_Lib [label="Updates Cache"];
-        System_Nginx -> New_Lib [label="Loads at Runtime"];
-        New_Lib -> Crash [label="Version Mismatch Detected"];
+        subgraph cluster_version_check {
+            label = "Nginx Version Assertion Check";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            System_Nginx [label="System Nginx (nginx 1.18.0)\n(Expects OpenSSL 3.0.2 / 30000020)"];
+            Ld_Cache_Load [label="Dynamic Loader (ld.so)\nLoads libssl.so.3 (3.5.6 / 30500060)"];
+            Assert_Compare [label="Assertion check:\n30000020 == 30500060", shape=diamond];
+            System_Nginx -> Ld_Cache_Load [label="Requests libssl.so.3"];
+            Ld_Cache_Load -> Assert_Compare;
+        }
+
+        Crash_Node [label="NGINX Startup Crash\n(Exit Code 255 / Mismatch Error)", shape=doublecircle, color="#ff0000", fontcolor="#ff0000"];
+        Assert_Compare -> Crash_Node [label="Fail"];
+
+        Ldconfig_Cmd -> Ld_Cache_Load [label="Pollutes system library cache", color="#ff0055"];
     }

@@ -1,16 +1,30 @@
 digraph PipeNginxVal {
-        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.2: Nginx Configuration Validation Pipeline"];
-        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
-        edge [color="#ff00ff", arrowhead=vee];
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.2: Nginx Configuration Validation & Reload Pipeline", labelloc="t", fontsize=16];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica", fontsize=10];
+        edge [color="#ff00ff", arrowhead=vee, fontname="Helvetica", fontsize=9];
 
-        Config_Change [label="Edit Nginx Configurations\n(/etc/nginx/sites-available/*)"];
-        Syntax_Check [label="nginx -t\n(Configuration Syntax Check)", color="#ffff00"];
-        Check_Result [label="Validation Status Check", shape=diamond];
-        Reload_Service [label="systemctl reload nginx\n(Graceful Apply)", color="#00ff00"];
-        Stop_Deploy [label="Abort Reload\n(Errors Blocked)", color="#ff0000"];
+        subgraph cluster_validation {
+            label = "Validation Stage (nginx -t)";
+            color = "#ffff00";
+            fontcolor = "#ffff00";
+            Parse_Conf [label="Parse nginx.conf"];
+            Verify_Blocks [label="Verify virtual hosts (server/location blocks)"];
+            Verify_Certs [label="Verify TLS certs & OpenSSL version hashes"];
+            Syntax_Result [label="Validation Exit Status", shape=diamond];
+            
+            Parse_Conf -> Verify_Blocks;
+            Verify_Blocks -> Verify_Certs;
+            Verify_Certs -> Syntax_Result;
+        }
 
-        Config_Change -> Syntax_Check;
-        Syntax_Check -> Check_Result;
-        Check_Result -> Reload_Service [label="Syntax Successful"];
-        Check_Result -> Stop_Deploy [label="Syntax Errors Found"];
+        subgraph cluster_action {
+            label = "Deployment Action";
+            color = "#00ff00";
+            fontcolor = "#00ff00";
+            Reload_Cmd [label="systemctl reload nginx\n(Graceful worker process reload)", color="#00ff00"];
+            Abort_Action [label="Abort Reload\n(Keep running old worker processes)", color="#ff0000"];
+        }
+
+        Syntax_Result -> Reload_Cmd [label="Exit Code 0 (Success)"];
+        Syntax_Result -> Abort_Action [label="Exit Code 1 (Failure)"];
     }
