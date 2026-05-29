@@ -163,3 +163,25 @@ A system-wide thermal audit was performed on the CPU and all 10 storage drives (
     *   `/dev/sdf` (Seagate IronWolf 12TB): **40.0°C**
     *   `/dev/sdg` (WD Black 4TB): **38.0°C**
     *   *Analysis*: All rotational disks (including the enterprise 7200 RPM IronWolf drives) are well ventilated and operating within optimal thermal profiles (< 45°C).
+
+---
+
+## Kernel & System Log Error Audit (Executed 2026-05-28 19:04:45)
+A forensic audit of `/var/log/syslog` and `/var/log/kern.log` was conducted to capture hardware, driver, and software execution errors:
+
+### 1. GPU Virtual Function (VF) BAR Allocations
+*   **Log Event**: `pci 0000:0e:00.0: VF BAR 2 [mem size 0x10000000 64bit pref]: failed to assign`
+*   **Driver/Device**: Bus ID `0e:00.0` is the **NVIDIA RTX 5080** (GPU 0).
+*   **Root Cause**: The system kernel is attempting to assign Base Address Register (BAR) space for Virtual Functions (SR-IOV virtual pass-through virtualization) on the RTX 5080, which fails. This is a standard warning when motherboard BIOS virtualization parameters or GPU firmware defaults do not support full SR-IOV distribution for consumer Geforce cards.
+
+### 2. ATA Hard Drive Revalidation Errors
+*   **Log Event**: `ata4.00: failed to IDENTIFY (I/O error)` and `ata4.00: revalidation failed`
+*   **Device Context**: Occurred during disk state transitions on May 27 at 23:03:02.
+*   **Root Cause**: This is a direct side-effect of the aggressive disk spin-down/standby routines (`hdparm -S 120` / standby commands). When rotational disks are placed in low-power standby mode, the ATA controller logs revalidation warnings on wake attempts.
+
+### 3. Application Segfaults & Opcode Traps
+*   **Python Segfaults**: Multiple segment/general protection faults in `python3.10` were logged on May 27 (Tccd core allocations 3, 5, 9, 15, 16). These coincide with heavy local model testing and represent memory allocation crashes when VRAM/RAM limits were reached.
+*   **Claude Client Invalid Opcodes**:
+    *   `traps: claude[3832035] trap invalid opcode ... in 2.1.153`
+    *   *Root Cause*: The Claude developer app crashed with an invalid opcode exception. This typically occurs when a compiled application tries to use specific CPU instructions (such as AVX-512) that are either unaligned, corrupted in memory, or not fully mapped by the interpreter.
+
