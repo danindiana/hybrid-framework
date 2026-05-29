@@ -1,0 +1,18 @@
+---------------------------------------------------------
+            HIKVISION YOUTUBE LIVESTREAM
+---------------------------------------------------------
+To START the livestream:
+  sudo systemctl start hikvision-youtube.service
+
+To STOP the livestream:
+  sudo systemctl stop hikvision-youtube.service
+
+Status Check:
+  systemctl status hikvision-youtube.service
+
+Logs:
+  tail -f /home/jeb/youtube-stream.log
+---------------------------------------------------------
+
+To view live telemetry:
+  ./stream-telemetry.sh
