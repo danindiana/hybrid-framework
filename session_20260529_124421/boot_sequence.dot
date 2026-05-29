@@ -1,0 +1,26 @@
+digraph boot_sequence {
+    label="System Boot Sequence"
+    labelloc="t"
+    rankdir=LR
+    node [shape=note, style=filled, fillcolor=lemonchiffon]
+
+    PowerOn [label="Power On", shape=oval, fillcolor=lightgray]
+    UEFI [label="UEFI / BIOS\n(Hardware Initialization)"]
+    EFI_Partition [label="EFI System Partition\n(/boot/efi)", shape=folder]
+    GRUB [label="GRUB Bootloader"]
+    Kernel [label="Linux Kernel\n(vmlinuz)"]
+    Initramfs [label="Initramfs\n(Temporary Root)"]
+    RootFS [label="Mount Root FS\n(/dev/nvme1n1p1)"]
+    Systemd [label="systemd\n(PID 1)"]
+    MultiUser [label="multi-user.target\n(Services Running)"]
+
+    PowerOn -> UEFI
+    UEFI -> EFI_Partition [label="Reads"]
+    EFI_Partition -> GRUB
+    GRUB -> Kernel [label="Loads"]
+    GRUB -> Initramfs [label="Loads"]
+    Kernel -> Initramfs [label="Executes"]
+    Initramfs -> RootFS [label="Pivots to"]
+    RootFS -> Systemd [label="Executes init"]
+    Systemd -> MultiUser [label="Starts targets"]
+}

@@ -1,0 +1,40 @@
+digraph security_audit {
+    label="Security & Services Audit"
+    labelloc="t"
+    rankdir=LR
+    node [shape=box, style=filled, fillcolor=white]
+
+    System [label="Host Services", shape=ellipse, fillcolor=lightblue]
+
+    subgraph cluster_public_ports {
+        label="Publicly Listening Ports (0.0.0.0)"
+        color=red
+        style=dashed
+        port_22222 [label="Port 22222 (SSH alternative?)"]
+        port_80 [label="Port 80 (HTTP)"]
+        port_443 [label="Port 443 (HTTPS)"]
+        port_8080 [label="Port 8080 (HTTP Alt)"]
+        port_3000 [label="Port 3000 (Web UI/API)"]
+    }
+
+    subgraph cluster_local_ports {
+        label="Localhost Services (127.0.0.1)"
+        color=green
+        style=dashed
+        port_11434 [label="Port 11434 (Ollama)"]
+        port_7890 [label="Port 7890 (Proxy/Web)"]
+        port_others [label="Ports 18789, 18791, 20241,\n 40475, 35035"]
+        port_53 [label="Port 53 (DNS / systemd-resolved)"]
+    }
+
+    System -> port_22222
+    System -> port_80
+    System -> port_443
+    System -> port_8080
+    System -> port_3000
+
+    System -> port_11434
+    System -> port_7890
+    System -> port_others
+    System -> port_53
+}

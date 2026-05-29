@@ -1,0 +1,36 @@
+digraph iptables_firewall_flow {
+    label="Netfilter / iptables Packet Flow"
+    labelloc="t"
+    rankdir=LR
+    node [shape=hexagon, style=filled, fillcolor=lightcyan]
+
+    ingress [label="Network Ingress\n(enp8s0)", shape=rarrow, fillcolor=lightgray]
+    egress [label="Network Egress\n(enp8s0)", shape=larrow, fillcolor=lightgray]
+
+    prerouting [label="PREROUTING\n(Raw, Mangle, Nat)"]
+    routing_decision_1 [label="Routing Decision", shape=diamond, fillcolor=yellow]
+    
+    input [label="INPUT\n(Mangle, Filter)"]
+    local_process [label="Local Process", shape=box, fillcolor=white]
+    output [label="OUTPUT\n(Raw, Mangle, Nat, Filter)"]
+    
+    forward [label="FORWARD\n(Mangle, Filter)"]
+    
+    routing_decision_2 [label="Routing Decision", shape=diamond, fillcolor=yellow]
+    postrouting [label="POSTROUTING\n(Mangle, Nat)"]
+
+    ingress -> prerouting
+    prerouting -> routing_decision_1
+    
+    routing_decision_1 -> input [label="To Localhost"]
+    input -> local_process
+    
+    local_process -> routing_decision_2
+    routing_decision_2 -> output
+    output -> postrouting
+    
+    routing_decision_1 -> forward [label="To Other Hosts\n(Docker/Bridge)"]
+    forward -> postrouting
+    
+    postrouting -> egress
+}

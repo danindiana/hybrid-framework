@@ -1,0 +1,41 @@
+digraph storage_configuration {
+    label="Storage Configuration"
+    labelloc="t"
+    rankdir=LR
+    node [shape=cylinder, style=filled, fillcolor=lightyellow]
+
+    subgraph cluster_nvme {
+        label="NVMe Drives"
+        color=red
+        nvme1n1 [label="nvme1n1\n953.9G"]
+        root [label="/ (Root)\n953.2G", shape=folder, fillcolor=lightblue]
+        boot [label="/boot/efi\n99M", shape=folder, fillcolor=lightblue]
+        nvme1n1 -> root
+        nvme1n1 -> boot
+
+        nvme0n1 [label="nvme0n1\n465.8G"]
+        nvme2n1 [label="nvme2n1\n3.6T"]
+    }
+
+    subgraph cluster_hdd {
+        label="SATA HDD / SSD"
+        color=gray
+        sda [label="sda\n465.8G"]
+        sdb [label="sdb\n931.5G"]
+        sdc [label="sdc\n931.5G"]
+        sdd [label="sdd\n10.9T"]
+        sde [label="sde\n1.8T"]
+        sdf [label="sdf\n10.9T"]
+        sdg [label="sdg\n3.6T"]
+    }
+
+    subgraph cluster_raid {
+        label="RAID Arrays"
+        color=purple
+        md0 [label="md0 (RAID 0)\n10.9T"]
+        raid_mount [label="/mnt/raid0", shape=folder, fillcolor=lightblue]
+        sdd -> md0 [style=dashed]
+        sdf -> md0 [style=dashed]
+        md0 -> raid_mount
+    }
+}

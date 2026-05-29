@@ -1,0 +1,24 @@
+digraph network_topology {
+    label="Network Topology"
+    labelloc="t"
+    rankdir=TB
+    node [shape=ellipse, style=filled, fillcolor=lightcyan]
+
+    Internet [shape=cloud, fillcolor=lightgray]
+    Router [label="Gateway (192.168.1.1)"]
+    
+    subgraph cluster_interfaces {
+        label="Network Interfaces"
+        color=black
+        enp8s0 [label="enp8s0\n192.168.1.85/24", shape=box, fillcolor=lightyellow]
+        docker0 [label="docker0\n172.17.0.1/16", shape=box, fillcolor=lightyellow]
+        br [label="br-13c044b77bd3\n172.18.0.1/16", shape=box, fillcolor=lightyellow]
+        lo [label="lo\n127.0.0.1/8", shape=box, fillcolor=lightyellow]
+    }
+    
+    Internet -> Router
+    Router -> enp8s0
+    
+    enp8s0 -> docker0 [style=dashed, label="NAT"]
+    enp8s0 -> br [style=dashed, label="NAT"]
+}

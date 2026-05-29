@@ -1,0 +1,55 @@
+digraph kernel_architecture {
+    label="Linux Kernel Architecture Overview"
+    labelloc="t"
+    rankdir=TB
+    node [shape=box, style=filled, fillcolor=lightsteelblue]
+
+    subgraph cluster_user_space {
+        label="User Space"
+        color=purple
+        apps [label="Applications (Node, Nginx, Docker)", shape=ellipse, fillcolor=white]
+        glibc [label="C Library (glibc)", shape=component]
+    }
+
+    subgraph cluster_kernel_space {
+        label="Kernel Space"
+        color=red
+        syscalls [label="System Call Interface", fillcolor=lightcoral]
+        vfs [label="Virtual File System (VFS)"]
+        net_stack [label="Networking Stack"]
+        ipc [label="Inter-Process Communication (IPC)"]
+        mem_mgr [label="Memory Management"]
+        sched [label="Process Scheduler"]
+        
+        fs_drivers [label="Filesystem Drivers (ext4, fat32)"]
+        device_drivers [label="Device Drivers (NVMe, enp8s0)"]
+    }
+
+    subgraph cluster_hardware {
+        label="Hardware"
+        color=black
+        cpu [label="CPU (AMD Ryzen 9)", shape=cylinder, fillcolor=lightgrey]
+        ram [label="Physical Memory", shape=cylinder, fillcolor=lightgrey]
+        disk [label="Storage Devices", shape=cylinder, fillcolor=lightgrey]
+        nic [label="Network Cards", shape=cylinder, fillcolor=lightgrey]
+    }
+
+    apps -> glibc
+    glibc -> syscalls [label="Syscalls"]
+    apps -> syscalls [label="Direct Syscalls"]
+
+    syscalls -> vfs
+    syscalls -> net_stack
+    syscalls -> ipc
+    syscalls -> mem_mgr
+    syscalls -> sched
+
+    vfs -> fs_drivers
+    fs_drivers -> device_drivers
+    net_stack -> device_drivers
+
+    device_drivers -> disk
+    device_drivers -> nic
+    mem_mgr -> ram
+    sched -> cpu
+}

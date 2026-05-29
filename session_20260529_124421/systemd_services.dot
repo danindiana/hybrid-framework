@@ -1,0 +1,32 @@
+digraph systemd_services {
+    label="Systemd Target & Service Dependencies"
+    labelloc="t"
+    rankdir=BT
+    node [shape=ellipse, style=filled, fillcolor=lavender]
+
+    graphical [label="graphical.target"]
+    multi_user [label="multi-user.target", fillcolor=lightpink]
+    network [label="network.target", fillcolor=lightpink]
+    basic [label="basic.target", fillcolor=lightpink]
+    sysinit [label="sysinit.target", fillcolor=lightpink]
+
+    sshd [label="ssh.service", shape=box]
+    docker [label="docker.service", shape=box]
+    nginx [label="nginx.service", shape=box]
+    NetworkManager [label="NetworkManager.service", shape=box]
+
+    sysinit -> basic [label="Requires"]
+    basic -> network [label="Requires"]
+    network -> multi_user [label="Requires"]
+    multi_user -> graphical [label="Wants"]
+
+    NetworkManager -> network [label="Before"]
+    sshd -> network [label="After"]
+    sshd -> multi_user [label="WantedBy"]
+    
+    docker -> network [label="After"]
+    docker -> multi_user [label="WantedBy"]
+
+    nginx -> network [label="After"]
+    nginx -> multi_user [label="WantedBy"]
+}

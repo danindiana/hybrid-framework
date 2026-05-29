@@ -1,0 +1,43 @@
+digraph docker_architecture {
+    label="Docker Virtualization Architecture"
+    labelloc="t"
+    rankdir=LR
+    node [shape=component, style=filled, fillcolor=lightblue]
+
+    Host_OS [label="Host OS (Ubuntu 22.04)", shape=box, fillcolor=lightgrey]
+    
+    subgraph cluster_docker_engine {
+        label="Docker Engine"
+        color=blue
+        dockerd [label="Docker Daemon (dockerd)"]
+        containerd [label="containerd"]
+    }
+
+    subgraph cluster_networks {
+        label="Docker Networks"
+        color=green
+        docker0 [label="Bridge: docker0\n172.17.0.1/16", shape=ellipse]
+        br_13c [label="Bridge: br-13c044b77bd3\n172.18.0.1/16", shape=ellipse]
+    }
+
+    subgraph cluster_containers {
+        label="Running Containers"
+        color=red
+        c1 [label="Container A"]
+        c2 [label="Container B"]
+        c3 [label="Container C"]
+    }
+
+    Host_OS -> dockerd
+    dockerd -> containerd
+    containerd -> c1
+    containerd -> c2
+    containerd -> c3
+
+    c1 -> docker0 [style=dashed, label="veth"]
+    c2 -> docker0 [style=dashed, label="veth"]
+    c3 -> br_13c [style=dashed, label="veth"]
+    
+    docker0 -> Host_OS [label="iptables NAT"]
+    br_13c -> Host_OS [label="iptables NAT"]
+}

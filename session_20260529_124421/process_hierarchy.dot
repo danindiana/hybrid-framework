@@ -1,0 +1,46 @@
+digraph process_hierarchy {
+    label="Conceptual Process Hierarchy"
+    labelloc="t"
+    rankdir=TB
+    node [shape=box, style=filled, fillcolor=lightgoldenrodyellow]
+
+    init [label="PID 1: systemd", fillcolor=lightgreen]
+    
+    subgraph cluster_daemons {
+        label="System Daemons"
+        color=blue
+        sshd [label="sshd (Port 22222)"]
+        dockerd [label="dockerd"]
+        nginx [label="Web Server (Ports 80, 443)"]
+        node [label="node (Port 3000)"]
+        ollama [label="ollama (Port 11434)"]
+        systemd_resolved [label="systemd-resolved"]
+    }
+
+    subgraph cluster_docker_containers {
+        label="Docker Containers"
+        color=purple
+        container1 [label="containerd-shim"]
+        container2 [label="containerd-shim"]
+    }
+
+    subgraph cluster_user_sessions {
+        label="User Sessions"
+        color=red
+        bash [label="-bash (jeb)"]
+        gemini_cli [label="gemini_cli"]
+    }
+
+    init -> sshd
+    init -> dockerd
+    init -> nginx
+    init -> node
+    init -> ollama
+    init -> systemd_resolved
+
+    dockerd -> container1
+    dockerd -> container2
+
+    sshd -> bash
+    bash -> gemini_cli
+}
