@@ -1,0 +1,14 @@
+digraph ArchZlibNg {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.2: zlib-ng 2.3.3 Compatibility Layout"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        ZlibNg_Source [label="zlib-ng Source\n(GitHub Tag 2.3.3)"];
+        Compat_Flag [label="--zlib-compat Flag", shape=parallelogram, color="#ffff00"];
+        LibZ_Shared [label="libz.so.1\n(Compatibility Symlink)", color="#00ff00"];
+        LibZ_Static [label="libz.a\n(Standard API Symbols)", color="#00ff00"];
+
+        ZlibNg_Source -> Compat_Flag;
+        Compat_Flag -> LibZ_Shared;
+        Compat_Flag -> LibZ_Static;
+    }

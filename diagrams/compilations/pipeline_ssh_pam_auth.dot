@@ -1,0 +1,16 @@
+digraph PipeSSHPAM {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.3: SSH PAM Authentication Flow Pipeline"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Login_Request [label="SSH Connection Request\n(Port 22222)"];
+        SSHD_Process [label="sshd Worker Process"];
+        PAM_Stack [label="Pluggable Authentication Modules\n(/etc/pam.d/sshd)", color="#ffff00"];
+        Sys_Auth [label="System Authentication\n(passwd / shadow checks)"];
+        Env_Init [label="Session Environment Setup\n(pam_env, pam_limits)", color="#00ff00"];
+
+        Login_Request -> SSHD_Process;
+        SSHD_Process -> PAM_Stack;
+        PAM_Stack -> Sys_Auth;
+        Sys_Auth -> Env_Init [label="If credentials match"];
+    }

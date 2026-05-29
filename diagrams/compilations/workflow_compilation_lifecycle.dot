@@ -1,0 +1,20 @@
+digraph WorkLifecycle {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.1: Software Compilation Lifecycle"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Download [label="Download Source\n(curl official release)"];
+        Verify [label="Hash Verification\n(sha256sum validation)", color="#ffff00"];
+        Extract [label="Extraction\n(tar -xzf)"];
+        Configure [label="Configuration\n(./config with rpath)"];
+        Build [label="Compilation\n(make -j$(nproc))"];
+        Test [label="Regression Testing\n(make test)", color="#00ff00"];
+        Install [label="Installation\n(sudo make install)"];
+
+        Download -> Verify;
+        Verify -> Extract;
+        Extract -> Configure;
+        Configure -> Build;
+        Build -> Test;
+        Test -> Install;
+    }

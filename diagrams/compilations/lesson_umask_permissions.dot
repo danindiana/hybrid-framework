@@ -1,0 +1,16 @@
+digraph LessonUmask {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.3: Restrictive Umask Triage"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Umask [label="Sudo Umask (0027)", color="#ff0000"];
+        Install [label="make install\n(Directories created 750)", shape=parallelogram];
+        Standard_User [label="Standard User 'jeb'"];
+        Denied [label="Permission Denied\n(Cannot read/execute)", shape=circle, color="#ff0000"];
+        Chmod_Fix [label="chmod -R go+rX\n(Restores permissions)", color="#00ff00"];
+
+        Umask -> Install;
+        Install -> Standard_User [label="Inaccessible to"];
+        Standard_User -> Denied;
+        Chmod_Fix -> Standard_User [label="Enables access for"];
+    }

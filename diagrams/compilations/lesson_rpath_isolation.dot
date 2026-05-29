@@ -1,0 +1,15 @@
+digraph LessonRpath {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.2: Rpath Isolation Advantage"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Custom_Bin [label="Custom Binary\n(curl / sshd / nginx)"];
+        Rpath_Lookup [label="Runpath Check\n(Search /usr/local/... first)", shape=parallelogram];
+        System_Bin [label="System Binary\n(Uses standard system paths)"];
+        System_Libs [label="System Libraries\n(/lib/x86_64-linux-gnu)", color="#00ff00"];
+        Custom_Libs [label="Custom Libraries\n(/usr/local/ssl/lib64)", color="#00ff00"];
+
+        Custom_Bin -> Rpath_Lookup;
+        Rpath_Lookup -> Custom_Libs [label="Priority Load"];
+        System_Bin -> System_Libs [label="Default Load"];
+    }

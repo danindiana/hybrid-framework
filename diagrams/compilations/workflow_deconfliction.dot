@@ -1,0 +1,14 @@
+digraph WorkDeconfliction {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.3: Binary Path Deconfliction Workflow"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Execution [label="Command Invocations"];
+        PATH_Check [label="PATH Order Check", shape=diamond, color="#ffff00"];
+        Local_Bin [label="Custom Binary\n(/usr/local/bin/...)", color="#00ff00"];
+        Sys_Bin [label="System Package\n(/usr/bin/...)"];
+
+        Execution -> PATH_Check;
+        PATH_Check -> Local_Bin [label="/usr/local/bin matched first"];
+        PATH_Check -> Sys_Bin [label="System services absolute path"];
+    }

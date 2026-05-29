@@ -1,0 +1,16 @@
+digraph PipeCurlRequest {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.4: Custom cURL Request Pipeline"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Curl_Exec [label="curl Request Triggered"];
+        Handshake [label="TLS Handshake Negotiated\n(Uses OpenSSL 3.5.6)", color="#ffff00"];
+        Transfer [label="HTTP Payload Streamed"];
+        Decompress [label="Compression Decompressed\n(Uses zlib-ng 2.3.3)", color="#00ff00"];
+        Display [label="Output to Console"];
+
+        Curl_Exec -> Handshake;
+        Handshake -> Transfer;
+        Transfer -> Decompress;
+        Decompress -> Display;
+    }

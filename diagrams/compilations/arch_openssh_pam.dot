@@ -1,0 +1,12 @@
+digraph ArchOpenSSHPAM {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.4: OpenSSH 10.3p1 PAM Integration"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        SSHD [label="sshd Daemon\n(/usr/local/ssh/sbin/sshd)"];
+        PAM_Module [label="libpam.so\n(System PAM Layer)", color="#ffff00"];
+        LibCrypto [label="libcrypto.so.3\n(Custom OpenSSL 3.5.6)", color="#00ff00"];
+
+        SSHD -> PAM_Module [label="--with-pam Flag"];
+        SSHD -> LibCrypto [label="Dynamic Link (Rpath)"];
+    }

@@ -1,0 +1,14 @@
+digraph LessonMismatch {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.1: OpenSSL Version Mismatch Trap"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Global_Ld [label="Global /etc/ld.so.conf.d/\nOverride", color="#ff0000"];
+        System_Nginx [label="System Nginx\n(Built for OpenSSL 3.0.2)"];
+        New_Lib [label="libssl.so.3 (3.5.6)\nLoaded Dynamically", color="#ffff00"];
+        Crash [label="NGINX Crash\n(Assert Version Fail)", shape=doublecircle, color="#ff0000"];
+
+        Global_Ld -> New_Lib [label="Updates Cache"];
+        System_Nginx -> New_Lib [label="Loads at Runtime"];
+        New_Lib -> Crash [label="Version Mismatch Detected"];
+    }

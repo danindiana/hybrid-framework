@@ -1,0 +1,16 @@
+digraph ArchNginxStatic {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.5: Nginx 1.30.2 Dynamic Rpath Layout"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Nginx [label="nginx Binary\n(/usr/local/sbin/nginx)"];
+        CC_OPT [label="--with-cc-opt\n(-I/usr/local/...)", shape=parallelogram];
+        LD_OPT [label="--with-ld-opt\n(-Wl,-rpath,...)", shape=parallelogram];
+        OpenSSL [label="OpenSSL 3.5.6\n(/usr/local/ssl/lib64)", color="#00ff00"];
+        ZlibNg [label="zlib-ng 2.3.3\n(/usr/local/zlib-ng/lib)", color="#00ff00"];
+
+        Nginx -> CC_OPT;
+        Nginx -> LD_OPT;
+        LD_OPT -> OpenSSL [label="Rpath Resolve"];
+        LD_OPT -> ZlibNg [label="Rpath Resolve"];
+    }

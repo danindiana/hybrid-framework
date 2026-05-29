@@ -1,0 +1,19 @@
+digraph PipeVersionCheck {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.5: Automated Version Auditor Pipeline"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Trigger [label="Auditor Invoked"];
+        Get_Local [label="Read Local Binary Headers\n(Run version commands)"];
+        Get_Remote [label="Query Release API portals\n(GitHub Releases)", color="#ffff00"];
+        Compare_Logic [label="Compare Versions Check", shape=diamond];
+        Report_OK [label="Print OK Status", color="#00ff00"];
+        Report_Alert [label="Print Update Available Warning", color="#ff0000"];
+
+        Trigger -> Get_Local;
+        Trigger -> Get_Remote;
+        Get_Local -> Compare_Logic;
+        Get_Remote -> Compare_Logic;
+        Compare_Logic -> Report_OK [label="Local == Remote"];
+        Compare_Logic -> Report_Alert [label="Local < Remote"];
+    }

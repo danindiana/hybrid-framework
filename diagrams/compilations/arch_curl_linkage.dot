@@ -1,0 +1,14 @@
+digraph ArchCurlLinkage {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.3: cURL 8.20.0 Custom Linkage"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Curl_Binary [label="curl Binary\n(/usr/local/curl/bin/curl)"];
+        LDFLAGS [label="LDFLAGS\n(-Wl,-rpath,...)", shape=parallelogram];
+        OpenSSL [label="OpenSSL 3.5.6\n(/usr/local/ssl/lib64)", color="#00ff00"];
+        ZlibNg [label="zlib-ng 2.3.3\n(/usr/local/zlib-ng/lib)", color="#00ff00"];
+
+        Curl_Binary -> LDFLAGS [style=dashed];
+        LDFLAGS -> OpenSSL [label="Dynamic Link"];
+        LDFLAGS -> ZlibNg [label="Dynamic Link"];
+    }

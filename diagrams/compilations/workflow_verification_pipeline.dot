@@ -1,0 +1,16 @@
+digraph WorkVerification {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.4: Dynamic Link Verification Workflow"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Installed_Binary [label="Binary Validation"];
+        Runpath_Query [label="ldd /usr/local/.../binary", shape=parallelogram];
+        Lib_Check [label="Library Path Check", shape=diamond, color="#ffff00"];
+        Valid_Load [label="Loads Custom Library\n(Rpath Success)", color="#00ff00"];
+        Fail_Load [label="Loads System Library\n(Rpath Fail)", color="#ff0000"];
+
+        Installed_Binary -> Runpath_Query;
+        Runpath_Query -> Lib_Check;
+        Lib_Check -> Valid_Load [label="Points to /usr/local/..."];
+        Lib_Check -> Fail_Load [label="Points to /lib/..."];
+    }

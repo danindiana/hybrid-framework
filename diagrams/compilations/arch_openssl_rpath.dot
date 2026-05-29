@@ -1,0 +1,14 @@
+digraph ArchOpenSSL {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A1.1: Isolated OpenSSL 3.5.6 Rpath Architecture"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        OpenSSL_Binary [label="openssl Binary\n(/usr/local/ssl/bin/openssl)"];
+        Rpath_Config [label="Rpath Header\n(Baked in runpath)", shape=parallelogram];
+        LibSSL [label="libssl.so.3\n(/usr/local/ssl/lib64/libssl.so.3)", color="#00ff00"];
+        LibCrypto [label="libcrypto.so.3\n(/usr/local/ssl/lib64/libcrypto.so.3)", color="#00ff00"];
+
+        OpenSSL_Binary -> Rpath_Config [style=dashed];
+        Rpath_Config -> LibSSL [label="Locates at Runtime"];
+        Rpath_Config -> LibCrypto [label="Locates at Runtime"];
+    }

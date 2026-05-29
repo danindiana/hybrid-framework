@@ -1,0 +1,14 @@
+digraph LessonPAM {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.4: OpenSSH PAM Dependency"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Config [label="sshd_config\n(UsePAM yes)", shape=parallelogram];
+        Build_NoPAM [label="sshd Build\n(No --with-pam flag)", color="#ff0000"];
+        Warning [label="Unsupported Option UsePAM\n(Daemon warning / auth bypass)", shape=diamond, color="#ffff00"];
+        Rebuild_PAM [label="Rebuilt with --with-pam\n(Full integration)", color="#00ff00"];
+
+        Config -> Build_NoPAM;
+        Build_NoPAM -> Warning;
+        Warning -> Rebuild_PAM [label="libpam0g-dev Added"];
+    }

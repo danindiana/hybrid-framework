@@ -1,0 +1,14 @@
+digraph FutureAudit {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A3.2: Automated Security Auditing"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Cron_Job [label="System Cron Daemon", shape=cylinder];
+        Auditor_Script [label="check_upstream_versions.sh\n(Version check script)", color="#ffff00"];
+        Git_API [label="GitHub / Project API\n(Remote tag queries)"];
+        Syslog_Alert [label="Systemd Journal / Email\n(Security notification)", color="#00ff00"];
+
+        Cron_Job -> Auditor_Script [label="Daily Trigger"];
+        Auditor_Script -> Git_API [label="Compares Release Versions"];
+        Auditor_Script -> Syslog_Alert [label="If Update Available"];
+    }

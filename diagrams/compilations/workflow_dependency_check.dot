@@ -1,0 +1,16 @@
+digraph WorkDependency {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.2: Compilation Dependency Audit Workflow"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Audit_Start [label="Pre-Compile Check"];
+        Check_GCC [label="GCC Compiler\n(Version check)"];
+        Check_Perl [label="Perl Core Engine\n(Configure dependency)"];
+        Check_Zlib [label="zlib1g-dev Headers\n(Compression link)"];
+        Audit_Success [label="Environment Ready", color="#00ff00"];
+
+        Audit_Start -> Check_GCC;
+        Check_GCC -> Check_Perl;
+        Check_Perl -> Check_Zlib;
+        Check_Zlib -> Audit_Success;
+    }

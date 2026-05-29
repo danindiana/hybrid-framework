@@ -1,0 +1,16 @@
+digraph PipeOpenSSLTest {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A5.1: OpenSSL Regression Testing Pipeline"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Test_Start [label="Trigger make test"];
+        Run_Crypto [label="Test Cryptographic Core\n(AES, RSA, ECC, ML-KEM)"];
+        Run_Protocol [label="Test TLS Protocol\n(Handshakes, Record Layer)"];
+        Fuzz_Test [label="Fuzzing Validation\n(ASN.1, PEM parsers)"];
+        PASS_Status [label="Result: PASS\n(All tests OK)", color="#00ff00"];
+
+        Test_Start -> Run_Crypto;
+        Run_Crypto -> Run_Protocol;
+        Run_Protocol -> Fuzz_Test;
+        Fuzz_Test -> PASS_Status;
+    }

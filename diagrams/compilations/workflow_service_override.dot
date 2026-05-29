@@ -1,0 +1,14 @@
+digraph WorkOverride {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A4.5: Systemd Configuration Override Workflow"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Service_Upgrade [label="Service Configuration Upgraded"];
+        Override_Dir [label="Create override.conf in\n/etc/systemd/system/*.service.d/", shape=folder, color="#ffff00"];
+        Daemon_Reload [label="systemctl daemon-reload", shape=parallelogram];
+        Restart [label="systemctl restart", color="#00ff00"];
+
+        Service_Upgrade -> Override_Dir;
+        Override_Dir -> Daemon_Reload;
+        Daemon_Reload -> Restart;
+    }

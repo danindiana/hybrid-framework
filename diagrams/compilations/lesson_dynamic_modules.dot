@@ -1,0 +1,14 @@
+digraph LessonModules {
+        graph [bgcolor="#0d1117", fontname="Helvetica", fontcolor="#00f2ff", label="A2.5: Nginx Dynamic Module Conflicts"];
+        node [shape=box, style="filled,rounded", color="#00f2ff", fontcolor="#00f2ff", fillcolor="#161b22", fontname="Helvetica"];
+        edge [color="#ff00ff", arrowhead=vee];
+
+        Nginx_Upgrade [label="Nginx 1.30.2 Daemon"];
+        System_Modules [label="Legacy Modules\n(GeoIP2 / Stream for 1.18.0)", color="#ff0000"];
+        Load_Failure [label="nginx: [emerg] module version mismatch", shape=circle, color="#ff0000"];
+        Disabled_Dir [label="/etc/nginx/modules-disabled/\n(Symlinks quarantined)", color="#00ff00"];
+
+        Nginx_Upgrade -> System_Modules [label="Includes /etc/nginx/modules-enabled/"];
+        System_Modules -> Load_Failure;
+        Disabled_Dir -> Nginx_Upgrade [label="Config syntax resolves OK"];
+    }
