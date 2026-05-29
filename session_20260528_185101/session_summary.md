@@ -135,5 +135,31 @@ A detailed audit of network interfaces, active TCP/UDP ports, firewall blocks, a
     *   A secure keepalive connection is established with `160.79.104.10` (Kalshi trading API) for trading operations.
     *   Established encrypted connections were traced to `16.54.100.32` (AWS EC2 instance) and `140.82.113.26` (GitHub).
 
+---
 
+## Storage & CPU Thermal Diagnostics (Executed 2026-05-28 19:01:49)
+A system-wide thermal audit was performed on the CPU and all 10 storage drives (3 NVMe SSDs, 2 SATA SSDs, and 5 Rotational HDDs):
 
+### 1. CPU & NVMe Temperatures (lm-sensors)
+*   **Ryzen 9 5950X**:
+    *   Tctl (Control Temp): **70.1°C**
+    *   Tccd1 (CCD 0 Core): **55.5°C**
+    *   Tccd2 (CCD 1 Core): **54.8°C**
+    *   *Analysis*: Under normal operational load, running well below thermal throttling limits.
+*   **NVMe SSDs**:
+    *   `nvme0n1` (WD Black 500GB): **48.9°C**
+    *   `nvme1n1` (Intel 660p 1TB root OS): **44.9°C**
+    *   `nvme2n1` (Crucial P3 Plus 4TB): **52.9°C**
+    *   *Analysis*: All high-speed NVMe controllers are adequately cooled.
+
+### 2. SATA SSD & HDD Temperatures (udisks2 SMART translation)
+*   **SATA SSDs**:
+    *   `/dev/sda` (Samsung EVO 870 500GB - Ollama registry): **34.0°C**
+    *   `/dev/sdb` (WD Blue 1TB SSD): **32.0°C**
+*   **Rotational HDDs**:
+    *   `/dev/sdc` (WD Green 1TB): **33.0°C**
+    *   `/dev/sdd` (Seagate IronWolf 12TB): **41.0°C**
+    *   `/dev/sde` (Hitachi Ultrastar 2TB): **35.0°C**
+    *   `/dev/sdf` (Seagate IronWolf 12TB): **40.0°C**
+    *   `/dev/sdg` (WD Black 4TB): **38.0°C**
+    *   *Analysis*: All rotational disks (including the enterprise 7200 RPM IronWolf drives) are well ventilated and operating within optimal thermal profiles (< 45°C).
