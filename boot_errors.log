@@ -1,0 +1,62 @@
+May 30 08:56:59 worlock kernel: ACPI: _OSC evaluation for CPUs failed, trying _PDC
+May 30 08:56:59 worlock kernel: pci 0000:0e:00.0: VF BAR 2 [mem size 0x10000000 64bit pref]: failed to assign
+May 30 08:56:59 worlock kernel: pci 0000:0e:00.0: VF BAR 4 [mem size 0x02000000 64bit pref]: failed to assign
+May 30 08:56:59 worlock kernel: cryptd: module verification failed: signature and/or required key missing - tainting kernel
+May 30 08:56:59 worlock kernel: RAS: Correctable Errors collector initialized.
+May 30 08:57:00 worlock augenrules[3061]: Error sending add rule data request (No such file or directory)
+May 30 08:57:00 worlock augenrules[3061]: There was an error in line 12 of /etc/audit/audit.rules
+May 30 08:57:00 worlock systemd[1]: Starting GRUB failed boot detection...
+May 30 08:57:00 worlock systemd[1]: Finished GRUB failed boot detection.
+May 30 08:57:00 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:00 worlock NetworkManager[3085]: <info>  [1780149420.8570] failed to open /run/network/ifstate
+May 30 08:57:00 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:00 worlock systemd-xdg-autostart-generator[3465]: Not generating service for XDG autostart app-xiccd@autostart.service, error parsing Exec= line: No such file or directory
+May 30 08:57:01 worlock containerd[3388]: time="2026-05-30T08:57:01.003167032-05:00" level=info msg="skip loading plugin" error="no scratch file generator: skip plugin" id=io.containerd.snapshotter.v1.blockfile type=io.containerd.snapshotter.v1
+May 30 08:57:01 worlock containerd[3388]: time="2026-05-30T08:57:01.003299785-05:00" level=info msg="skip loading plugin" error="path /var/lib/containerd/io.containerd.snapshotter.v1.btrfs (ext4) must be a btrfs filesystem to be used with the btrfs snapshotter: skip plugin" id=io.containerd.snapshotter.v1.btrfs type=io.containerd.snapshotter.v1
+May 30 08:57:01 worlock containerd[3388]: time="2026-05-30T08:57:01.003318065-05:00" level=info msg="skip loading plugin" error="devmapper not configured: skip plugin" id=io.containerd.snapshotter.v1.devmapper type=io.containerd.snapshotter.v1
+May 30 08:57:01 worlock containerd[3388]: time="2026-05-30T08:57:01.006007130-05:00" level=info msg="skip loading plugin" error="EROFS unsupported, please `modprobe erofs`: skip plugin" id=io.containerd.snapshotter.v1.erofs type=io.containerd.snapshotter.v1
+May 30 08:57:01 worlock containerd[3388]: time="2026-05-30T08:57:01.006742704-05:00" level=info msg="skip loading plugin" error="lstat /var/lib/containerd/io.containerd.snapshotter.v1.zfs: no such file or directory: skip plugin" id=io.containerd.snapshotter.v1.zfs type=io.containerd.snapshotter.v1
+May 30 08:57:01 worlock containerd[3388]: time="2026-05-30T08:57:01.015526453-05:00" level=info msg="skip loading plugin" error="failed to check mkfs.erofs availability: failed to run mkfs.erofs --help: exec: \"mkfs.erofs\": executable file not found in $PATH: skip plugin" id=io.containerd.differ.v1.erofs type=io.containerd.differ.v1
+May 30 08:57:01 worlock containerd[3388]: time="2026-05-30T08:57:01.016950042-05:00" level=info msg="starting cri plugin" config="{\"containerd\":{\"defaultRuntimeName\":\"runc\",\"runtimes\":{\"runc\":{\"runtimeType\":\"io.containerd.runc.v2\",\"runtimePath\":\"\",\"PodAnnotations\":null,\"ContainerAnnotations\":null,\"options\":{\"BinaryName\":\"\",\"CriuImagePath\":\"\",\"CriuWorkPath\":\"\",\"IoGid\":0,\"IoUid\":0,\"NoNewKeyring\":false,\"Root\":\"\",\"ShimCgroup\":\"\",\"SystemdCgroup\":false},\"privileged_without_host_devices\":false,\"privileged_without_host_devices_all_devices_allowed\":false,\"cgroupWritable\":false,\"baseRuntimeSpec\":\"\",\"cniConfDir\":\"\",\"cniMaxConfNum\":0,\"snapshotter\":\"\",\"sandboxer\":\"podsandbox\",\"io_type\":\"\"}},\"ignoreBlockIONotEnabledErrors\":false,\"ignoreRdtNotEnabledErrors\":false},\"cni\":{\"binDir\":\"\",\"binDirs\":[\"/opt/cni/bin\"],\"confDir\":\"/etc/cni/net.d\",\"maxConfNum\":1,\"setupSerially\":false,\"confTemplate\":\"\",\"ipPref\":\"\",\"useInternalLoopback\":false},\"enableSelinux\":false,\"selinuxCategoryRange\":1024,\"maxContainerLogLineSize\":16384,\"disableApparmor\":false,\"restrictOOMScoreAdj\":false,\"disableProcMount\":false,\"unsetSeccompProfile\":\"\",\"tolerateMissingHugetlbController\":true,\"disableHugetlbController\":true,\"device_ownership_from_security_context\":false,\"ignoreImageDefinedVolumes\":false,\"netnsMountsUnderStateDir\":false,\"enableUnprivilegedPorts\":true,\"enableUnprivilegedICMP\":true,\"enableCDI\":true,\"cdiSpecDirs\":[\"/etc/cdi\",\"/var/run/cdi\"],\"drainExecSyncIOTimeout\":\"0s\",\"ignoreDeprecationWarnings\":null,\"containerdRootDir\":\"/var/lib/containerd\",\"containerdEndpoint\":\"/run/containerd/containerd.sock\",\"rootDir\":\"/var/lib/containerd/io.containerd.grpc.v1.cri\",\"stateDir\":\"/run/containerd/io.containerd.grpc.v1.cri\"}"
+May 30 08:57:01 worlock containerd[3388]: time="2026-05-30T08:57:01.017136935-05:00" level=info msg="skip loading plugin" error="skip plugin: tracing endpoint not configured" id=io.containerd.tracing.processor.v1.otlp type=io.containerd.tracing.processor.v1
+May 30 08:57:01 worlock containerd[3388]: time="2026-05-30T08:57:01.017146625-05:00" level=info msg="skip loading plugin" error="skip plugin: tracing endpoint not configured" id=io.containerd.internal.v1.tracing type=io.containerd.internal.v1
+May 30 08:57:01 worlock wireplumber[4084]: RTKit error: org.freedesktop.DBus.Error.AccessDenied
+May 30 08:57:01 worlock pipewire-pulse[4087]: mod.rt: RTKit error: org.freedesktop.DBus.Error.AccessDenied
+May 30 08:57:01 worlock pipewire[4080]: mod.rt: RTKit error: org.freedesktop.DBus.Error.AccessDenied
+May 30 08:57:01 worlock wireplumber[4084]: RTKit error: org.freedesktop.DBus.Error.AccessDenied
+May 30 08:57:01 worlock pipewire-pulse[4087]: mod.rt: RTKit error: org.freedesktop.DBus.Error.AccessDenied
+May 30 08:57:01 worlock pipewire[4080]: mod.rt: RTKit error: org.freedesktop.DBus.Error.AccessDenied
+May 30 08:57:01 worlock wireplumber[4084]: <WpSiAudioAdapter:0x5cc73379c100> failed to activate item: Object activation aborted: proxy destroyed
+May 30 08:57:01 worlock ntpd[3392]: DNS: dns_check: DNS error: -3, Temporary failure in name resolution
+May 30 08:57:02 worlock systemd-fsck[1949]: fsck failed with exit status 4.
+May 30 08:57:02 worlock systemd[1]: systemd-fsck@dev-disk-by\x2duuid-cc851e1e\x2d0d21\x2d48de\x2da35d\x2d43f0b1d7597a.service: Failed with result 'exit-code'.
+May 30 08:57:02 worlock systemd[1]: Failed to start File System Check on /dev/disk/by-uuid/cc851e1e-0d21-48de-a35d-43f0b1d7597a.
+May 30 08:57:02 worlock systemd[1]: Dependency failed for /mnt/nvme_staging.
+May 30 08:57:02 worlock systemd[1]: mnt-nvme_staging.mount: Job mnt-nvme_staging.mount/start failed with result 'dependency'.
+May 30 08:57:02 worlock audit[1]: SERVICE_START pid=1 uid=0 auid=4294967295 ses=4294967295 msg='unit=systemd-fsck@dev-disk-by\x2duuid-cc851e1e\x2d0d21\x2d48de\x2da35d\x2d43f0b1d7597a comm="systemd" exe="/usr/lib/systemd/systemd" hostname=? addr=? terminal=? res=failed'
+May 30 08:57:02 worlock ntpd[3392]: DNS: dns_check: DNS error: -3, Temporary failure in name resolution
+May 30 08:57:03 worlock systemd-xdg-autostart-generator[5474]: Not generating service for XDG autostart app-xiccd@autostart.service, error parsing Exec= line: No such file or directory
+May 30 08:57:03 worlock wireplumber[5492]: Failed to set scheduler settings: Operation not permitted
+May 30 08:57:03 worlock ntpd[3392]: DNS: dns_check: DNS error: -3, Temporary failure in name resolution
+May 30 08:57:04 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:04 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:04 worlock systemd[1]: Started Download data for packages that failed at package install time.
+May 30 08:57:04 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:04 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:04 worlock dockerd[5746]: time="2026-05-30T08:57:04.553001824-05:00" level=info msg="Deleting nftables IPv4 rules" error="exit status 1" output="Error: Could not process rule: No such file or directory\ndelete table ip docker-bridges"
+May 30 08:57:04 worlock dockerd[5746]: time="2026-05-30T08:57:04.576273015-05:00" level=info msg="Deleting nftables IPv6 rules" error="exit status 1" output="Error: Could not process rule: No such file or directory\ndelete table ip6 docker-bridges"
+May 30 08:57:05 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:05 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:05 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:05 worlock dbus-daemon[3084]: [system] Activation via systemd failed for unit 'dbus-org.freedesktop.nm-dispatcher.service': Unit dbus-org.freedesktop.nm-dispatcher.service is masked.
+May 30 08:57:05 worlock dockerd[5746]: time="2026-05-30T08:57:05.445434735-05:00" level=warning msg="error locating sandbox id b90573ccbb8cf8117bb45fba31fc8b9562ddddf73be9625014007839d2b63550: sandbox b90573ccbb8cf8117bb45fba31fc8b9562ddddf73be9625014007839d2b63550 not found"
+May 30 08:57:11 worlock dbus-daemon[4229]: [session uid=1000 pid=4229] Activation via systemd failed for unit 'thunar.service': Unit thunar.service not found.
+May 30 08:57:11 worlock dbus-daemon[4229]: [session uid=1000 pid=4229] Activation via systemd failed for unit 'evolution-source-registry.service': Unit evolution-source-registry.service is masked.
+May 30 08:58:00 worlock cron[9197]: sendmail: authentication failed (method PLAIN)
+May 30 08:58:20 worlock kernel: EXT4-fs (nvme2n1p2): warning: mounting fs with errors, running e2fsck is recommended
+May 30 09:01:59 worlock systemd[1]: Starting Download data for packages that failed at package install time...
+May 30 09:01:59 worlock systemd[1]: Finished Download data for packages that failed at package install time.
+May 30 09:03:08 worlock systemd[3391]: Failed to put bus name to hashmap: File exists
+May 30 10:35:13 worlock kernel: python[28835]: segfault at 800000 ip 000059db541fe770 sp 00007fff4b471870 error 4 in python3.10[59db5410d000+2b5000] likely on CPU 13 (core 13, socket 0)
+May 30 12:02:03 worlock cron[38185]: sendmail: authentication failed (method PLAIN)
+May 30 12:56:01 worlock kernel: python[44305]: segfault at 30 ip 00005d4ceffc7858 sp 00007fff0f89c460 error 4 in python3.10[5d4cefeb3000+2b5000] likely on CPU 8 (core 8, socket 0)
