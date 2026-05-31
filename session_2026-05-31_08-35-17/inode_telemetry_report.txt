@@ -1,0 +1,24 @@
+# Inode Telemetry Report
+Generated at: 2026-05-31T08:37:48-05:00
+
+## Analysis
+All disks on the system are operating with normal inode utilization. There is no inode pressure detected. 
+The highest utilization is on the root filesystem `/dev/nvme1n1p1` mounted at `/` with 9% usage.
+
+## df -i Output
+Filesystem        Inodes   IUsed     IFree IUse% Mounted on
+tmpfs           16453660    1715  16451945    1% /run
+efivarfs               0       0         0     - /sys/firmware/efi/efivars
+/dev/nvme1n1p1  62472192 5480853  56991339    9% /
+tmpfs           16453660     377  16453283    1% /dev/shm
+tmpfs           16453660       6  16453654    1% /run/lock
+tmpfs           16453660       1  16453659    1% /run/qemu
+/dev/sda1       30531584     223  30531361    1% /mnt/samsung_ssd
+/dev/nvme1n1p2         0       0         0     - /boot/efi
+/dev/sdc1       61054976 1389162  59665814    3% /mnt/sda1
+/dev/md0       366206976 3232929 362974047    1% /mnt/raid0
+/dev/sdd1      180178944 8022358 172156586    5% /mnt/sdf1
+/dev/sde1      122101760  163616 121938144    1% /mnt/hitachi_2tb
+tmpfs            3290732     118   3290614    1% /run/user/1000
+/dev/nvme2n1p2 244121600  469919 243651681    1% /mnt/nvme_staging
+/dev/sdf1      186040320 2823454 183216866    2% /media/jeb/20a55990-09e7-424b-9737-a689b1c7cbb7
