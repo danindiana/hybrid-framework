@@ -4,7 +4,7 @@
 
 # Human-AI Hybrid Development & Compilation Framework
 
-Welcome to the **Human-AI Hybrid Loop** workspace on the `worlock` host. This repository houses specialized modules for automated security auditing, local model telemetry, network analytics, a custom compilation pipeline designed to securely build, deploy, and maintain core system software from upstream sources, and integrated developer tools powered by the **OpenClaw** autonomous agent framework.
+Welcome to the **Human-AI Hybrid Loop** workspace on the `worlock` host. This repository houses specialized modules for automated security auditing, local model telemetry, network analytics, and a custom compilation pipeline designed to securely build, deploy, and maintain core system software from upstream sources.
 
 ---
 
@@ -45,30 +45,10 @@ Detailed operations, lessons, workflows, and pipelines of our compilation archit
 
 ---
 
-## 4. Workspace Component Registry
+## 4. Maintenance & Diagnostic Tools
 
-This workspace coordinates document retrieval, session telemetry, model optimization, and agent workflow tasks.
-
-### 4.1. Enterprise Document Search
-* **Treesearch Engine**: Handles hierarchical document indexing across enterprise environments (`enterprise-document-treesearch/`).
-* **Session Summaries**: Automatically generated summaries for complex document operations stored in `session_summaries/`.
-
-### 4.2. Local Inference & Telemetry
-* **System Optimizations**: Custom configs for GPU allocation and KV cache bounds (`ollama-system-optimizations/`).
-* **Model Telmetry Docs**: Detailed Ollama split-tensor mappings and memory layout docs ([OLLAMA_ARCHITECTURE.md](OLLAMA_ARCHITECTURE.md)).
-* **Local Python Telemetry**: CLI utilities and telemetry script setups run via virtual environment (`venv/`).
-
-### 4.3. OpenClaw Agent Broker & clients
-* **WebSocket Gateway**: Main platform gateway runs on port `18789` (systemd daemon `openclaw-gateway.service`).
-* **Housing search TUI**: Custom Rust/Ratatui interactive CLI built from [2026-05-11T221006-openclaw-tui](file:///home/jeb/Documents/claude_creations/2026-05-11T221006-openclaw-tui) and installed locally at `~/.local/bin/openclaw-tui`.
-* **Platform Chat TUI**: Client terminal chat interface accessed via command `openclaw tui` (GPU-rendering via `kitty` recommended).
-
----
-
-## 5. Maintenance & Diagnostics
-
-### 5.1. Upstream Version Auditor
-To verify your compiled local versions against remote releases, execute:
+### 4.1. Upstream Version Auditor
+To verify your running software against the latest remote releases, execute:
 ```bash
 ./session_20260529_123444/check_upstream_versions.sh
 ```
@@ -78,11 +58,7 @@ This script queries GitHub APIs and official releases to output a status report:
 - `[OK] OpenSSH is up to date.`
 - `[OK] Nginx is up to date.`
 
-### 5.2. Compilation & Architecture Guides
+### 4.2. Diagnostic Guides
 Refer to our custom session folders for detailed steps:
 - [Session Summary](file:///home/jeb/programs/gemini_cli_workspace/session_20260529_123444/session_summary.md): Step-by-step compilation walkthrough.
 - [Maintenance & Troubleshooting Guide](file:///home/jeb/programs/gemini_cli_workspace/session_20260529_123444/maintenance_guide.md): Tips on overriding dynamic modules, editing systemd files, and using custom library paths in Python via `LD_LIBRARY_PATH`.
-
-### 5.3. OpenClaw Diagnostic Logs & Setup Check
-Check active log dumps or configure local model profiles using the session guide:
-- [Diagnostics & Setup Log (2026-06-06)](session_20260606_125212.md): Details compilation, fresh profile initialization (`--dev onboard`), verified local model matrix (Qwen3-Coder, Llama 3.3, Gemma 4), context optimizations (`num_ctx`), and search plugins setup.
