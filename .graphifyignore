@@ -1,0 +1,55 @@
+# Ignore all media and document extensions case-insensitively without recursive prefix
+*.[sS][vV][gG]
+*.[pP][nN][gG]
+*.[jJ][pP][gG]
+*.[jJ][pP][eE][gG]
+*.[gG][iI][fF]
+*.[wW][eE][bB][pP]
+*.[pP][dD][fF]
+*.[mM][dD]
+*.[mM][dD][xX]
+*.[qQ][mM][dD]
+*.[tT][xX][tT]
+*.[rR][sS][tT]
+*.[hH][tT][mM][lL]
+*.[yY][aA][mM][lL]
+*.[yY][mM][lL]
+*.[dD][oO][cC][xX]
+*.[xX][lL][sS][xX]
+*.[mM][pP]4
+*.[mM][oO][vV]
+*.[wW][eE][bB][mM]
+*.[mM][kK][vV]
+*.[aA][vV][iI]
+*.[mM]4[vV]
+*.[mM][pP]3
+*.[wW][aA][vV]
+*.[mM]4[aA]
+*.[oO][gG][gG]
+
+# Archive formats
+*.[zZ][iI][pP]
+*.[tT][aA][rR]
+*.[gG][zZ]
+
+# Temporary files and logs
+*.[lL][oO][gG]
+*.[bB][aA][kK]
+
+# Ignore massive third-party agent architecture codebase to avoid Python memory/stack segfaults
+ai-agent-architectures/
+
+# Ignore other specific directories
+session_*
+2026-06-06_1332_CDT/
+hermes-agent-commissioning-20260401_175500/
+net-watchdog-forensics-20260327/
+archive/
+logs/
+.clamav/
+venv/
+templates/
+reports/
+expansions/
+diagrams/
+cad_export/
