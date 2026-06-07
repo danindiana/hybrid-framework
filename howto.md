@@ -84,3 +84,31 @@ Use `export html` with a low `--node-limit`. This groups files into interactive 
 ```bash
 /home/jeb/programs/gemini_cli_workspace/session_20260607_163152/graphify/.venv/bin/graphify export html --graph /path/to/codebase/graphify-out/graph.json --node-limit 2000
 ```
+
+---
+
+## 5. Running the Interactive TUI Wizard (Ratatui)
+We also have a second interactive terminal wizard built using Rust and **Ratatui** for graph-node traversal, auto-annotation, and code refinement using **Ollama** and **OpenClaw**.
+
+### Setup and Compilation:
+```bash
+cd /home/jeb/programs/gemini_cli_workspace/graphify-tui
+cargo build
+```
+
+### Usage:
+Run the compiled TUI binary by passing the path of the target codebase:
+```bash
+./target/debug/graphify-tui /home/jeb/programs/gemini_cli_workspace
+```
+
+### Key Bindings:
+* `Tab` - Switch focus between lists.
+* `Up` / `Down` - Scroll symbols/edges.
+* `Enter` - Traverse the selected neighbor.
+* `Esc` - Backtrack history.
+* `b` - Switch AI backend (Ollama vs OpenClaw).
+* `a` - Annotate selected symbol (comments & docstrings).
+* `r` - Refine selected symbol (launch prompt input).
+* `s` - Scan codebase.
+* `q` - Quit.

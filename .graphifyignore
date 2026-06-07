@@ -1,4 +1,4 @@
-# Ignore all media and document extensions case-insensitively without recursive prefix
+# Code-only extraction ignore list
 *.[sS][vV][gG]
 *.[pP][nN][gG]
 *.[jJ][pP][gG]
@@ -26,20 +26,14 @@
 *.[wW][aA][vV]
 *.[mM]4[aA]
 *.[oO][gG][gG]
-
-# Archive formats
 *.[zZ][iI][pP]
 *.[tT][aA][rR]
 *.[gG][zZ]
-
-# Temporary files and logs
 *.[lL][oO][gG]
 *.[bB][aA][kK]
 
-# Ignore massive third-party agent architecture codebase to avoid Python memory/stack segfaults
+# Massive subfolders (to prevent python segfaults)
 ai-agent-architectures/
-
-# Ignore other specific directories
 session_*
 2026-06-06_1332_CDT/
 hermes-agent-commissioning-20260401_175500/
