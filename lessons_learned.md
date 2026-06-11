@@ -41,3 +41,14 @@ Starting background processes with standard shell syntax (`cmd &`) inside the ag
 ### The Lesson
 1. To run a persistent CLI command in the background, spawn it as a managed background task in the runner system (`run_command` asynchronously).
 2. To spawn interactive graphical shells on the operator's desktop, use `xterm -hold -e /path/to/script &`. The `-hold` flag is crucial to prevent the window from closing instantly if the child process completes or hits an error.
+
+---
+
+## 5. Quiescent HDD Standby & System Shutdown Delays
+### The Problem
+During system shutdown, mechanical hard drives that were parked in standby (quiescent mode) were being woken up (spun up), causing the shutdown process to hang for 11–26 seconds while `udisks2` and filesystem unmount tasks blocked waiting for the disks to spin up.
+
+### The Lesson
+1. **Unmount Write Signature**: Ext4 filesystems mounted as read-write (`rw`) must update superblock metadata and flush their journal during unmount, which forces the kernel to spin up parked platters to perform physical writes.
+2. **Read-Only Mitigation**: Mounting quiescent archive/backup drives as read-only (`ro,noatime,nofail`) in `/etc/fstab` completely avoids the unmount write signature, permitting clean unmounts without waking up standby mechanical disks, saving start/stop wear cycles, and eliminating shutdown delays.
+
